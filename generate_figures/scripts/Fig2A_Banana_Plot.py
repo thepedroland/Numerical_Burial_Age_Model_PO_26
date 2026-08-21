@@ -35,7 +35,7 @@ class HandlerEllipse(handler.HandlerPatch):
         return [p]
 
 ####----IMPORTING DATA----########
-main_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+main_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 file_path = main_path + "/support/data/samples_amazon_23_data.csv"
 
 fig_dir = main_path + "/generate_figures/figures"
@@ -59,22 +59,19 @@ df_data_samples["ratio_n26_n10"] = n26 / n10
 ratio_n26_n10 = df_data_samples['ratio_n26_n10'].values
 
 ####----Colors----########
-flood = [158, 158, 158]
+flood = [143, 116, 246]
 burial = [214, 61, 153]
 surface = [107, 168, 255]
-margin = [143, 116, 246]
 color_fill = [246, 228, 172]
 
 color_ellipse = {
     "flood": tuple([x / 255.0 for x in flood] + [0.05]),
     "burial": tuple([x / 255.0 for x in burial] + [0.05]),
-    "surface": tuple([x / 255.0 for x in surface] + [0.05]),
-    "margin": tuple([x / 255.0 for x in margin] + [0.05])
+    "surface": tuple([x / 255.0 for x in surface] + [0.05])
 }
 color_edge = {"flood": tuple([x / 255.0 for x in flood]),
     "burial": tuple([x / 255.0 for x in burial]),
-    "surface": tuple([x / 255.0 for x in surface]),
-    "margin": tuple([x / 255.0 for x in margin])
+    "surface": tuple([x / 255.0 for x in surface])
               }
 
 ##----------PRODUCTION ZONE----##
@@ -84,15 +81,12 @@ lines_model.plot_steady_state_model(density=density,scaling_method=scaling_metho
 
 #######----PLOTTING----########
 
-h_grey= Ellipse((0,0), 0.2, 0.2,angle=45, facecolor=color_ellipse["flood"], label='Seasonally \nflooded',
+h_purple= Ellipse((0,0), 0.2, 0.2,angle=45, facecolor=color_ellipse["flood"], label='Seasonally \nflooded',
                  edgecolor=color_edge["flood"],linewidth=0.5)
 h_red = Ellipse((0,0), 0.2, 0.2, facecolor=color_ellipse["burial"], label='Buried',
                 edgecolor=color_edge["burial"],linewidth=0.5)
 h_blue = Ellipse((0,0), 0.2, 0.2, facecolor=color_ellipse["surface"], label='Permanent \nflow',
                  edgecolor=color_edge["surface"],linewidth=0.5)
-h_purple = Ellipse((0,0), 0.2, 0.2, facecolor=color_ellipse["margin"], label='Channel \nmargin',
-                 edgecolor=color_edge["margin"],linewidth=0.5)
-
 
 text_font_size =  10
 font_size_labels = 8
@@ -251,7 +245,7 @@ ax.set_yticklabels(["3", "4", "5", "6","7"], fontsize=text_font_size, fontname="
 ax.set_xlim(1e4, 1e6)
 ax.set_ylim(3.5, 8)
 
-leg_eli = ax.legend(handles=[h_red,h_grey, h_blue,h_purple],
+leg_eli = ax.legend(handles=[h_blue,h_purple,h_red],
           handler_map={Ellipse: HandlerEllipse()},ncols=2,columnspacing=0.2,
           loc='upper left',
          facecolor= "#FAF4EF",
@@ -259,9 +253,9 @@ leg_eli = ax.legend(handles=[h_red,h_grey, h_blue,h_purple],
                     edgecolor="#FAF4EF",
           frameon=False,
           fontsize=8,
-          labelcolor=[color_edge["burial"],color_edge["flood"],color_edge["surface"],color_edge["margin"]],
+          labelcolor=[color_edge["surface"],color_edge["flood"],color_edge["burial"]],
           handleheight=2,  # Makes the area tall enough for an ellipse
-          handlelength=1,
+          handlelength=1,bbox_to_anchor=(0.05, 0.8, 1, 0.2),
           handletextpad=0.1,
           borderaxespad=0.2)
 ax.add_artist(leg_eli)
@@ -277,7 +271,7 @@ fig = plt.gcf()
 fig.set_size_inches(4,4.2)
 
 plt.savefig(f"{fig_dir}/{fig_name}_{scaling_method}_{Rc_value}.png", dpi=300, bbox_inches="tight")
-plt.savefig(f"{fig_dir}/banana.svg", format="svg", bbox_inches="tight")
+plt.savefig(f"{fig_dir}/SVG/SVG_{fig_name}.svg", format="svg", bbox_inches="tight")
 
 plt.show()
 plt.close()

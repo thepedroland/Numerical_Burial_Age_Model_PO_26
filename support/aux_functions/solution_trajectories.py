@@ -6,8 +6,8 @@ from support.aux_functions.constant_steady_lines_model import steady_state_model
 
 
 class set_trajectories:
-    def __init__(self,sample_id,reference_sample,density,folder_path):
-        self.path_fig = folder_path + f"/plots/solution_trajectories_[{sample_id}]_D{density}.pdf"
+    def __init__(self,sample_id,reference_sample,density,folder_path,plots_path):
+        self.path_fig = plots_path + f"solution_trajectories_[{sample_id}]_D{density}.pdf"
         self.pdf = PdfPages(self.path_fig)
         self.fig, self.ax = plt.subplots(dpi=30)  # low dpi = smaller/faster pages
         self.path_pickle = folder_path + f"/results_data/Trajectories_[{sample_id}]_R{reference_sample}_D{density}.pkl"

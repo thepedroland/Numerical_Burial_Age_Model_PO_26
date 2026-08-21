@@ -80,7 +80,7 @@ if __name__ == "__main__":
     n_trials = 10000
 
     time_burial_min, time_burial_max = 5_000_000, 30_000_000
-    time_erosion_min, time_erosion_max = 500_000, 1_400_000
+    time_erosion_min, time_erosion_max = 500_000, 3_000_000
 
     depo_rate_min, depo_rate_max = 0.0001, 1.0  # cm/yr
     erosion_min, erosion_max = 1e-4,3e-3  # cm/yr

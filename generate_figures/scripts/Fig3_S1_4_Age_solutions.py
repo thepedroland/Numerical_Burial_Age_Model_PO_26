@@ -266,7 +266,7 @@ for i, sample_id in enumerate(samples_id):
 fig_name = f"Fig3_Solutions_Profile_Ages_D{density}]"
 
 fig.savefig(f"{plots_path}/{fig_name}.png", dpi=300, bbox_inches="tight")
-fig.savefig(f"{plots_path}/SVG_{fig_name}.svg", format="svg", bbox_inches="tight")
+# fig.savefig(f"{plots_path}/SVG_{fig_name}.svg", format="svg", bbox_inches="tight")
 
 if plot_trajectories:
     print("Plotting trajectories")

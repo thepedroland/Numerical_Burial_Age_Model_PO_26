@@ -13,16 +13,17 @@ from support.aux_functions.misc_functions import load_dataset
 from cmcrameri import cm
 plt.rcParams['font.family'] = 'Arial'
 
-samples_id = ["BV-018","SB-013","SB-011","SB-017"]
+samples_id = ["BV-018"]
 density = 1.7
-plot_trajectories = False
+plot_trajectories = True
 reference_sample = "Surface"
 
-main_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+main_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 folder_path = os.path.join(main_path, "generate_data", "python_data_results")
 
 os.makedirs(main_path+"/generate_figures/figures", exist_ok=True)
 plots_path = main_path+"/generate_figures/figures"
+
 
 fig, axs = plt.subplots(4, 1, figsize=(9, 20),constrained_layout=True)
 
@@ -36,6 +37,8 @@ for i, sample_id in enumerate(samples_id):
         results_run = pd.read_csv(file_name_csv)
     except:
         print("not found")
+
+    st = set_trajectories(sample_id,reference_sample, density, folder_path,plots_path)
 
     data_amazon = load_dataset(sample_id, reference_sample="Surface")
 
@@ -136,7 +139,7 @@ for i, sample_id in enumerate(samples_id):
                 fontweight="bold", fontsize=18, fontname="Arial")
 
     sc = ax.scatter(range_age_valid_final_n10, range_age_valid_final_ratio, s=30, c=range_age_valid_times_solution,
-                     cmap="GnBu", edgecolor="black", linewidth=0.2)
+                     cmap=cm.acton, edgecolor="black", linewidth=0.1)
 
     ax.set_box_aspect(0.5)
 
@@ -147,7 +150,7 @@ for i, sample_id in enumerate(samples_id):
     n, bins, patches = hist_ax.hist(range_age_valid_times_solution, bins=10, edgecolor="black", linewidth=0.4)
 
     norm = plt.Normalize(bins.min(), bins.max())
-    cmap = plt.get_cmap(cm.imola)
+    cmap = plt.get_cmap(cm.acton)
     for bin_val, patch in zip(bins, patches):
         patch.set_facecolor(cmap(norm(bin_val)))
     if sample_id != "SB-013":
@@ -261,11 +264,10 @@ for i, sample_id in enumerate(samples_id):
 
 
 fig_name = f"Fig3_Solutions_Profile_Ages_D{density}]"
-fig_dir = os.path.join(plots_path, fig_name)
 
-fig.savefig(f"{fig_dir}.png", dpi=300, bbox_inches="tight")
-fig.savefig(f"{fig_dir}svg.svg", format="svg", bbox_inches="tight")
-#     #
-#     if plot_trajectories:
-#         print("Plotting trajectories")
-#         st.plot_trajectories(x_2s,y_2s)
+fig.savefig(f"{plots_path}/{fig_name}.png", dpi=300, bbox_inches="tight")
+fig.savefig(f"{plots_path}/SVG_{fig_name}.svg", format="svg", bbox_inches="tight")
+
+if plot_trajectories:
+    print("Plotting trajectories")
+    st.plot_trajectories(x_2s,y_2s)

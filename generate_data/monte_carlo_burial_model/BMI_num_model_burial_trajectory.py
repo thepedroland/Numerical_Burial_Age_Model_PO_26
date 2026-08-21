@@ -194,6 +194,8 @@ class deposition_trajectories():
             "Burial Time [Ma]": (self.time_burial / 1e6),
             "Erosion Time [Ma]": (self.time_erosion / 1e6),
             "Total Time [Ma]": ((self.time_burial + self.time_erosion) / 1e6),
+            "Final Depth [cm]": self.final_depth,
+            "Burial Depth [cm]": self.burial_depth
             
         }
         trajectory_data_pkl = {

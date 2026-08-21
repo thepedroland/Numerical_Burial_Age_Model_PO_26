@@ -61,8 +61,8 @@ def load_dataset(sample_id,reference_sample=None):
         final_depth_max_sample = burial_depth_max_sample
 
         if sample_id == "BV-018":
-            burial_depth_min_sample = 2000
-            burial_depth_max_sample = 3000
+            burial_depth_min_sample = 3000
+            burial_depth_max_sample = 5000
 
             final_depth_min_sample = df_data_samples.loc[df_data_samples['sample_names'] == sample_id]['depth_min'].values[0] #only for bv018
             final_depth_max_sample = df_data_samples.loc[df_data_samples['sample_names'] == sample_id]['depth_max'].values[0]

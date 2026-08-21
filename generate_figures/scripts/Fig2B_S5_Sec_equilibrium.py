@@ -7,9 +7,10 @@ from matplotlib.ticker import FixedLocator, LogLocator, NullFormatter
 import os
 import pandas as pd
 import matplotlib as mpl
+import matplotlib.patches as patches
 
 
-main_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+main_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 file_path = main_path + "/support/data/samples_amazon_23_data.csv"
 
 fig_dir = main_path + "/generate_figures/figures"
@@ -109,7 +110,7 @@ for i, sample_id in enumerate(samples_list):
 
     st_model = steady_state_model()
 
-    N_be_series, N_al_series = st_model.plot_steady_state_model_depth(1.7, depth_sample, color=color_fill_island)
+    N_be_series, N_al_series = st_model.plot_steady_state_model_depth(1.7, depth_sample, color="#B3B3B3")
 
     ax2.fill(N_be_series, np.array(N_al_series) / np.array(N_be_series), color="#B3B3B3", alpha=0.4, linewidth=0)
     ax2.fill(
@@ -127,16 +128,24 @@ for i, sample_id in enumerate(samples_list):
         linewidth=0.1,
     )
 
+ymin,ymax = (3,6)
+xmin,xmax = (5e3,5e4)
 ax2.set_xscale("log")
-ax2.set_ylim([3,6])
-ax2.set_xlim(5e3, 5e4)
+ax2.set_ylim(ymin,ymax)
+ax2.set_xlim(xmin, xmax)
 ax2.set_facecolor(color="#FAFAFA")
+ax2.tick_params(axis='x', which='both', bottom=False, labelbottom=False)
+ax2.tick_params(axis='y', which='both', left=False, labelleft=False)
 
-ax2.xaxis.tick_top()
-ax2.xaxis.set_label_position("top")
-ax2.yaxis.tick_right()
-ax2.yaxis.set_label_position("right")
 
+rect = patches.Rectangle(
+    (xmin,ymin), xmax-xmin, ymax-ymin,
+    linewidth=0.1,
+    edgecolor='black',facecolor="none"
+)
+
+# 3. Add the rectangle path patch to the axes
+ax.add_patch(rect)
 
 ####----Axis formatting (done once)----####
 ax.set_xlabel(r'$^{10}\mathrm{Be}$ Concentration [at/g] ', fontsize=6)
@@ -162,8 +171,102 @@ ax.set_xlim(9e1, 2e5)
 
 fig_name = "Fig2B_secular_equilibrium_sb11_sb17"
 plt.savefig(f"{fig_dir}/{fig_name}.png", dpi=300, bbox_inches="tight")
-plt.savefig(f"{fig_dir}/sec.svg", format="svg", bbox_inches="tight")
+plt.savefig(f"{fig_dir}/SVG_{fig_name}.svg", format="svg", bbox_inches="tight")
 
+plt.show()
 
+####---the exact same but for the sample bv018
 
+fig, ax = plt.subplots()
+fig.set_size_inches(2, 2)
+# Load data once, outside the loop
+df_data_samples = pd.read_csv(file_path)
+df_data_samples["ratio_c26_c10"] = df_data_samples['n26_measured'] / df_data_samples['n10_measured']
+
+ellipse_handles = []      # for the per-sample ellipse legend
+depth_handles = []        # for the per-sample depth/exposure legend
+
+sample_id = "BV-018"
+
+print(f"Secular plot for sample: {sample_id}")
+
+observed_c10 = float(df_data_samples[df_data_samples['sample_names'] == sample_id]['n10_measured'].item())
+observed_c26 = float(df_data_samples[df_data_samples['sample_names'] == sample_id]['n26_measured'].item())
+
+obs_dev_c10 = df_data_samples.loc[df_data_samples['sample_names'] == sample_id]['std_dev_n10'].values[0]
+obs_dev_c26 = df_data_samples.loc[df_data_samples['sample_names'] == sample_id]['std_dev_n26'].values[0]
+
+color_sample = ([214, 61, 153])
+rgb_base_sample = [x / 255.0 for x in color_sample]
+color_fill_sample = tuple(rgb_base_sample + [0.05])
+color_edge_sample = tuple(rgb_base_sample + [0.9])
+
+color_island = ([252, 254, 236],[236, 243, 254])
+rgb_base_island = [x / 255.0 for x in color_island[i]]
+color_fill_island = tuple(rgb_base_island)
+
+depth_sample = 700
+
+theta = np.linspace(0, 2 * np.pi, 100)
+x0 = observed_c10
+y0 = observed_c26 / observed_c10
+dx_1s = obs_dev_c10
+dy_1s = y0 * np.sqrt(
+    (obs_dev_c10 / observed_c10) ** 2
+    + (obs_dev_c26 / observed_c26) ** 2
+)
+
+## Outer (2-sigma)
+x_2s = x0 + (2 * dx_1s) * np.sin(theta)
+y_2s = y0 + (2 * dy_1s) * np.cos(theta)
+ax.fill(
+    x_2s, y_2s,
+    facecolor=tuple(color_fill_sample),
+    edgecolor=tuple(color_edge_sample), linewidth=0.1,
+)
+
+## Inner (1-sigma)
+x_1s = x0 + dx_1s * np.sin(theta)
+y_1s = y0 + dy_1s * np.cos(theta)
+ax.fill(
+    x_1s, y_1s,
+    facecolor=tuple(color_fill_sample),
+    edgecolor=tuple(color_edge_sample),
+    linewidth=0.1,
+)
+
+ax.annotate(f"{sample_id[0:2]+sample_id[-2:]}\n",((x0 - (2 * dx_1s)),(y0)),alpha=0.8,fontsize=6,fontweight='bold',color=rgb_base_sample,ha='left')
+ax.annotate(f"\nat {depth_sample/100:.0f}m",((x0 - (2 * dx_1s)),(y0)),alpha=0.8,fontsize=6,color=rgb_base_sample,ha='left')
+
+st_model.plot_steady_state_model_depth(1.7,depth_sample, color="#B3B3B3")
+
+# Collect legend handles instead of drawing a legend per sample
+h_depth = plt.Rectangle((0, 0), 1, 1, facecolor=color_fill_island, alpha=0.5,
+                         label=f"Depth = {depth_sample/1e2:.0f}m",
+                         edgecolor='black', linestyle='-', linewidth=0.8)
+depth_handles.append(h_depth)
+
+####----Axis formatting (done once)----####
+ax.set_xlabel(r'$^{10}\mathrm{Be}$ Concentration [at/g] ', fontsize=6)
+ax.set_ylabel(r'$^{26}\mathrm{Al}/^{10}\mathrm{Be}$', fontsize=6)
+ax.set_facecolor(color="#FAFAFA")
+
+ax.xaxis.set_major_locator(FixedLocator([1e4]))
+ax.set_xticklabels(["$10^4$"], fontsize=6, fontname="Arial")
+ax.xaxis.set_minor_locator(LogLocator(base=10.0, subs='auto', numticks=12))
+ax.xaxis.set_minor_formatter(NullFormatter())
+
+y_ticks = [3, 5, 7]
+ax.yaxis.set_major_locator(FixedLocator(y_ticks))
+ax.set_yticklabels(["3","5","7"], fontsize=6, fontname="Arial")
+#
+# ax.legend(handles=depth_handles,loc="lower right",frameon=False,borderaxespad=0.8,handletextpad=0.2,
+#     ncol=1, fontsize=10, columnspacing=1)
+
+ax.set_box_aspect(1)
+ax.set_ylim(4,8.5)
+ax.set_xlim(5e3, 2e5)
+
+fig_name = "FigS5_secular_equilibrium_sb18"
+plt.savefig(f"{fig_dir}/{fig_name}.png", dpi=300, bbox_inches="tight")
 plt.show()

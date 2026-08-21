@@ -60,7 +60,9 @@ def start_batch_simulation(trial):
             arguments_to_run["initial_ratio"] = initial_ratio
         elif check == "REJECTED BY EROSION RATE":
             erosion_rate = rng.uniform(cfg.ero_low, cfg.ero_high)
+            time_erosion = np.round(rng.uniform(cfg.time_erosion_min, cfg.time_erosion_max), 0)
             arguments_to_run["erosion_rate"] = erosion_rate
+            arguments_to_run["time_erosion"] = time_erosion
         else:
             marker = True
 
@@ -77,7 +79,7 @@ if __name__ == "__main__":
     density = 1.7
     n_trials = 10000
 
-    time_burial_min, time_burial_max = 5_000_000, 40_000_000
+    time_burial_min, time_burial_max = 5_000_000, 30_000_000
     time_erosion_min, time_erosion_max = 500_000, 1_400_000
 
     depo_rate_min, depo_rate_max = 0.0001, 1.0  # cm/yr
@@ -106,19 +108,16 @@ if __name__ == "__main__":
 
     save_arguments_to_excel(var, config,path_table)
 
-    with Pool(processes=2,initializer=init_worker, initargs=(var,config,)) as pool:
+    with Pool(processes=4,initializer=init_worker, initargs=(var,config,)) as pool:
 
         for i, result in enumerate(tqdm(pool.imap_unordered(start_batch_simulation, range(n_trials)),desc="Trial runs", total=n_trials,unit="simulations",leave=False)):
 
             all_results_csv.append(result[0])
             all_trajectories_pkl.append(result[1])
 
-            if (i + 1) % 100 == 0 or (i + 1) == n_trials:
+            if (i + 1) % 10 == 0 or (i + 1) == n_trials:
                     pd.DataFrame(all_results_csv).to_csv(path_save_csv, index=False)
                     df_valid = pd.DataFrame(all_results_csv)
                     valid_count = (df_valid["Solution"] == True).sum()
                     pd.DataFrame(all_trajectories_pkl).to_pickle(path_save_pkl)
                     print("Valid solutions:",valid_count)
-
-
-

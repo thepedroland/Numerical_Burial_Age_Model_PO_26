@@ -13,9 +13,9 @@ from support.aux_functions.misc_functions import load_dataset
 from cmcrameri import cm
 plt.rcParams['font.family'] = 'Arial'
 
-samples_id = ["BV-018"]
+samples_id = ["BV-018","SB-013","SB-011","SB-017"]
 density = 1.7
-plot_trajectories = True
+plot_trajectories = False
 reference_sample = "Surface"
 
 main_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
@@ -23,7 +23,6 @@ folder_path = os.path.join(main_path, "generate_data", "python_data_results")
 
 os.makedirs(main_path+"/generate_figures/figures", exist_ok=True)
 plots_path = main_path+"/generate_figures/figures"
-
 
 fig, axs = plt.subplots(4, 1, figsize=(9, 20),constrained_layout=True)
 
@@ -260,13 +259,13 @@ for i, sample_id in enumerate(samples_id):
 
     fig_dir_2 = os.path.join(plots_path, fig_name)
     print(fig_dir_2)
-    fig2.savefig(f"{fig_dir_2}.png", dpi=300, bbox_inches="tight")
+    fig2.savefig(f"{fig_dir_2}/supplementar.png", dpi=300, bbox_inches="tight")
 
 
 fig_name = f"Fig3_Solutions_Profile_Ages_D{density}]"
 
 fig.savefig(f"{plots_path}/{fig_name}.png", dpi=300, bbox_inches="tight")
-# fig.savefig(f"{plots_path}/SVG_{fig_name}.svg", format="svg", bbox_inches="tight")
+fig.savefig(f"{plots_path}/SVG/SVG_{fig_name}.svg", format="svg", bbox_inches="tight")
 
 if plot_trajectories:
     print("Plotting trajectories")

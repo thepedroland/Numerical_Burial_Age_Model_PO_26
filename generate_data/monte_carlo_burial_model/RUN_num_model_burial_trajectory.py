@@ -72,14 +72,14 @@ if __name__ == "__main__":
     main_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
     path_table = os.path.join(main_path, "generate_data", "python_data_results")
 
-    sample_id = "BV-018"
+    sample_id = "SB-013"
     reference_sample = "Surface" #use Surface when starting from samples at the surface
 
     ###----MODEL PARAMETERS-----####
     density = 1.7
     n_trials = 10000
 
-    time_burial_min, time_burial_max = 5_000_000, 30_000_000
+    time_burial_min, time_burial_max = 10_000, 1_000_000
     time_erosion_min, time_erosion_max = 500_000, 3_000_000
 
     depo_rate_min, depo_rate_max = 0.0001, 1.0  # cm/yr
@@ -108,7 +108,7 @@ if __name__ == "__main__":
 
     save_arguments_to_excel(var, config,path_table)
 
-    with Pool(processes=4,initializer=init_worker, initargs=(var,config,)) as pool:
+    with Pool(processes=2,initializer=init_worker, initargs=(var,config,)) as pool:
 
         for i, result in enumerate(tqdm(pool.imap_unordered(start_batch_simulation, range(n_trials)),desc="Trial runs", total=n_trials,unit="simulations",leave=False)):
 

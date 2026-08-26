@@ -4,7 +4,7 @@ from types import SimpleNamespace
 import os
 from datetime import datetime
 
-def load_dataset(sample_id,reference_sample=None):
+def load_dataset(sample_id=None,reference_sample=None):
     try:
         main_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
         file_path = os.path.join(main_path,"data", "samples_amazon_23_data.csv")
@@ -25,11 +25,16 @@ def load_dataset(sample_id,reference_sample=None):
     df_data_samples["ratio_n26_n10"] = all_n26 / all_n10
     ratio_n26_n10 = df_data_samples['ratio_n26_n10'].values
 
+    if sample_id is None:
+        return all_sample_names, all_n10, all_n26,all_description_sample
+
     measured_n10 = float(df_data_samples[df_data_samples['sample_names'] == sample_id]['n10_measured'].item())
     measured_n26 = float(df_data_samples[df_data_samples['sample_names'] == sample_id]['n26_measured'].item())
 
     stn_dev_n10 = df_data_samples.loc[df_data_samples['sample_names'] == sample_id]['std_dev_n10'].values[0]
     stn_dev_n26 = df_data_samples.loc[df_data_samples['sample_names'] == sample_id]['std_dev_n26'].values[0]
+
+
 
     if reference_sample != "Surface":
         burial_depth_min_sample = (df_data_samples.loc[df_data_samples['sample_names'] == reference_sample]['depth_min'].values[0])-5

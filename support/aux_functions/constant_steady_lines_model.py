@@ -43,7 +43,6 @@ class steady_state_model:
         plt.fill_between(N_be_series, np.array(N_al_series_time) / np.array(N_be_series_time), 8, color='white', alpha=0.5,linewidth=0)
 
         plt.xscale('log')
-        times = [0,5e5,1e6]
 
         for er in many_erosions:
             N_be = float(c_p.steady_erosion_be(er,density))
@@ -65,9 +64,8 @@ class steady_state_model:
         # plt.plot(N_be_series, np.array(N_al_series) / np.array(N_be_series))
         plt.xscale('log')
 
-        line_times = np.linspace(1e4, 1e6, 25)
-        print(line_times)
-        labels = [f"{t:.2f}Ma" for t in line_times]
+        line_times = [1e6, 5e5]
+        labels = ["1Ma", "0.5Ma"]
 
         for time, label in zip(line_times, labels):
             N_be_series_line_times = []
@@ -157,4 +155,37 @@ class steady_state_model:
         #  label='')
 
         return N_be_series,N_al_series
+
+    ###-------
+
+    def burial_decay_time(self, measured_N10, measured_N26):
+        import numpy as np
+        c_p = cosmo_production()
+        time=0
+        N_be = float(c_p.constant_exposure_be(time, "LSDn", 1.7, "mean", 0))
+        N_al = float(c_p.constant_exposure_al(time, "LSDn", 1.7, "mean", 0))
+
+        points_per_line = 50000
+        times = np.linspace(1e3, 1e6, 100)
+        many_erosions = np.concatenate(([0], np.logspace(-2, 6, points_per_line - 1))) / 1e4
+
+        best_time = None
+        best_dist = np.inf
+
+        for time in times:
+            for er in many_erosions:
+                N_be = float(c_p.burial_lines_be(er, 1.7, time))
+                N_al = float(c_p.burial_lines_al(er, 1.7, time))
+
+                # Euclidean distance in (N10, N26) space
+                dist = np.sqrt((N_be - measured_N10) ** 2 + (N_al - measured_N26) ** 2)
+
+                if dist < best_dist:
+                    best_time = time
+
+        return best_time
+
+
+
+
 

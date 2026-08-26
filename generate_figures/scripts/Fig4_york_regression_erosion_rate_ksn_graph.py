@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import matlab.engine
 import os
 
-main_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+main_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 fig_dir = main_path + "/generate_figures/figures"
 
 
@@ -17,7 +17,7 @@ fig_name = f"Fig4_MCyork_erosion_rate_relief_graph"
 
 data_file = main_path +  "/support/data/topographic_data_ksn_erosion_rf.csv"
 
-remove_samples = []
+remove_samples = ["PP36","BE02"]
 
 df_data = pd.read_csv(data_file)
 re_index = df_data[df_data['labels'].isin(remove_samples)].index
@@ -46,7 +46,7 @@ y_plot_relief = np.array(y_plot_relief[0][1:]).reshape(-1)
 ax.plot(x_plot_relief, y_plot_relief, color="#BFBF9B", linewidth=1.5)
 
 # Add slope (mn) and MSWD text to the Ksn plot
-ax.text(0.8, 0.9, r"SPIM $\it{n}$: "+f"{n_relief:.2f}\nMSWD: {MSWD_relief:.2f}",
+ax.text(0.7, 0.1, r"SPIM $\it{n}$: "+f"{n_relief:.2f}\nMSWD: {MSWD_relief:.2f}",
          transform=ax.transAxes, fontsize=8, bbox=dict(facecolor="white", alpha=0.7))
 
 color = drainage

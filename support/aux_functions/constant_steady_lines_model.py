@@ -43,7 +43,7 @@ class steady_state_model:
         plt.fill_between(N_be_series, np.array(N_al_series_time) / np.array(N_be_series_time), 8, color='white', alpha=0.5,linewidth=0)
 
         plt.xscale('log')
-        times = [0,1e6]
+        times = [0,5e5,1e6]
 
         for er in many_erosions:
             N_be = float(c_p.steady_erosion_be(er,density))
@@ -65,8 +65,9 @@ class steady_state_model:
         # plt.plot(N_be_series, np.array(N_al_series) / np.array(N_be_series))
         plt.xscale('log')
 
-        line_times = [1e6, 5e5]
-        labels = ["1Ma", "0.5Ma"]
+        line_times = np.linspace(1e4, 1e6, 25)
+        print(line_times)
+        labels = [f"{t:.2f}Ma" for t in line_times]
 
         for time, label in zip(line_times, labels):
             N_be_series_line_times = []

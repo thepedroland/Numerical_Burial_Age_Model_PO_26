@@ -7,9 +7,10 @@ import matplotlib as mpl
 import os
 import pandas as pd
 from matplotlib.ticker import FixedLocator
+import warnings
 
 mpl.rcParams['font.family'] = 'Arial'
-
+warnings.filterwarnings('ignore')
 #------SET UP PLOT------#
 
 sigma = "1-sigma"
@@ -22,7 +23,7 @@ if scaling_method == 'St':
     Rc_value = 'recent'
 
 ##------------------------##
-print(f"Running banana diagram for {scaling_method}_{Rc_value}")
+print(f"Running banana diagram using {scaling_method}_{Rc_value}")
 
 class HandlerEllipse(handler.HandlerPatch):
     def create_artists(self, legend, orig_handle,

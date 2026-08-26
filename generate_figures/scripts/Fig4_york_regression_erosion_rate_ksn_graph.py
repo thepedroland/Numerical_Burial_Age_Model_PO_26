@@ -2,12 +2,8 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy import stats
-from matplotlib.ticker import FixedLocator
 import matlab.engine
 import os
-from datetime import datetime
-
 
 main_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 fig_dir = main_path + "/generate_figures/figures"

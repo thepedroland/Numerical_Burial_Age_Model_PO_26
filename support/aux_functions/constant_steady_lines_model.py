@@ -173,15 +173,19 @@ class steady_state_model:
         best_dist = np.inf
 
         for time in times:
+            N_be_series= []
+            N_al_series = []
             for er in many_erosions:
                 N_be = float(c_p.burial_lines_be(er, 1.7, time))
                 N_al = float(c_p.burial_lines_al(er, 1.7, time))
+                N_be_series.append(N_be)
+                N_al_series.append(N_al)
 
-                # Euclidean distance in (N10, N26) space
+            for N_be,N_al in zip(N_be_series,N_al_series):
                 dist = np.sqrt((N_be - measured_N10) ** 2 + (N_al - measured_N26) ** 2)
-
                 if dist < best_dist:
                     best_time = time
+                    best_dist = dist
 
         return best_time
 

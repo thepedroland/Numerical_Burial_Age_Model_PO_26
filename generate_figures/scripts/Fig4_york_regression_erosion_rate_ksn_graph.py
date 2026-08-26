@@ -17,7 +17,7 @@ fig_name = f"Fig4_MCyork_erosion_rate_relief_graph"
 
 data_file = main_path +  "/support/data/topographic_data_ksn_erosion_rf.csv"
 
-remove_samples = ["PP36","BE02"]
+remove_samples = []
 
 df_data = pd.read_csv(data_file)
 re_index = df_data[df_data['labels'].isin(remove_samples)].index

@@ -1,12 +1,9 @@
 import numpy as np
 from matplotlib import pyplot as plt
-from matplotlib.pyplot import tight_layout
-from matplotlib.ticker import FixedLocator
 import pandas as pd
 from matplotlib.patches import Ellipse
 import matplotlib.legend_handler as handler
 import os
-from datetime import datetime
 from support.aux_functions.forbiden_zone import plot_forbiden_zone
 from support.aux_functions.solution_trajectories import set_trajectories
 from support.aux_functions.misc_functions import load_dataset
@@ -19,7 +16,7 @@ plot_trajectories = False
 reference_sample = "Surface"
 
 main_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
-folder_path = os.path.join(main_path, "generate_data", "python_data_results")
+folder_path = os.path.join(main_path, "generate_data")
 
 os.makedirs(main_path+"/generate_figures/figures", exist_ok=True)
 plots_path = main_path+"/generate_figures/figures"
@@ -255,14 +252,14 @@ for i, sample_id in enumerate(samples_id):
     plot_forbiden_zone(all_initial_n10,all_ratio,ax6)
 
     ###plot info###
-    fig_name = f"FigS{i+1}_Parameters_Sampling_[{sample_id}_D_{density}]_"
+    fig_name_2 = f"FigS{i+1}_Parameters_Sampling_[{sample_id}_D_{density}]_"
 
-    fig_dir_2 = os.path.join(plots_path, fig_name)
+    fig_dir_2 = f"{plots_path}/supporting_figures/{fig_name_2}"
     print(fig_dir_2)
     fig2.savefig(f"{fig_dir_2}.png", dpi=300, bbox_inches="tight")
 
 
-fig_name = f"Fig3_Solutions_Profile_Ages_D{density}]"
+fig_name = f"Fig3_Solutions_Profile_Ages_D{density}"
 
 fig.savefig(f"{plots_path}/{fig_name}.png", dpi=300, bbox_inches="tight")
 fig.savefig(f"{plots_path}/SVG/SVG_{fig_name}.svg", format="svg", bbox_inches="tight")

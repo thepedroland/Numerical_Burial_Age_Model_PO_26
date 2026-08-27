@@ -9,7 +9,6 @@ import pandas as pd
 import matplotlib as mpl
 import matplotlib.patches as patches
 
-
 main_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 file_path = main_path + "/support/data/samples_amazon_23_data.csv"
 
@@ -171,7 +170,7 @@ ax.set_xlim(9e1, 2e5)
 
 fig_name = "Fig2B_secular_equilibrium_sb11_sb17"
 plt.savefig(f"{fig_dir}/{fig_name}.png", dpi=300, bbox_inches="tight")
-plt.savefig(f"{fig_dir}/SVG_{fig_name}.svg", format="svg", bbox_inches="tight")
+plt.savefig(f"{fig_dir}/SVG/SVG_{fig_name}.svg", format="svg", bbox_inches="tight")
 
 plt.show()
 
@@ -268,5 +267,5 @@ ax.set_ylim(4,8.5)
 ax.set_xlim(5e3, 2e5)
 
 fig_name = "FigS5_secular_equilibrium_sb18"
-plt.savefig(f"{fig_dir}/{fig_name}.png", dpi=300, bbox_inches="tight")
+plt.savefig(f"{fig_dir}/supporting_figures/{fig_name}.png", dpi=300, bbox_inches="tight")
 plt.show()

@@ -259,7 +259,7 @@ for i, sample_id in enumerate(samples_id):
 
     fig_dir_2 = os.path.join(plots_path, fig_name)
     print(fig_dir_2)
-    fig2.savefig(f"{fig_dir_2}/supplementar.png", dpi=300, bbox_inches="tight")
+    fig2.savefig(f"{fig_dir_2}.png", dpi=300, bbox_inches="tight")
 
 
 fig_name = f"Fig3_Solutions_Profile_Ages_D{density}]"

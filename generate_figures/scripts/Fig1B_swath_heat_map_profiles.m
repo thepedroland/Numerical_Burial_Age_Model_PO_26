@@ -4,23 +4,23 @@
 
 addpath(genpath('/Users/pedro_oliveira/Documents/topotoolbox-master'));
 addpath(genpath('/Users/pedro_oliveira/Documents/Topographic-Analysis-Kit-master'));
-addpath('/Users/pedro_oliveira/Library/CloudStorage/OneDrive-CUNY/PhD_LIFE_(1)/py_repositories/num_modeling_burial_ages/support/aux_functions/mat_codes/modified_functions')
-addpath('/Users/pedro_oliveira/Library/CloudStorage/OneDrive-CUNY/PhD_LIFE_(1)/1_PhD_PAPER_1/data/data_swath')
+addpath('/Users/pedro_oliveira/Library/CloudStorage/OneDrive-CUNY/PhD_LIFE/py_repositories/numerical_modeling_burial_ages/support/aux_functions/mat_codes/modified_functions')
+addpath('/Users/pedro_oliveira/Library/CloudStorage/OneDrive-CUNY/PhD_LIFE/1_PhD_PAPER_1/data/data_swath')
 
 clear all;
-save_path_img = "/Users/pedro_oliveira/Library/CloudStorage/OneDrive-CUNY/PhD_LIFE_(1)/1_PhD_PAPER_1/illustrations";
+save_path_img = "/Users/pedro_oliveira/Library/CloudStorage/OneDrive-CUNY/PhD_LIFE/1_PhD_PAPER_1/illustrations";
 
 %%% --- SETUP UP PLOT --- %%%
 sample = string("sb");
 recrop_DEM = false;
 re_extract_swath = false; 
 sample_file_name = sprintf('%s_terrace_info',sample)
-save_file_loc = '/Users/pedro_oliveira/Library/CloudStorage/OneDrive-CUNY/PhD_LIFE_(1)/1_PhD_PAPER_1/data/data_swath'
+save_file_loc = '/Users/pedro_oliveira/Library/CloudStorage/OneDrive-CUNY/PhD_LIFE/1_PhD_PAPER_1/data/data_swath'
 user_colormap = "oslo"
 %%% ----------------
 if recrop_DEM == true
 
-    DEM = GRIDobj('/Users/pedro_oliveira/Library/CloudStorage/OneDrive-CUNY/PhD_LIFE_(1)/PhD_Amazon_Project_1st_chapter/results_lab_(1)/GIS/DEM_full_area.tif');
+    DEM = GRIDobj('/Users/pedro_oliveira/Library/CloudStorage/OneDrive-CUNY/PhD_LIFE/PhD_Amazon_Project_1st_chapter/results_lab_(1)/GIS/DEM_full_area.tif');
     DEM = reproject2utm(DEM,30);
     
     %%CROP DEM IF NEEDED

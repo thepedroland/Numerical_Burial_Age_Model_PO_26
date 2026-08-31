@@ -11,4 +11,6 @@ A0 = al_spallation_SLHL * 0.61 #LSDn scaling factor
 
 L0 = 160 #attenuation by spallation - balco,2017
 L1 = 1500 #attenuation by negative muon capture -   balco,2017
-L2 = 4200 #attenuation by negative fast muon-  balco,2017
+L2 = 4200 #attenuation by fast muon-  balco,2017
+
+L = [L0, L1, L2]

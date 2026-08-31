@@ -16,10 +16,6 @@ class cosmo_production:
         self.eng = matlab.engine.start_matlab()
         self.eng.addpath(path_add)
 
-    # Calculate nuclide production
-    import math
-    import matlab
-
     def _to_flat_list(self,x):
         if isinstance(x, (int, float)):
             return [float(x)]
@@ -77,10 +73,9 @@ class cosmo_production:
         return final_concentration
 
     ##--Functions to calcute exposure zones
-    def constant_exposure_be(self,time,scaling_method,density,Rc_value='free',z_cm=0.0):
+    def constant_exposure_be(self,time,density,Rc_value='free',z_cm=0.0):
         if time == 0:
-            if scaling_method == "LSDn":
-                self.data_prod_0_be, self.data_prod_0_al,Rc = self.LSDn_var_production_nuclides([0],density,Rc_value=Rc_value,z_cm_list=[z_cm])
+            self.data_prod_0_be,_,Rc = self.LSDn_var_production_nuclides([0],density,Rc_value=Rc_value,z_cm_list=[z_cm])
 
         prod_be_list = [self.data_prod_0_be[1],self.data_prod_0_be[2],self.data_prod_0_be[3]]
         prod_be = 0.0
@@ -91,10 +86,9 @@ class cosmo_production:
 
         return prod_be
 
-    def constant_exposure_al(self, time,scaling_method,density,Rc_value='free',z_cm=0.0):
+    def constant_exposure_al(self, time,density,Rc_value='free',z_cm=0.0):
         if time == 0:
-            if scaling_method == "LSDn":
-                self.data_prod_0_be, self.data_prod_0_al,Rc = self.LSDn_var_production_nuclides([0],density,Rc_value=Rc_value,z_cm_list=[z_cm])
+            _, self.data_prod_0_al,Rc = self.LSDn_var_production_nuclides([0],density,Rc_value=Rc_value,z_cm_list=[z_cm])
 
         prod_al_list = [self.data_prod_0_al[1], self.data_prod_0_al[2],self.data_prod_0_al[3]]
         prod_al = 0.0
@@ -105,12 +99,11 @@ class cosmo_production:
         return  prod_al
 
     def steady_erosion_be(self,erosion,density):
+        
         prod_be_list = [self.data_prod_0_be[1], self.data_prod_0_be[2],self.data_prod_0_be[3]]
-
-        L = np.array([self.L0, self.L1, self.L2])
         prod_be = 0.0
 
-        for prod_rate,attenuation_length in zip(prod_be_list,L):
+        for prod_rate,attenuation_length in zip(prod_be_list,self.L):
             effective_lambda = (erosion * density / attenuation_length) + self.decay_be
             result_be = (prod_rate[0] / effective_lambda) #dunai book,93
             prod_be += result_be
@@ -118,12 +111,10 @@ class cosmo_production:
         return prod_be
 
     def steady_erosion_al(self, erosion,density):
-
         prod_al_list = [self.data_prod_0_al[1], self.data_prod_0_al[2],self.data_prod_0_al[3]]
         prod_al = 0.0
-        L = np.array([self.L0, self.L1, self.L2])
 
-        for prod_rate, attenuation_length in zip(prod_al_list, L):
+        for prod_rate, attenuation_length in zip(prod_al_list, self.L):
             effective_lambda = (erosion * density / attenuation_length) + self.decay_al
             result_al = (prod_rate[0] / effective_lambda)
             prod_al += result_al
@@ -133,10 +124,9 @@ class cosmo_production:
     def burial_lines_be(self,erosion,density,time):
         prod_be_list = [self.data_prod_0_be[1], self.data_prod_0_be[2],self.data_prod_0_be[3]]
 
-        L = np.array([self.L0, self.L1,self.L2])
         prod_be = 0.0
 
-        for prod_rate,attenuation_length in zip(prod_be_list,L):
+        for prod_rate,attenuation_length in zip(prod_be_list,self.L):
             effective_lambda = (erosion * density / attenuation_length) + self.decay_be
             result_be = (prod_rate[0] / effective_lambda) *  (math.exp(-time * self.decay_be))
             prod_be += result_be
@@ -147,9 +137,8 @@ class cosmo_production:
 
         prod_al_list = [self.data_prod_0_al[1], self.data_prod_0_al[2],self.data_prod_0_al[3]]
         prod_al = 0.0
-        L = np.array([self.L0, self.L1,self.L2])
 
-        for prod_rate, attenuation_length in zip(prod_al_list, L):
+        for prod_rate, attenuation_length in zip(prod_al_list, self.L):
 
             effective_lambda = (erosion * density / attenuation_length) + self.decay_al
             result_al = (prod_rate[0] / effective_lambda) *  (math.exp(-time * self.decay_al))

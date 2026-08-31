@@ -2,7 +2,7 @@ from matplotlib import pyplot as plt
 from matplotlib.ticker import FixedLocator
 from matplotlib.backends.backend_pdf import PdfPages
 import pandas as pd
-from support.aux_functions.constant_steady_lines_model import steady_state_model
+from support.aux_functions.constant_steady_lines_model import burial_exposure_model
 
 
 class set_trajectories:
@@ -18,7 +18,7 @@ class set_trajectories:
             if run % 10 == 0 :
                 self.ax.plot(list(be_serie), list(ratio_serie))
                 self.ax.title.set_text(f"Simulation {run}")
-                lines_model = steady_state_model()
+                lines_model = burial_exposure_model()
                 lines_between = lines_model.plot_steady_state_model(
                     scaling_method='LSDn', density=1.6,
                     Rc_value='min', checking_only=True)

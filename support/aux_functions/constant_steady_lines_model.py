@@ -1,10 +1,9 @@
 import warnings
 warnings.filterwarnings("ignore", category=RuntimeWarning)
-import os
-import matlab.engine
+import matplotlib.pyplot as plt
 from support.aux_functions.nuclide_prod_concentration import cosmo_production
 
-class steady_state_model:
+class burial_exposure_model:
     def __init__(self):
         pass
 
@@ -38,8 +37,6 @@ class steady_state_model:
             N_al_series_time.append(N_al)
             N_be_series_time.append(N_be)
 
-        # plt.plot(N_be_series, np.array(N_al_series) / np.array(N_be_series), alpha=0.3, color="blue",
-        #         label='Constant exposure')
         plt.fill_between(N_be_series, np.array(N_al_series_time) / np.array(N_be_series_time), 8, color='white', alpha=0.5,linewidth=0)
 
         plt.xscale('log')
@@ -51,17 +48,10 @@ class steady_state_model:
             N_be_series.append(N_be)
             N_al_series.append(N_al)
 
-        #
-        # plt.plot(N_be_series_erosion, np.array(N_al_series_erosion) / np.array(N_be_series_erosion), alpha=0.8, color="grey",
-        #         label='Steady Erosion')
-        # Then plot fills below the line with the desired color
-        # plt.fill_between(N_be_series_erosion, np.array(N_al_series_erosion) / np.array(N_be_series_erosion), 8, color='lightgreen', alpha=0.4)
-
         if checking_only:
             return N_be_series, np.array(N_al_series) / np.array(N_be_series)
 
         plt.fill(N_be_series, np.array(N_al_series) / np.array(N_be_series), color=color_fill, alpha=0.5, linewidth=0)
-        # plt.plot(N_be_series, np.array(N_al_series) / np.array(N_be_series))
         plt.xscale('log')
 
         line_times = [1e6, 5e5]
@@ -100,8 +90,7 @@ class steady_state_model:
 ###---------###
     def plot_steady_state_model_depth(self,density,z_cm,color):
 
-        from support.aux_functions.nuclide_prod_concentration import cosmo_production
-        import matplotlib.pyplot as plt
+
 
         c_p = cosmo_production()
 
@@ -119,20 +108,14 @@ class steady_state_model:
         many_erosions = np.concatenate(([0], np.logspace(-2, 6, points_per_line - 1))) / 1e4
 
         for time in many_times:
-            N_be = float(c_p.constant_exposure_be(time,"LSDn",density,"mean",z_cm))
-            N_al = float(c_p.constant_exposure_al(time,"LSDn",density,"mean",z_cm))
+            N_be = float(c_p.constant_exposure_be(time,density,"mean",z_cm))
+            N_al = float(c_p.constant_exposure_al(time,density,"mean",z_cm))
 
             N_be_series.append(N_be)
             N_al_series.append(N_al)
 
             N_al_series_time.append(N_al)
             N_be_series_time.append(N_be)
-
-
-        # plt.plot(N_be_series, np.array(N_al_series) / np.array(N_be_series), alpha=0.5, color=color,
-        #          label='')
-        # plt.scatter(N_be_series[-1],np.array(N_al_series[-1]) / np.array(N_be_series[-1]), alpha=0.5, color="black",s=5,marker="o",
-        #          label='')
 
         plt.xscale('log')
 
@@ -162,8 +145,8 @@ class steady_state_model:
         import numpy as np
         c_p = cosmo_production()
         time=0
-        N_be = float(c_p.constant_exposure_be(time, "LSDn", 1.7, "mean", 0))
-        N_al = float(c_p.constant_exposure_al(time, "LSDn", 1.7, "mean", 0))
+        N_be = float(c_p.constant_exposure_be(time, 1.7, "mean", 0))
+        N_al = float(c_p.constant_exposure_al(time, 1.7, "mean", 0))
 
         points_per_line = 50000
         times = np.linspace(1e3, 1e6, 100)

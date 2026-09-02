@@ -4,19 +4,19 @@
 
 addpath(genpath('/Users/pedro_oliveira/Documents/topotoolbox-master'));
 addpath(genpath('/Users/pedro_oliveira/Documents/Topographic-Analysis-Kit-master'));
-addpath('/Users/pedro_oliveira/Library/CloudStorage/OneDrive-CUNY/PhD_LIFE/py_repositories/numerical_modeling_burial_ages/support/aux_functions/mat_codes/modified_functions')
+addpath('/Users/pedro_oliveira/Library/CloudStorage/OneDrive-CUNY/PhD_LIFE/py_repositories/numerical_MC_Burial_Ages_PO/support/aux_functions/mat_codes/modified_functions')
 addpath('/Users/pedro_oliveira/Library/CloudStorage/OneDrive-CUNY/PhD_LIFE/1_PhD_PAPER_1/data/data_swath')
 
 clear all;
 save_path_img = "/Users/pedro_oliveira/Library/CloudStorage/OneDrive-CUNY/PhD_LIFE/1_PhD_PAPER_1/illustrations";
 
 %%% --- SETUP UP PLOT --- %%%
-sample = string("sb");
+sample = string("bv");
 recrop_DEM = false;
 re_extract_swath = false; 
 sample_file_name = sprintf('%s_terrace_info',sample)
 save_file_loc = '/Users/pedro_oliveira/Library/CloudStorage/OneDrive-CUNY/PhD_LIFE/1_PhD_PAPER_1/data/data_swath'
-user_colormap = "oslo"
+user_colormap = "oslo";
 %%% ----------------
 if recrop_DEM == true
 
@@ -143,13 +143,13 @@ else
 
     load("DEM_terraces.mat");
     [SW,SwathMat,xypoints,bends] = MakeTopoSwath_MOD_Oliveira(terrace_DEM,points_profile,10000,'plot_as_heatmap',true,'save_figure',true,"vex",50,"user_colormap",user_colormap,'make_shape',true,"location_id",sample);
-    mat_fname = sprintf('%s_terrace_info.mat', sample);
-    save(mat_fname, 'SW', 'SwathMat', 'xypoints', 'bends');
-    filename = fullfile(save_path_img, sprintf('Swath-profile_sample_%s_density_point.png', sample));
-    exportgraphics(gcf, filename,'Resolution', 700);
-    axis on 
-    filename = fullfile(save_path_img, sprintf('Swath-profile_sample_%s_density_point.svg', sample));
-    exportgraphics(gcf, filename, 'ContentType', 'vector');
+    % mat_fname = sprintf('%s_terrace_info.mat', sample);
+    % save(mat_fname, 'SW', 'SwathMat', 'xypoints', 'bends');
+    % filename = fullfile(save_path_img, sprintf('Swath-profile_sample_%s_density_point.png', sample));
+    % exportgraphics(gcf, filename,'Resolution', 700);
+    % axis on 
+    % filename = fullfile(save_path_img, sprintf('Swath-profile_sample_%s_density_point.svg', sample));
+    % exportgraphics(gcf, filename, 'ContentType', 'vector');
 
     
 end

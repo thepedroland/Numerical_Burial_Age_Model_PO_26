@@ -1,19 +1,22 @@
+import sys
+import os
+
+main_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+print(main_path)
+add_path = os.path.join(main_path, "Production_Rates_Calculator-main", "src")
+sys.path.insert(0, add_path)
+
 import numpy as np
 import pmagpy.pmag as pmag
 import pandas as pd
-import sys
-import os
 from tqdm import tqdm
-import mcadam
 import matplotlib.pyplot as plt
+from mcadam import calc_mcadam_medians
 
-main_path = os.path.dirname(os.path.realpath(__file__))
-add_path = os.path.join(main_path, "support", "../Production_Rates_Calculator-main", "src")
-sys.path.insert(0, add_path)
 
 class calc_Rc:
     def __init__(self):
-        self.time = np.arange(0, 35, 1E-3) #35 million years as the limit
+        self.time = np.arange(0, 40, 1E-3) #35 million years as the limit
         pass
     def calc_df_paleo(self):
         vals = []
@@ -42,7 +45,7 @@ class calc_Rc:
         This Rc calculation will run the MCADAM pmag dataset only
 
         """
-        mcadam_medians = mcadam.calc_mcadam_medians(self.time)
+        mcadam_medians = calc_mcadam_medians(self.time)
 
         for x in range(len(self.pl_df)):
             for i in range(len(mcadam_medians)):
@@ -52,26 +55,32 @@ class calc_Rc:
 
         Rc = pd.DataFrame([(Rc_list[n:n + len(self.time)]) for n in range(0, len(Rc_list), len(self.time))])
         plt.figure(figsize=(10, 6),facecolor="white",alpha=0.1)
-        plt.plot(((np.arange(0,700,1))*50000)/1e6,Rc_list, label="Rc-MCADAM")
+        plt.plot(((np.arange(0,800,1))*50000)/1e6,Rc_list, label="Rc-MCADAM",color="gray")
         ax = plt.gca()
-        ax.set_facecolor("#EAFAF4")
+        ax.set_facecolor("#FAFAFA")
         plt.xlabel("Age (Ma)",fontsize=16)
         plt.ylabel("Rc (GV)",fontsize=16)
         ax.set_xticklabels(ax.get_xticks(), fontsize=14)
         ax.set_yticklabels(ax.get_yticks(), fontsize=14)
         plt.legend()
         plt.tight_layout()
-        # Save Rc DataFrame to CSV file
-        # output_dir = "/Users/pedro_oliveira/Documents/Projects_PhD/deposition_models/support"
-        # os.makedirs(output_dir, exist_ok=True)
-        # output_file = os.path.join(output_dir, "Rc_results.csv")
-        # Rc.to_csv(output_file, index=False)
-        # print(f"Rc DataFrame saved to {output_file}")
-        #
-        # fig_dir ="/Users/pedro_oliveira/Library/CloudStorage/OneDrive-CityUniversityofNewYork/PhD_LIFE/1_PhD_PAPER_1/images"
-        # fig_name = f"Rc_variation_time"
-        # plt.savefig(f"{fig_dir}/{fig_name}.png", dpi=300, bbox_inches="tight")
-        # plt.show()
+        output_dir = os.path.join(main_path, "data")
+        os.makedirs(output_dir, exist_ok=True)
+
+        output_file = os.path.join(output_dir, "Rc_results.csv")
+        Rc.to_csv(output_file, index=False)
+
+        print(f"Rc DataFrame saved to {output_file}")
+
+        fig_path = os.path.dirname(main_path)
+        fig_dir = os.path.join(fig_path, "generate_figures", "figures", "supporting_figures")
+        os.makedirs(fig_dir, exist_ok=True)
+
+        fig_name = "FigS3_Rc_variation_time"
+        fig_file = os.path.join(fig_dir, f"{fig_name}.png")
+
+        plt.savefig(fig_file, dpi=300, bbox_inches="tight")
+        plt.show()
 
 
 if __name__ == "__main__":

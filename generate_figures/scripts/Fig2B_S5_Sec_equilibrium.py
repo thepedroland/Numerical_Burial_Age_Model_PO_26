@@ -16,7 +16,7 @@ fig_dir = main_path + "/generate_figures/figures"
 fig_name = "sec_equi"
 mpl.rcParams['font.family'] = 'Arial'
 
-st_model = steady_state_model()
+st_model = burial_exposure_model()
 
 class HandlerEllipse(handler.HandlerPatch):
     def create_artists(self, legend, orig_handle,
@@ -65,8 +65,8 @@ for i, sample_id in enumerate(samples_list):
     color_fill_island = tuple(rgb_base_island)
 
     depth_sample = (depth_max_sample + depth_min_sample) / 2
-    if sample_id == "SB-011":
-        depth_sample = depth_min_sample
+    # if sample_id == "SB-011":
+    #     depth_sample = depth_min_sample
 
     theta = np.linspace(0, 2 * np.pi, 100)
     x0 = observed_c10
@@ -107,7 +107,7 @@ for i, sample_id in enumerate(samples_list):
                              edgecolor='black', linestyle='-', linewidth=0.8)
     depth_handles.append(h_depth)
 
-    st_model = steady_state_model()
+    st_model = burial_exposure_model()
 
     N_be_series, N_al_series = st_model.plot_steady_state_model_depth(1.7, depth_sample, color="#B3B3B3")
 

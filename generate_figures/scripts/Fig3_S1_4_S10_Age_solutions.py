@@ -25,6 +25,7 @@ fig, axs = plt.subplots(4, 1, figsize=(9, 20),constrained_layout=True)
 
 #20 for Figure 3 and 40 for Figure S10
 limit = 40 #Ma
+x_lim = limit
 
 for i, sample_id in enumerate(samples_id):
     print("Plotting sample:", sample_id)
@@ -151,7 +152,7 @@ for i, sample_id in enumerate(samples_id):
     for bin_val, patch in zip(bins, patches):
         patch.set_facecolor(cmap(norm(bin_val)))
     if sample_id != "SB-013":
-        hist_ax.set_xlim([0,20])
+        hist_ax.set_xlim([0,x_lim])
     else:
         hist_ax.set_xlim([0,1])
     hist_ax.set_facecolor("#FAFAFA")

@@ -29,7 +29,6 @@ class cosmo_production:
 
         for z_cm in z_cm_list:
             # Sample depth in g/cm^2
-            print(self.density)
             z_gcm2_list.append(z_cm * self.density)  # assuming z is in cm
 
             # Al and Be production by spallation

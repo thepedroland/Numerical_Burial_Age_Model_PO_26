@@ -28,8 +28,8 @@ class burial_exposure_model:
         many_erosions = np.concatenate(([0], np.logspace(-2, 8, points_per_line - 1))) /1e4
 
         for time in many_times:
-            N_be = float(c_p.constant_exposure_be(time,scaling_method,Rc_value))
-            N_al = float(c_p.constant_exposure_al(time,scaling_method,Rc_value))
+            N_be = float(c_p.constant_exposure_be(time,Rc_value))
+            N_al = float(c_p.constant_exposure_al(time,Rc_value))
 
             N_be_series.append(N_be)
             N_al_series.append(N_al)

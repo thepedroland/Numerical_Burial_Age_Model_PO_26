@@ -14,3 +14,5 @@ L1 = 1500 #attenuation by negative muon capture -   balco,2017
 L2 = 4200 #attenuation by fast muon-  balco,2017
 
 L = [L0, L1, L2]
+
+density = int(1.7)

@@ -7,7 +7,7 @@ class burial_exposure_model:
     def __init__(self):
         pass
 
-    def plot_steady_state_model(self,scaling_method,density,Rc_value,checking_only=False):
+    def plot_steady_state_model(self,scaling_method,Rc_value,checking_only=False):
         import matplotlib.pyplot as plt
 
         c_p = cosmo_production()
@@ -28,8 +28,8 @@ class burial_exposure_model:
         many_erosions = np.concatenate(([0], np.logspace(-2, 8, points_per_line - 1))) /1e4
 
         for time in many_times:
-            N_be = float(c_p.constant_exposure_be(time,scaling_method,density,Rc_value))
-            N_al = float(c_p.constant_exposure_al(time,scaling_method,density,Rc_value))
+            N_be = float(c_p.constant_exposure_be(time,scaling_method,Rc_value))
+            N_al = float(c_p.constant_exposure_al(time,scaling_method,Rc_value))
 
             N_be_series.append(N_be)
             N_al_series.append(N_al)
@@ -42,8 +42,8 @@ class burial_exposure_model:
         plt.xscale('log')
 
         for er in many_erosions:
-            N_be = float(c_p.steady_erosion_be(er,density))
-            N_al = float(c_p.steady_erosion_al(er,density))
+            N_be = float(c_p.steady_erosion_be(er))
+            N_al = float(c_p.steady_erosion_al(er))
 
             N_be_series.append(N_be)
             N_al_series.append(N_al)
@@ -62,8 +62,8 @@ class burial_exposure_model:
             N_al_series_line_times = []
 
             for er in many_erosions:
-                N_be = float(c_p.burial_lines_be(er,density, time))
-                N_al = float(c_p.burial_lines_al(er,density, time))
+                N_be = float(c_p.burial_lines_be(er,time))
+                N_al = float(c_p.burial_lines_al(er,time))
 
                 N_be_series_line_times.append(N_be)
                 N_al_series_line_times.append(N_al)
@@ -88,9 +88,7 @@ class burial_exposure_model:
                          backgroundcolor="#FAF4EF")
 
 ###---------###
-    def plot_steady_state_model_depth(self,density,z_cm,color):
-
-
+    def plot_steady_state_model_depth(self,z_cm,color):
 
         c_p = cosmo_production()
 
@@ -108,8 +106,8 @@ class burial_exposure_model:
         many_erosions = np.concatenate(([0], np.logspace(-2, 6, points_per_line - 1))) / 1e4
 
         for time in many_times:
-            N_be = float(c_p.constant_exposure_be(time,density,"mean",z_cm))
-            N_al = float(c_p.constant_exposure_al(time,density,"mean",z_cm))
+            N_be = float(c_p.constant_exposure_be(time,"mean",z_cm))
+            N_al = float(c_p.constant_exposure_al(time,"mean",z_cm))
 
             N_be_series.append(N_be)
             N_al_series.append(N_al)
@@ -120,8 +118,8 @@ class burial_exposure_model:
         plt.xscale('log')
 
         for er in many_erosions:
-            N_be = float(c_p.steady_erosion_be(er,density))
-            N_al = float(c_p.steady_erosion_al(er,density))
+            N_be = float(c_p.steady_erosion_be(er))
+            N_al = float(c_p.steady_erosion_al(er))
 
             N_be_series_erosion.append(N_be)
             N_al_series_erosion.append(N_al)
@@ -131,7 +129,7 @@ class burial_exposure_model:
 
             # plt.fill(N_be_series, np.array(N_al_series) / np.array(N_be_series), color="black", alpha=0.5)
             #
-        plt.fill(N_be_series, np.array(N_al_series) / np.array(N_be_series), color, alpha=0.4, linewidth=0)
+        plt.fill(N_be_series, np.array(N_al_series) / np.array(N_be_series), color, alpha=0.3, linewidth=0.3,edgecolor="black")
         plt.xscale('log')
 
         # plt.plot(N_be_series_erosion, np.array(N_al_series_erosion) / np.array(N_be_series_erosion), alpha=0.5, color=color,

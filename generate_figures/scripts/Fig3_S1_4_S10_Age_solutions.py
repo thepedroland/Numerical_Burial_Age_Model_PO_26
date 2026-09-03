@@ -23,7 +23,8 @@ plots_path = main_path+"/generate_figures/figures"
 
 fig, axs = plt.subplots(4, 1, figsize=(9, 20),constrained_layout=True)
 
-limit = 20 #Ma
+#20 for Figure 3 and 40 for Figure S10
+limit = 40 #Ma
 
 for i, sample_id in enumerate(samples_id):
     print("Plotting sample:", sample_id)

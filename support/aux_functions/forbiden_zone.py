@@ -1,12 +1,12 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from support.aux_functions.constant_steady_lines_model import steady_state_model
+from support.aux_functions.constant_steady_lines_model import burial_exposure_model
 
 def plot_forbiden_zone(all_initial_c10, all_ratio,ax):
 
-    lines_model = steady_state_model()
+    lines_model = burial_exposure_model()
     lines_between = lines_model.plot_steady_state_model(
-        scaling_method='LSDn',density=1.7,
+        scaling_method='LSDn',
         Rc_value='min',checking_only=True)
 
     black_x, black_y = lines_between[0][0:50000], lines_between[1][0:50000]

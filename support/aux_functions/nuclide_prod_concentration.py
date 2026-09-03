@@ -21,7 +21,7 @@ class cosmo_production:
             return [float(x)]
         return np.array(x, dtype=float).flatten().tolist()
 
-    def LSDn_var_production_nuclides(self, time_list, density, Rc_value, z_cm_list):
+    def LSDn_var_production_nuclides(self, time_list, Rc_value, z_cm_list):
 
         z_gcm2_list = []
         p_al_spa_list = []
@@ -29,11 +29,12 @@ class cosmo_production:
 
         for z_cm in z_cm_list:
             # Sample depth in g/cm^2
-            z_gcm2_list.append(z_cm * density)  # assuming z is in cm
+            print(self.density)
+            z_gcm2_list.append(z_cm * self.density)  # assuming z is in cm
 
             # Al and Be production by spallation
-            p_al_spa_list.append(self.A0 * math.exp(-z_cm * density / self.L0))
-            p_be_spa_list.append(self.B0 * math.exp(-z_cm * density / self.L0))
+            p_al_spa_list.append(self.A0 * math.exp(-z_cm * self.density / self.L0))
+            p_be_spa_list.append(self.B0 * math.exp(-z_cm * self.density / self.L0))
 
         # Be production by muons
         P_neg_muons_be, P_fast_muons_be = self.eng.LSDn_calc_muon_prod(
@@ -73,9 +74,9 @@ class cosmo_production:
         return final_concentration
 
     ##--Functions to calcute exposure zones
-    def constant_exposure_be(self,time,density,Rc_value='free',z_cm=0.0):
+    def constant_exposure_be(self,time,Rc_value='free',z_cm=0.0):
         if time == 0:
-            self.data_prod_0_be,_,Rc = self.LSDn_var_production_nuclides([0],density,Rc_value=Rc_value,z_cm_list=[z_cm])
+            self.data_prod_0_be,_,Rc = self.LSDn_var_production_nuclides([0],Rc_value=Rc_value,z_cm_list=[z_cm])
 
         prod_be_list = [self.data_prod_0_be[1],self.data_prod_0_be[2],self.data_prod_0_be[3]]
         prod_be = 0.0
@@ -86,9 +87,9 @@ class cosmo_production:
 
         return prod_be
 
-    def constant_exposure_al(self, time,density,Rc_value='free',z_cm=0.0):
+    def constant_exposure_al(self, time,Rc_value='free',z_cm=0.0):
         if time == 0:
-            _, self.data_prod_0_al,Rc = self.LSDn_var_production_nuclides([0],density,Rc_value=Rc_value,z_cm_list=[z_cm])
+            _, self.data_prod_0_al,Rc = self.LSDn_var_production_nuclides([0],Rc_value=Rc_value,z_cm_list=[z_cm])
 
         prod_al_list = [self.data_prod_0_al[1], self.data_prod_0_al[2],self.data_prod_0_al[3]]
         prod_al = 0.0
@@ -98,49 +99,49 @@ class cosmo_production:
             prod_al += result_al
         return  prod_al
 
-    def steady_erosion_be(self,erosion,density):
+    def steady_erosion_be(self,erosion):
         
         prod_be_list = [self.data_prod_0_be[1], self.data_prod_0_be[2],self.data_prod_0_be[3]]
         prod_be = 0.0
 
         for prod_rate,attenuation_length in zip(prod_be_list,self.L):
-            effective_lambda = (erosion * density / attenuation_length) + self.decay_be
+            effective_lambda = (erosion * self.density / attenuation_length) + self.decay_be
             result_be = (prod_rate[0] / effective_lambda) #dunai book,93
             prod_be += result_be
 
         return prod_be
 
-    def steady_erosion_al(self, erosion,density):
+    def steady_erosion_al(self, erosion):
         prod_al_list = [self.data_prod_0_al[1], self.data_prod_0_al[2],self.data_prod_0_al[3]]
         prod_al = 0.0
 
         for prod_rate, attenuation_length in zip(prod_al_list, self.L):
-            effective_lambda = (erosion * density / attenuation_length) + self.decay_al
+            effective_lambda = (erosion * self.density / attenuation_length) + self.decay_al
             result_al = (prod_rate[0] / effective_lambda)
             prod_al += result_al
 
         return prod_al
 
-    def burial_lines_be(self,erosion,density,time):
+    def burial_lines_be(self,erosion,time):
         prod_be_list = [self.data_prod_0_be[1], self.data_prod_0_be[2],self.data_prod_0_be[3]]
 
         prod_be = 0.0
 
         for prod_rate,attenuation_length in zip(prod_be_list,self.L):
-            effective_lambda = (erosion * density / attenuation_length) + self.decay_be
+            effective_lambda = (erosion * self.density / attenuation_length) + self.decay_be
             result_be = (prod_rate[0] / effective_lambda) *  (math.exp(-time * self.decay_be))
             prod_be += result_be
 
         return prod_be
 
-    def burial_lines_al(self, erosion,density,time):
+    def burial_lines_al(self, erosion,time):
 
         prod_al_list = [self.data_prod_0_al[1], self.data_prod_0_al[2],self.data_prod_0_al[3]]
         prod_al = 0.0
 
         for prod_rate, attenuation_length in zip(prod_al_list, self.L):
 
-            effective_lambda = (erosion * density / attenuation_length) + self.decay_al
+            effective_lambda = (erosion * self.density / attenuation_length) + self.decay_al
             result_al = (prod_rate[0] / effective_lambda) *  (math.exp(-time * self.decay_al))
             prod_al += result_al
 

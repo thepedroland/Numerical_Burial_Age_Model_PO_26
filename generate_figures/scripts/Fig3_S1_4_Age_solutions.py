@@ -21,11 +21,15 @@ folder_path = os.path.join(main_path, "generate_data")
 os.makedirs(main_path+"/generate_figures/figures", exist_ok=True)
 plots_path = main_path+"/generate_figures/figures"
 
-fig, axs = plt.subplots(4, 1, figsize=(9, 20),constrained_layout=True)
-
 #20 for Figure 3 and 40 for Figure S10
 limit = 40 #Ma
 x_lim = limit
+
+if x_lim != 20:
+    print("Supporting figure")
+    fig, axs = plt.subplots(2, 2, figsize=(10, 5),constrained_layout=True)
+else:
+    fig, axs = plt.subplots(4, 1, figsize=(9, 20),constrained_layout=True)
 
 for i, sample_id in enumerate(samples_id):
     print("Plotting sample:", sample_id)
@@ -79,8 +83,8 @@ for i, sample_id in enumerate(samples_id):
             return [p]
 
     # --- use the existing subplot axes instead of creating a new figure ---
-    ax = axs[i]
-
+    axs_flat = axs.flatten()
+    ax = axs_flat[i]
     rgb_base = [x / 255.0 for x in sample_color]
 
     sample_eli = Ellipse((0, 0), 1, 1, angle=45,
@@ -109,16 +113,32 @@ for i, sample_id in enumerate(samples_id):
     ax.fill(x_1s, y_1s, facecolor=tuple(rgb_base + [0.25]),
             edgecolor=tuple(rgb_base + [1.0]), linewidth=1.2,
             label=r"1$\sigma$ Error")
-    if sample_id != "SB-017":
+
+    if sample_id != "SB-017" and sample_id != "SB-011":
         ax.set_xlabel("")
     else:
-        ax.set_xlabel("$^{10}$Be Concentration [at/g]", fontsize=18, fontname="Arial")
+        ax.set_xlabel("$^{10}$Be Concentration [at/g]", fontsize=14, fontname="Arial")
+
+
     ax.set_ylabel("$^{26}$Al / $^{10}$Be", fontsize=18, fontname="Arial")
     ax.set_xscale("log")
     ax.set_facecolor("#F7F7F3")
     ax.tick_params(axis="both", which="major", labelsize=12)
-    ax.legend(loc="lower right", framealpha=1, fontsize=15, frameon=False,
-              handler_map={Ellipse: HandlerEllipse()})
+
+    if x_lim != 20:
+        ax.legend(loc="lower right", framealpha=1, fontsize=10, frameon=False,
+                  handler_map={Ellipse: HandlerEllipse()})
+        sc = ax.scatter(range_age_valid_final_n10, range_age_valid_final_ratio, s=10, c=range_age_valid_times_solution,
+                        cmap=cm.nuuk, edgecolor="black", linewidth=0.1)
+        ax.annotate(f"{sample_id}", (0.8, 0.9), xycoords="axes fraction",
+                    fontweight="bold", fontsize=14, fontname="Arial")
+    else:
+        ax.legend(loc="lower right", framealpha=1, fontsize=15, frameon=False,
+                  handler_map={Ellipse: HandlerEllipse()})
+        sc = ax.scatter(range_age_valid_final_n10, range_age_valid_final_ratio, s=30, c=range_age_valid_times_solution,
+                        cmap=cm.nuuk, edgecolor="black", linewidth=0.1)
+        ax.annotate(f"{sample_id}", (0.01, 0.94), xycoords="axes fraction",
+                    fontweight="bold", fontsize=18, fontname="Arial")
 
     if sample_id == "SB-011":
         ax.set_xlim(3e4, 1e5); ax.set_ylim(3.8, 5.2)
@@ -129,16 +149,8 @@ for i, sample_id in enumerate(samples_id):
     elif sample_id == "BV-018":
         ax.set_xlim(3e4, 9e4); ax.set_ylim(4.7, 6.5)
 
-
     ax.set_xticklabels([])
     ax.set_yticklabels([], fontsize=18)
-
-    ax.annotate(f"{sample_id}", (0.01, 0.94), xycoords="axes fraction",
-                fontweight="bold", fontsize=18, fontname="Arial")
-
-    sc = ax.scatter(range_age_valid_final_n10, range_age_valid_final_ratio, s=30, c=range_age_valid_times_solution,
-                     cmap=cm.acton, edgecolor="black", linewidth=0.1)
-
     ax.set_box_aspect(0.5)
 
     # --- inset histogram anchored to THIS subplot's bounding box, not the whole figure ---
@@ -148,7 +160,7 @@ for i, sample_id in enumerate(samples_id):
     n, bins, patches = hist_ax.hist(range_age_valid_times_solution, bins=10, edgecolor="black", linewidth=0.4)
 
     norm = plt.Normalize(bins.min(), bins.max())
-    cmap = plt.get_cmap(cm.acton)
+    cmap = plt.get_cmap(cm.nuuk)
     for bin_val, patch in zip(bins, patches):
         patch.set_facecolor(cmap(norm(bin_val)))
     if sample_id != "SB-013":
@@ -162,8 +174,16 @@ for i, sample_id in enumerate(samples_id):
     hist_ax.spines["top"].set_visible(False)
     hist_ax.spines["right"].set_visible(False)
 
+fig_name = f"Fig3_Solutions_Profile_Ages_D{density}"
+
+if x_lim != 20:
+    fig_name_3 = f"/supporting_figures/FigS10_Full_Solutions_Profile_Ages_D{density}"
+    fig.savefig(f"{plots_path}/{fig_name_3}.png", dpi=300, bbox_inches="tight")
+else:
+    fig.savefig(f"{plots_path}/{fig_name}.png", dpi=300, bbox_inches="tight")
+    fig.savefig(f"{plots_path}/SVG/SVG_{fig_name}.svg", format="svg", bbox_inches="tight")
 #
-####----EXPLORATION PARAMETERS---------######
+####----EXPLORATION PARAMETERS-SUPPORTING MATERIAL---------######
     fig2, ((ax1,ax2,ax3),(ax4,ax5,ax6)) = plt.subplots(2,3,figsize=(12, 6), constrained_layout=True)
 
     fig2.set_facecolor("#EBEBEB")
@@ -261,10 +281,6 @@ for i, sample_id in enumerate(samples_id):
     fig2.savefig(f"{fig_dir_2}.png", dpi=300, bbox_inches="tight")
 
 
-fig_name = f"Fig3_Solutions_Profile_Ages_D{density}"
-
-fig.savefig(f"{plots_path}/{fig_name}.png", dpi=300, bbox_inches="tight")
-fig.savefig(f"{plots_path}/SVG/SVG_{fig_name}.svg", format="svg", bbox_inches="tight")
 
 if plot_trajectories:
     print("Plotting trajectories")

@@ -11,7 +11,7 @@ clear all;
 save_path_img = "/Users/pedro_oliveira/Library/CloudStorage/OneDrive-CUNY/PhD_LIFE/1_PhD_PAPER_1/illustrations";
 
 %%% --- SETUP UP PLOT --- %%%
-sample = string("bv");
+sample = string("jatapu");
 recrop_DEM = false;
 re_extract_swath = false; 
 sample_file_name = sprintf('%s_terrace_info',sample)
@@ -143,13 +143,13 @@ else
 
     load("DEM_terraces.mat");
     [SW,SwathMat,xypoints,bends] = MakeTopoSwath_MOD_Oliveira(terrace_DEM,points_profile,10000,'plot_as_heatmap',true,'save_figure',true,"vex",50,"user_colormap",user_colormap,'make_shape',true,"location_id",sample);
-    % mat_fname = sprintf('%s_terrace_info.mat', sample);
-    % save(mat_fname, 'SW', 'SwathMat', 'xypoints', 'bends');
-    % filename = fullfile(save_path_img, sprintf('Swath-profile_sample_%s_density_point.png', sample));
-    % exportgraphics(gcf, filename,'Resolution', 700);
-    % axis on 
-    % filename = fullfile(save_path_img, sprintf('Swath-profile_sample_%s_density_point.svg', sample));
-    % exportgraphics(gcf, filename, 'ContentType', 'vector');
+    mat_fname = sprintf('%s_terrace_info.mat', sample);
+    save(mat_fname, 'SW', 'SwathMat', 'xypoints', 'bends');
+    filename = fullfile(save_path_img, sprintf('Swath-profile_sample_%s_density_point.png', sample));
+    exportgraphics(gcf, filename,'Resolution', 1500);
+    axis on 
+    filename = fullfile(save_path_img, sprintf('Swath-profile_sample_%s_density_point.svg', sample));
+    exportgraphics(gcf, filename, 'ContentType', 'vector');
 
     
 end

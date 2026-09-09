@@ -12,8 +12,11 @@ def plot_forbiden_zone(all_initial_c10, all_ratio,ax):
     black_x, black_y = lines_between[0][0:50000], lines_between[1][0:50000]
     blue_x, blue_y = lines_between[0][50000:100000], lines_between[1][50000:100000]
 
-    ax.plot(black_x, black_y, '.', color='black', markersize=0.1, label='Constant Exposure')
-    ax.plot(blue_x, blue_y, '.', color='black', markersize=0.1, label='Steady Erosion')
+    ax.plot(black_x, black_y, '.', color='gray', markersize=0.01, label='Constant Exposure')
+    ax.plot(blue_x, blue_y, '.', color='gray', markersize=0.01, label='Steady Erosion')
+    ax.annotate("F", (0.009, 1.01), xycoords="axes fraction",
+                 fontweight="bold", fontsize=16, fontname="Arial")
+    ax.set_facecolor = '#EBEBEB"'
     black_order = np.argsort(black_x)
 
     blue_order = np.argsort(blue_x)
@@ -39,8 +42,10 @@ def plot_forbiden_zone(all_initial_c10, all_ratio,ax):
             outside_x.append(N10)
             outside_y.append(ratio)
 
-    ax.scatter(inside_x, inside_y, color='green',label='within bounds')
+    ax.scatter(inside_x, inside_y, color="#EAFAF4",label='within bounds',edgecolor='black',linewidth=0.2,s=10)
     ax.scatter(outside_x, outside_y, color='red',label='outside bounds')
+    ax.set_xlabel("$^{10}$Be Concentration [at/g]", fontsize=10, fontname="Arial")
+    ax.set_ylabel("$^{26}$Al/$^{10}$Be", fontsize=10, fontname="Arial")
 
     ax.set_xlim(1e4, 1e6)
     ax.set_ylim(3.5, 8)

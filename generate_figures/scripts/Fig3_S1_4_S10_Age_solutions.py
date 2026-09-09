@@ -22,7 +22,7 @@ os.makedirs(main_path+"/generate_figures/figures", exist_ok=True)
 plots_path = main_path+"/generate_figures/figures"
 
 #20 for Figure 3 and 40 for Figure S10
-limit = 40 #Ma
+limit = 20 #Ma
 x_lim = limit
 
 if x_lim != 20:
@@ -63,6 +63,7 @@ for i, sample_id in enumerate(samples_id):
     ].tolist()
 
     valid_deposition_rates = list(results_run.loc[results_run["Solution"], "Deposition rate [cm/year]"])
+    valid_erosion_rates = list(results_run.loc[results_run["Solution"], "Erosion rate [cm/year]"])
     valid_initial_n10 = results_run.loc[results_run["Solution"], 'Initial N10']
     valid_initial_ratio = results_run.loc[results_run["Solution"], "Initial ratio"]
 
@@ -70,6 +71,8 @@ for i, sample_id in enumerate(samples_id):
     false_initial_n10 = list(results_run.loc[~results_run["Solution"], 'Initial N10'])
     false_times_solution = list(results_run.loc[~results_run["Solution"], "Total Time [Ma]"])
     false_deposition_rates = list(results_run.loc[~results_run["Solution"], "Deposition rate [cm/year]"])
+    false_erosion_rates = list(results_run.loc[results_run["Solution"], "Deposition rate [cm/year]"])
+
 
     sample_color = [214, 61, 153]
 
@@ -119,7 +122,6 @@ for i, sample_id in enumerate(samples_id):
     else:
         ax.set_xlabel("$^{10}$Be Concentration [at/g]", fontsize=14, fontname="Arial")
 
-
     ax.set_ylabel("$^{26}$Al / $^{10}$Be", fontsize=18, fontname="Arial")
     ax.set_xscale("log")
     ax.set_facecolor("#F7F7F3")
@@ -130,14 +132,14 @@ for i, sample_id in enumerate(samples_id):
                   handler_map={Ellipse: HandlerEllipse()})
         sc = ax.scatter(range_age_valid_final_n10, range_age_valid_final_ratio, s=10, c=range_age_valid_times_solution,
                         cmap=cm.nuuk, edgecolor="black", linewidth=0.1)
-        ax.annotate(f"{sample_id}", (0.8, 0.9), xycoords="axes fraction",
+        ax.annotate(f"{sample_id[:2]+sample_id[-2:]}", (0.86, 0.9), xycoords="axes fraction",
                     fontweight="bold", fontsize=14, fontname="Arial")
     else:
         ax.legend(loc="lower right", framealpha=1, fontsize=15, frameon=False,
                   handler_map={Ellipse: HandlerEllipse()})
         sc = ax.scatter(range_age_valid_final_n10, range_age_valid_final_ratio, s=30, c=range_age_valid_times_solution,
                         cmap=cm.nuuk, edgecolor="black", linewidth=0.1)
-        ax.annotate(f"{sample_id}", (0.01, 0.94), xycoords="axes fraction",
+        ax.annotate(f"{sample_id[:2]+sample_id[-2:]}", (0.01, 0.94), xycoords="axes fraction",
                     fontweight="bold", fontsize=18, fontname="Arial")
 
     if sample_id == "SB-011":
@@ -174,26 +176,21 @@ for i, sample_id in enumerate(samples_id):
     hist_ax.spines["top"].set_visible(False)
     hist_ax.spines["right"].set_visible(False)
 
-fig_name = f"Fig3_Solutions_Profile_Ages_D{density}"
 
-if x_lim != 20:
-    fig_name_3 = f"/supporting_figures/FigS10_Full_Solutions_Profile_Ages_D{density}"
-    fig.savefig(f"{plots_path}/{fig_name_3}.png", dpi=300, bbox_inches="tight")
-else:
-    fig.savefig(f"{plots_path}/{fig_name}.png", dpi=300, bbox_inches="tight")
-    fig.savefig(f"{plots_path}/SVG/SVG_{fig_name}.svg", format="svg", bbox_inches="tight")
 #
 ####----EXPLORATION PARAMETERS-SUPPORTING MATERIAL---------######
-    fig2, ((ax1,ax2,ax3),(ax4,ax5,ax6)) = plt.subplots(2,3,figsize=(12, 6), constrained_layout=True)
-
-    fig2.set_facecolor("#EBEBEB")
-    fig2.suptitle(f"Sample: {sample_id} | Starting from: {reference_sample }\n ρ = {density}", fontsize=18)
+    if sample_id == "BV-018":
+        fig2, ((ax1,ax2,ax3,ax4),(ax5,ax6,ax7,ax8)) = plt.subplots(2,4,figsize=(12, 6), constrained_layout=True)
+    else:
+        fig2, ((ax1, ax2, ax3), (ax4, ax5, ax6)) = plt.subplots(2, 3, figsize=(12, 6), constrained_layout=True)
+    fig2.set_facecolor("#FAFAFA")
+    fig2.suptitle(f"Sample: {sample_id[:2]+sample_id[-2:]} | ρ = {density} g/cm$^{3}$", fontsize=14, x=0.01, ha='left')
     ###Histogram for ages
     all_ages_sampled = []
     all_ages_sampled.extend(false_times_solution)
     all_ages_sampled.extend(valid_times_solution)
 
-    facecolor_axes = "#EBEBEB"
+    facecolor_axes = "#FAFAFA"
     sampled_color = "#E4CAA0"
     false_color = "#DCE4A0"
     valid_color = "#BAE4A0"
@@ -202,10 +199,12 @@ else:
     ax1.hist(all_ages_sampled, bins=20, edgecolor="black", linewidth=0.5, color=sampled_color, label="Sampled ")
     ax1.hist(false_times_solution, bins=20, edgecolor="black", linewidth=0.5, color= false_color, label="No solution")
     ax1.hist(valid_times_solution, bins=20, edgecolor="black", linewidth=0.5, color=valid_color, label="Solution found")
+    ax1.annotate("A", (0.009, 0.99), xycoords="axes fraction",
+                fontweight="bold", fontsize=16, fontname="Arial")
 
-    ax1.set_xlabel(r"Tentative Time [Ma]", fontsize=8)
+    ax1.set_xlabel(r"Tentative Burial Time [Ma]", fontsize=10)
     ax1.set_ylabel("Count", fontsize=10)
-    ax1.tick_params(axis="both", which="major", labelsize=8)
+    ax1.tick_params(axis="both", which="major", labelsize=10)
     ax1.spines["top"].set_visible(False)
     ax1.spines["right"].set_visible(False)
 
@@ -222,10 +221,11 @@ else:
 
     ax2.vlines(0.0002,0,100,linewidth=0.7,color="black", linestyle="--", label="Dep rate data")
     ax2.vlines(0.001,0,100,linewidth=0.7,color="black", linestyle="--", label="Dep rate data")
-
-    ax2.set_xlabel(r"Deposition rate [cm/year]", fontsize=8)
+    ax2.annotate("B", (0.009, 0.99), xycoords="axes fraction",
+                 fontweight="bold", fontsize=16, fontname="Arial")
+    ax2.set_xlabel(r"Deposition rate [cm/year]", fontsize=10)
     ax2.set_ylabel("Count", fontsize=10)
-    ax2.tick_params(axis="both", which="major", labelsize=8)
+    ax2.tick_params(axis="both", which="major", labelsize=10)
     ax2.spines["top"].set_visible(False)
     ax2.spines["right"].set_visible(False)
     ax2.semilogx()
@@ -239,7 +239,8 @@ else:
     ax3.hist(all_initial_n10, bins=30, edgecolor="black", linewidth=0.5, color=sampled_color, label="Sampled")
     ax3.hist(false_initial_n10,bins=30,edgecolor="black",linewidth=0.5,color=false_color, label="No solution")
     ax3.hist(valid_initial_n10,bins=30,edgecolor="black",linewidth=0.5,color=valid_color, alpha=0.7, label="Solution found")
-
+    ax3.annotate("C", (0.009, 0.99), xycoords="axes fraction",
+                 fontweight="bold", fontsize=16, fontname="Arial")
     ax3.set_xlabel(r"Initial $^{10}$Be Concentration [atoms/g]", fontsize=10)
     ax3.set_ylabel("Count", fontsize=10)
     ax3.tick_params(axis="both", which="major", labelsize=8)
@@ -250,13 +251,15 @@ else:
     ##Scatter for deposition and time
 
     ax4.set_facecolor(facecolor_axes)
-    ax4.scatter(valid_deposition_rates,valid_times_solution,linewidth=0.5,edgecolors="black",s=30,c="#EAFAF4")
+    ax4.scatter(valid_deposition_rates,valid_times_solution,linewidth=0.2,edgecolors="black",s=20,c="#EAFAF4")
     ax4.set_xlabel(r"Deposition rate [cm/year]", fontsize=10)
     ax4.set_ylabel("Age [Myr]", fontsize=10)
-    ax4.tick_params(axis="both", which="major", labelsize=8)
+    ax4.tick_params(axis="both", which="major", labelsize=10)
     ax4.spines["top"].set_visible(False)
     ax4.spines["right"].set_visible(False)
     ax4.semilogx()
+    ax4.annotate("D", (0.009, 0.99), xycoords="axes fraction",
+                 fontweight="bold", fontsize=16, fontname="Arial")
 
     ##Scatter initial and times
     all_ratio = []
@@ -264,23 +267,55 @@ else:
     all_ratio.extend(false_initial_ratio)
 
     ax5.set_facecolor(facecolor_axes)
-    ax5.scatter(valid_initial_n10,valid_times_solution,edgecolors="black",s=30,c="#EAFAF4",linewidth=0.5)
+    ax5.scatter(valid_initial_n10,valid_times_solution,edgecolors="black",s=20,c="#EAFAF4",linewidth=0.2)
     ax5.set_xlabel(r"Initial $^{10}$Be Concentration [atoms/g]", fontsize=10)
     ax5.set_ylabel("Age [Myr]", fontsize=10)
-    ax5.tick_params(axis="both", which="major", labelsize=8)
+    ax5.tick_params(axis="both", which="major", labelsize=10)
     ax5.spines["top"].set_visible(False)
     ax5.spines["right"].set_visible(False)
     ax5.semilogx()
+    ax5.annotate("E", (0.009, 0.99), xycoords="axes fraction",
+                 fontweight="bold", fontsize=16, fontname="Arial")
     plot_forbiden_zone(all_initial_n10,all_ratio,ax6)
 
+    if sample_id == "BV-018":
+        ax7.set_facecolor(facecolor_axes)
+        ax7.scatter(valid_initial_n10, valid_times_solution, edgecolors="black", s=20, c="#EAFAF4", linewidth=0.2)
+        ax7.set_xlabel(r"Initial $^{10}$Be Concentration [atoms/g]", fontsize=10)
+        ax7.set_ylabel("Age [Myr]", fontsize=10)
+        ax7.tick_params(axis="both", which="major", labelsize=10)
+        ax7.spines["top"].set_visible(False)
+        ax7.spines["right"].set_visible(False)
+        ax7.semilogx()
+        ax7.annotate("G", (0.009, 0.99), xycoords="axes fraction",
+                     fontweight="bold", fontsize=16, fontname="Arial")
+
+        ax8.set_facecolor(facecolor_axes)
+        ax8.scatter(valid_initial_n10, valid_times_solution, edgecolors="black", s=20, c="#EAFAF4", linewidth=0.2)
+        ax8.set_xlabel(r"Initial $^{10}$Be Concentration [atoms/g]", fontsize=10)
+        ax8.set_ylabel("Age [Myr]", fontsize=10)
+        ax8.tick_params(axis="both", which="major", labelsize=10)
+        ax8.spines["top"].set_visible(False)
+        ax8.spines["right"].set_visible(False)
+        ax8.semilogx()
+        ax8.annotate("H", (0.009, 0.99), xycoords="axes fraction",
+                     fontweight="bold", fontsize=16, fontname="Arial")
+
     ###plot info###
-    fig_name_2 = f"FigS{i+1}_Parameters_Sampling_[{sample_id}_D_{density}]_"
+    fig_name_2 = f"FigS{i+1}_Parameters_Sampling_{sample_id}_D_{density}"
 
     fig_dir_2 = f"{plots_path}/supporting_figures/{fig_name_2}"
     print(fig_dir_2)
     fig2.savefig(f"{fig_dir_2}.png", dpi=300, bbox_inches="tight")
 
+fig_name = f"Fig3_Solutions_Profile_Ages_D{density}"
 
+if x_lim != 20:
+    fig_name_3 = f"/supporting_figures/FigS10_Full_Solutions_Profile_Ages_D{density}"
+    fig.savefig(f"{plots_path}/{fig_name_3}.png", dpi=300, bbox_inches="tight")
+else:
+    fig.savefig(f"{plots_path}/{fig_name}.png", dpi=300, bbox_inches="tight")
+    fig.savefig(f"{plots_path}/SVG/SVG_{fig_name}.svg", format="svg", bbox_inches="tight")
 
 if plot_trajectories:
     print("Plotting trajectories")

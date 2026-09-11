@@ -184,7 +184,7 @@ for i, sample_id in enumerate(samples_id):
     else:
         fig2, ((ax1, ax2, ax3), (ax4, ax5, ax6)) = plt.subplots(2, 3, figsize=(12, 6), constrained_layout=True)
     fig2.set_facecolor("#FAFAFA")
-    fig2.suptitle(f"Sample: {sample_id[:2]+sample_id[-2:]} | ρ = {density} g/cm$^{3}$", fontsize=14, x=0.01, ha='left')
+    fig2.suptitle(f"Sample {sample_id[:2]+sample_id[-2:]} | ρ = {density} g/cm$^{3}$", fontsize=14, x=0.01, ha='left')
     ###Histogram for ages
     all_ages_sampled = []
     all_ages_sampled.extend(false_times_solution)
@@ -280,8 +280,8 @@ for i, sample_id in enumerate(samples_id):
 
     if sample_id == "BV-018":
         ax7.set_facecolor(facecolor_axes)
-        ax7.scatter(valid_initial_n10, valid_times_solution, edgecolors="black", s=20, c="#EAFAF4", linewidth=0.2)
-        ax7.set_xlabel(r"Initial $^{10}$Be Concentration [atoms/g]", fontsize=10)
+        ax7.scatter(valid_erosion_rates, valid_times_solution, edgecolors="black", s=20, c="#EAFAF4", linewidth=0.2)
+        ax7.set_xlabel(r"Erosion rates [cm/year]", fontsize=10)
         ax7.set_ylabel("Age [Myr]", fontsize=10)
         ax7.tick_params(axis="both", which="major", labelsize=10)
         ax7.spines["top"].set_visible(False)
@@ -290,14 +290,27 @@ for i, sample_id in enumerate(samples_id):
         ax7.annotate("G", (0.009, 0.99), xycoords="axes fraction",
                      fontweight="bold", fontsize=16, fontname="Arial")
 
+        all_erosion_sampled = []
+        all_erosion_sampled.extend(valid_erosion_rates)
+        all_erosion_sampled.extend(false_erosion_rates)
+
         ax8.set_facecolor(facecolor_axes)
-        ax8.scatter(valid_initial_n10, valid_times_solution, edgecolors="black", s=20, c="#EAFAF4", linewidth=0.2)
-        ax8.set_xlabel(r"Initial $^{10}$Be Concentration [atoms/g]", fontsize=10)
-        ax8.set_ylabel("Age [Myr]", fontsize=10)
+        ax8.hist(all_erosion_sampled, bins=30, edgecolor="black", linewidth=0.5, color=sampled_color,
+                 label="Sampled")
+        ax8.hist(false_erosion_rates, bins=30, edgecolor="black", linewidth=0.5, color=false_color,
+                 label="No solution")
+        ax8.hist(valid_erosion_rates, bins=30, edgecolor="black", linewidth=0.5, color=valid_color,
+                 label="Solution found")
+
+        ax8.vlines(0.0002, 0, 100, linewidth=0.7, color="black", linestyle="--", label="Dep rate data")
+        ax8.vlines(0.003, 0, 100, linewidth=0.7, color="black", linestyle="--", label="Dep rate data")
+        ax8.set_xlabel(r"Erosion rate [cm/year]", fontsize=10)
+        ax8.set_ylabel("Count", fontsize=10)
         ax8.tick_params(axis="both", which="major", labelsize=10)
         ax8.spines["top"].set_visible(False)
         ax8.spines["right"].set_visible(False)
         ax8.semilogx()
+        ax8.set_xlim(1e-4,1)
         ax8.annotate("H", (0.009, 0.99), xycoords="axes fraction",
                      fontweight="bold", fontsize=16, fontname="Arial")
 

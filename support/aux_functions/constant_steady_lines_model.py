@@ -7,7 +7,7 @@ class burial_exposure_model:
     def __init__(self):
         pass
 
-    def plot_steady_state_model(self,scaling_method,Rc_value,checking_only=False):
+    def plot_steady_state_model(self,Rc_value,checking_only=False):
         import matplotlib.pyplot as plt
 
         c_p = cosmo_production()

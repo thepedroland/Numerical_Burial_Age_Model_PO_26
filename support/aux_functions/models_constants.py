@@ -15,4 +15,4 @@ L2 = 4200 #attenuation by fast muon-  balco,2017
 
 L = [L0, L1, L2]
 
-density = int(1.7)
+density = 1.7

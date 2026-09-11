@@ -1,6 +1,6 @@
 from matplotlib import pyplot as plt
 from matplotlib.patches import Ellipse
-from support.aux_functions.constant_steady_lines_model import steady_state_model
+from support.aux_functions.constant_steady_lines_model import burial_exposure_model
 from support.aux_functions.nuclide_prod_concentration import *
 import matplotlib.legend_handler as handler
 import matplotlib as mpl
@@ -77,8 +77,8 @@ color_edge = {"flood": tuple([x / 255.0 for x in flood]),
 
 ##----------PRODUCTION ZONE----##
 
-lines_model = steady_state_model()
-lines_model.plot_steady_state_model(density=density,scaling_method=scaling_method,Rc_value=Rc_value)
+lines_model = burial_exposure_model()
+lines_model.plot_steady_state_model(Rc_value=Rc_value)
 
 #######----PLOTTING----########
 

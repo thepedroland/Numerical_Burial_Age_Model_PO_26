@@ -117,15 +117,18 @@ for i, sample_id in enumerate(samples_id):
             edgecolor=tuple(rgb_base + [1.0]), linewidth=1.2,
             label=r"1$\sigma$ Error")
 
-    if sample_id != "SB-017" and sample_id != "SB-011":
-        ax.set_xlabel("")
+    if x_lim != 20:
+        if sample_id != "SB-017" and sample_id != "SB-011":
+            ax.set_xlabel("")
+        else:
+            ax.set_xlabel("$^{10}$Be Concentration [at/g]", fontsize=14, fontname="Arial")
     else:
-        ax.set_xlabel("$^{10}$Be Concentration [at/g]", fontsize=14, fontname="Arial")
+        ax.set_xlabel("")
 
-    ax.set_ylabel("$^{26}$Al / $^{10}$Be", fontsize=18, fontname="Arial")
+    # ax.set_ylabel("$^{26}$Al / $^{10}$Be", fontsize=18, fontname="Arial")
     ax.set_xscale("log")
-    ax.set_facecolor("#F7F7F3")
-    ax.tick_params(axis="both", which="major", labelsize=12)
+    # ax.set_facecolor("#F7F7F3")
+    # ax.tick_params(axis="both", which="major", labelsize=12)
 
     if x_lim != 20:
         ax.legend(loc="lower right", framealpha=1, fontsize=10, frameon=False,
@@ -135,10 +138,10 @@ for i, sample_id in enumerate(samples_id):
         ax.annotate(f"{sample_id[:2]+sample_id[-2:]}", (0.86, 0.9), xycoords="axes fraction",
                     fontweight="bold", fontsize=14, fontname="Arial")
     else:
-        ax.legend(loc="lower right", framealpha=1, fontsize=15, frameon=False,
-                  handler_map={Ellipse: HandlerEllipse()})
+        # ax.legend(loc="lower right", framealpha=1, fontsize=15, frameon=False,
+        #           handler_map={Ellipse: HandlerEllipse()})
         sc = ax.scatter(range_age_valid_final_n10, range_age_valid_final_ratio, s=30, c=range_age_valid_times_solution,
-                        cmap=cm.nuuk, edgecolor="black", linewidth=0.1)
+                        cmap=cm.nuuk, edgecolor="black", linewidth=0.01)
         ax.annotate(f"{sample_id[:2]+sample_id[-2:]}", (0.01, 0.94), xycoords="axes fraction",
                     fontweight="bold", fontsize=18, fontname="Arial")
 
@@ -151,15 +154,24 @@ for i, sample_id in enumerate(samples_id):
     elif sample_id == "BV-018":
         ax.set_xlim(3e4, 9e4); ax.set_ylim(4.7, 6.5)
 
-    ax.set_xticklabels([])
-    ax.set_yticklabels([], fontsize=18)
     ax.set_box_aspect(0.5)
+    ax.set_frame_on(False)
+    ax.set_xticks([])  # Removes X ticks & labels
+    ax.set_yticks([])
+    ax.yaxis.tick_right()
+    ax.yaxis.set_label_position('right')
+
+    # Hides major and minor ticks/labels on the x-axis
+    ax.tick_params(axis='x', which='both', bottom=False, top=False, labelbottom=False)
 
     # --- inset histogram anchored to THIS subplot's bounding box, not the whole figure ---
-    hist_ax = ax.inset_axes([0.4, 0.45, 0.5, 0.4])
+    if sample_id == "SB-013":
+        hist_ax = ax.inset_axes([0.1, 0, 1.2, 1.4])
+    else:
+        hist_ax = ax.inset_axes([0, 0, 1.2, 1.4])
 
     ##cut valid solutions for histograms
-    n, bins, patches = hist_ax.hist(range_age_valid_times_solution, bins=10, edgecolor="black", linewidth=0.4)
+    n, bins, patches = hist_ax.hist(range_age_valid_times_solution, bins=10, edgecolor="black", linewidth=0.3)
 
     norm = plt.Normalize(bins.min(), bins.max())
     cmap = plt.get_cmap(cm.nuuk)
@@ -169,10 +181,10 @@ for i, sample_id in enumerate(samples_id):
         hist_ax.set_xlim([0,x_lim])
     else:
         hist_ax.set_xlim([0,1])
-    hist_ax.set_facecolor("#FAFAFA")
-    hist_ax.set_xlabel(r"Solution Times 2$\sigma$ [Ma]", fontsize=10)
-    hist_ax.set_ylabel("Count", fontsize=10)
-    hist_ax.tick_params(axis="both", which="major", labelsize=10)
+    hist_ax.set_facecolor('None')
+    hist_ax.set_xlabel(r"Solution Times 2$\sigma$ [Ma]", fontsize=12)
+    hist_ax.set_ylabel("Count", fontsize=12)
+    hist_ax.tick_params(axis="both", which="major", labelsize=12)
     hist_ax.spines["top"].set_visible(False)
     hist_ax.spines["right"].set_visible(False)
 
@@ -195,7 +207,7 @@ for i, sample_id in enumerate(samples_id):
     false_color = "#DCE4A0"
     valid_color = "#BAE4A0"
 
-    ax1.set_facecolor(facecolor_axes)
+    # ax1.set_facecolor(facecolor_axes)
     ax1.hist(all_ages_sampled, bins=20, edgecolor="black", linewidth=0.5, color=sampled_color, label="Sampled ")
     ax1.hist(false_times_solution, bins=20, edgecolor="black", linewidth=0.5, color= false_color, label="No solution")
     ax1.hist(valid_times_solution, bins=20, edgecolor="black", linewidth=0.5, color=valid_color, label="Solution found")

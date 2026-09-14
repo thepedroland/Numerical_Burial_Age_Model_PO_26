@@ -8,12 +8,15 @@ from support.aux_functions.forbiden_zone import plot_forbiden_zone
 from support.aux_functions.solution_trajectories import set_trajectories
 from support.aux_functions.misc_functions import load_dataset
 from cmcrameri import cm
+
 plt.rcParams['font.family'] = 'Arial'
+plt.rcParams['axes.linewidth'] = 0.5
 
 samples_id = ["BV-018","SB-013","SB-011","SB-017"]
 density = 1.7
 plot_trajectories = False
 reference_sample = "Surface"
+
 
 main_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 folder_path = os.path.join(main_path, "generate_data")
@@ -29,7 +32,7 @@ if x_lim != 20:
     print("Supporting figure")
     fig, axs = plt.subplots(2, 2, figsize=(10, 5),constrained_layout=True)
 else:
-    fig, axs = plt.subplots(4, 1, figsize=(9, 20),constrained_layout=True)
+    fig, axs = plt.subplots(4, 1, figsize=(3,4),constrained_layout=True)
 
 for i, sample_id in enumerate(samples_id):
     print("Plotting sample:", sample_id)
@@ -108,20 +111,20 @@ for i, sample_id in enumerate(samples_id):
     x_2s = x0 + (2 * dx_1s) * np.sin(theta)
     y_2s = y0 + (2 * dy_1s) * np.cos(theta)
     ax.fill(x_2s, y_2s, facecolor=tuple(rgb_base + [0.1]),
-            edgecolor=tuple(rgb_base + [0.3]), linestyle="--", linewidth=0.8,
+            edgecolor=tuple(rgb_base + [0.3]), linewidth=0.5,
             label=r"2$\sigma$ Error")
 
     x_1s = x0 + dx_1s * np.sin(theta)
     y_1s = y0 + dy_1s * np.cos(theta)
     ax.fill(x_1s, y_1s, facecolor=tuple(rgb_base + [0.25]),
-            edgecolor=tuple(rgb_base + [1.0]), linewidth=1.2,
+            edgecolor=tuple(rgb_base + [1.0]), linewidth=0.5,
             label=r"1$\sigma$ Error")
 
     if x_lim != 20:
         if sample_id != "SB-017" and sample_id != "SB-011":
             ax.set_xlabel("")
         else:
-            ax.set_xlabel("$^{10}$Be Concentration [at/g]", fontsize=14, fontname="Arial")
+            ax.set_xlabel("$^{10}$Be Concentration [at/g]", fontsize=8, fontname="Arial")
     else:
         ax.set_xlabel("")
 
@@ -133,17 +136,17 @@ for i, sample_id in enumerate(samples_id):
     if x_lim != 20:
         ax.legend(loc="lower right", framealpha=1, fontsize=10, frameon=False,
                   handler_map={Ellipse: HandlerEllipse()})
-        sc = ax.scatter(range_age_valid_final_n10, range_age_valid_final_ratio, s=10, c=range_age_valid_times_solution,
-                        cmap=cm.nuuk, edgecolor="black", linewidth=0.1)
-        ax.annotate(f"{sample_id[:2]+sample_id[-2:]}", (0.86, 0.9), xycoords="axes fraction",
-                    fontweight="bold", fontsize=14, fontname="Arial")
+        sc = ax.scatter(range_age_valid_final_n10, range_age_valid_final_ratio, s=1, c=range_age_valid_times_solution,
+                        cmap=cm.nuuk, edgecolor="black", linewidth=0.01)
+        # ax.annotate(f"{sample_id[:2]+sample_id[-2:]}", (0.86, 0.9), xycoords="axes fraction",
+        #             fontweight="bold", fontsize=14, fontname="Arial")
     else:
         # ax.legend(loc="lower right", framealpha=1, fontsize=15, frameon=False,
         #           handler_map={Ellipse: HandlerEllipse()})
-        sc = ax.scatter(range_age_valid_final_n10, range_age_valid_final_ratio, s=30, c=range_age_valid_times_solution,
+        sc = ax.scatter(range_age_valid_final_n10, range_age_valid_final_ratio, s=1, c=range_age_valid_times_solution,
                         cmap=cm.nuuk, edgecolor="black", linewidth=0.01)
-        ax.annotate(f"{sample_id[:2]+sample_id[-2:]}", (0.01, 0.94), xycoords="axes fraction",
-                    fontweight="bold", fontsize=18, fontname="Arial")
+        # ax.annotate(f"{sample_id[:2]+sample_id[-2:]}", (0.01, 0.94), xycoords="axes fraction",
+        #             fontweight="bold", fontsize=18, fontname="Arial")
 
     if sample_id == "SB-011":
         ax.set_xlim(3e4, 1e5); ax.set_ylim(3.8, 5.2)
@@ -162,13 +165,13 @@ for i, sample_id in enumerate(samples_id):
     ax.yaxis.set_label_position('right')
 
     # Hides major and minor ticks/labels on the x-axis
-    ax.tick_params(axis='x', which='both', bottom=False, top=False, labelbottom=False)
+    ax.tick_params(axis='x', which='both', bottom=False, top=False, labelbottom=False,size=0.1)
 
     # --- inset histogram anchored to THIS subplot's bounding box, not the whole figure ---
     if sample_id == "SB-013":
-        hist_ax = ax.inset_axes([0.1, 0, 1.2, 1.4])
+        hist_ax = ax.inset_axes([0.1, 0, 0.9, 1])
     else:
-        hist_ax = ax.inset_axes([0, 0, 1.2, 1.4])
+        hist_ax = ax.inset_axes([0, 0, 0.9, 1])
 
     ##cut valid solutions for histograms
     n, bins, patches = hist_ax.hist(range_age_valid_times_solution, bins=10, edgecolor="black", linewidth=0.3)
@@ -182,12 +185,20 @@ for i, sample_id in enumerate(samples_id):
     else:
         hist_ax.set_xlim([0,1])
     hist_ax.set_facecolor('None')
-    hist_ax.set_xlabel(r"Solution Times 2$\sigma$ [Ma]", fontsize=12)
-    hist_ax.set_ylabel("Count", fontsize=12)
-    hist_ax.tick_params(axis="both", which="major", labelsize=12)
+    if sample_id == "SB-017":
+        hist_ax.set_xlabel(r"Solution Times 2$\sigma$ [Ma]", fontsize=8)
+    else:
+        hist_ax.set_xlabel("", fontsize=8)
+    # hist_ax.set_ylabel("Count", fontsize=8)
+    hist_ax.tick_params(axis="both", which="major", labelsize=6,width=0.5)
+    from matplotlib.ticker import MaxNLocator
+    hist_ax.xaxis.set_major_locator(MaxNLocator(nbins=5))
+    hist_ax.yaxis.tick_right()
+    hist_ax.yaxis.set_label_position("right")
     hist_ax.spines["top"].set_visible(False)
-    hist_ax.spines["right"].set_visible(False)
 
+    hist_ax.spines["right"].set_visible(True)
+    hist_ax.spines["left"].set_visible(False)
 
 #
 ####----EXPLORATION PARAMETERS-SUPPORTING MATERIAL---------######
@@ -341,6 +352,7 @@ if x_lim != 20:
 else:
     fig.savefig(f"{plots_path}/{fig_name}.png", dpi=300, bbox_inches="tight")
     fig.savefig(f"{plots_path}/SVG/SVG_{fig_name}.svg", format="svg", bbox_inches="tight")
+
 
 if plot_trajectories:
     print("Plotting trajectories")

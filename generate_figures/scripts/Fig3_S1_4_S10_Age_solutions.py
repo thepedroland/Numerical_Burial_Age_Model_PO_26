@@ -173,8 +173,9 @@ for i, sample_id in enumerate(samples_id):
     else:
         hist_ax = ax.inset_axes([0, 0, 0.9, 1])
 
+    bins = np.linspace(0,20,10)
+
     ##cut valid solutions for histograms
-    n, bins, patches = hist_ax.hist(range_age_valid_times_solution, bins=10, edgecolor="black", linewidth=0.3)
 
     norm = plt.Normalize(bins.min(), bins.max())
     cmap = plt.get_cmap(cm.nuuk)
@@ -183,6 +184,9 @@ for i, sample_id in enumerate(samples_id):
     if sample_id != "SB-013":
         hist_ax.set_xlim([0,x_lim])
     else:
+        n, bins, patches = hist_ax.hist(range_age_valid_times_solution, bins=bins, edgecolor="black", linewidth=0.3)
+
+
         hist_ax.set_xlim([0,1])
     hist_ax.set_facecolor('None')
     if sample_id == "SB-017":
@@ -251,8 +255,7 @@ for i, sample_id in enumerate(samples_id):
     ax2.tick_params(axis="both", which="major", labelsize=10)
     ax2.spines["top"].set_visible(False)
     ax2.spines["right"].set_visible(False)
-    ax2.semilogx()
-    ##Histogram for initial n10
+    ax2.set_xscale("log")    ##Histogram for initial n10
 
     all_initial_n10 = []
     all_initial_n10.extend(valid_initial_n10)
@@ -270,8 +273,7 @@ for i, sample_id in enumerate(samples_id):
     ax3.spines["top"].set_visible(False)
     ax3.spines["right"].set_visible(False)
     ax3.legend(fontsize=10)
-    ax3.semilogx()
-    ##Scatter for deposition and time
+    ax3.set_xscale("log")    ##Scatter for deposition and time
 
     ax4.set_facecolor(facecolor_axes)
     ax4.scatter(valid_deposition_rates,valid_times_solution,linewidth=0.2,edgecolors="black",s=20,c="#EAFAF4")
@@ -280,7 +282,7 @@ for i, sample_id in enumerate(samples_id):
     ax4.tick_params(axis="both", which="major", labelsize=10)
     ax4.spines["top"].set_visible(False)
     ax4.spines["right"].set_visible(False)
-    ax4.semilogx()
+    ax4.set_xscale("log")
     ax4.annotate("D", (0.009, 0.99), xycoords="axes fraction",
                  fontweight="bold", fontsize=16, fontname="Arial")
 
@@ -296,9 +298,10 @@ for i, sample_id in enumerate(samples_id):
     ax5.tick_params(axis="both", which="major", labelsize=10)
     ax5.spines["top"].set_visible(False)
     ax5.spines["right"].set_visible(False)
-    ax5.semilogx()
+    ax5.set_xscale("log")
     ax5.annotate("E", (0.009, 0.99), xycoords="axes fraction",
                  fontweight="bold", fontsize=16, fontname="Arial")
+    
     plot_forbiden_zone(all_initial_n10,all_ratio,ax6)
 
     if sample_id == "BV-018":
@@ -309,7 +312,7 @@ for i, sample_id in enumerate(samples_id):
         ax7.tick_params(axis="both", which="major", labelsize=10)
         ax7.spines["top"].set_visible(False)
         ax7.spines["right"].set_visible(False)
-        ax7.semilogx()
+        ax7.set_xscale("log")
         ax7.annotate("G", (0.009, 0.99), xycoords="axes fraction",
                      fontweight="bold", fontsize=16, fontname="Arial")
 
@@ -332,7 +335,7 @@ for i, sample_id in enumerate(samples_id):
         ax8.tick_params(axis="both", which="major", labelsize=10)
         ax8.spines["top"].set_visible(False)
         ax8.spines["right"].set_visible(False)
-        ax8.semilogx()
+        ax8.set_xscale("log")
         ax8.set_xlim(1e-4,1)
         ax8.annotate("H", (0.009, 0.99), xycoords="axes fraction",
                      fontweight="bold", fontsize=16, fontname="Arial")

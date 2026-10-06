@@ -13,6 +13,8 @@ from tqdm import tqdm
 import matplotlib.pyplot as plt
 from mcadam import calc_mcadam_medians
 
+plt.rcParams["font.family"] = "Arial"
+
 
 class calc_Rc:
     def __init__(self):
@@ -58,8 +60,8 @@ class calc_Rc:
         plt.plot(((np.arange(0,800,1))*50000)/1e6,Rc_list, label="Cutoff Rigidity (Rc) - based on MCADAM",color="gray")
         ax = plt.gca()
         ax.set_facecolor("#FAFAFA")
-        plt.xlabel("Age (Ma)",fontsize=16)
-        plt.ylabel("Rc (GV)",fontsize=16)
+        plt.xlabel("Age [Ma]",fontsize=16)
+        plt.ylabel("Cutoff Rigidity - Rc [GV]",fontsize=16)
         ax.set_xticklabels(ax.get_xticks(), fontsize=14)
         ax.set_yticklabels(ax.get_yticks(), fontsize=14)
         plt.legend(fontsize=14)

@@ -181,6 +181,12 @@ for i, sample_id in enumerate(samples_id):
             n, bins, patches = a.hist(range_age_valid_times_solution, bins=10,
                    edgecolor="black", linewidth=0.1)
 
+        norm = plt.Normalize(bins.min(), bins.max())
+        cmap = plt.get_cmap(cm.nuuk)
+
+        for bin_val, patch in zip(bins, patches):
+            patch.set_facecolor(cmap(norm(bin_val)))
+
         hist_ax1.set_xlim(0, 1.5)  # adjust to your data
         hist_ax2.set_xlim(1.5, 20)  # adjust to your data
 
@@ -202,11 +208,7 @@ for i, sample_id in enumerate(samples_id):
         hist_ax2.plot((-d, +d), (-d, +d), **kw)
         # hist_ax2.plot((-d, +d), (1 - d, 1 + d), **kw)
 
-        norm = plt.Normalize(bins.min(), bins.max())
-        cmap = plt.get_cmap(cm.nuuk)
 
-        for bin_val, patch in zip(bins, patches):
-            patch.set_facecolor(cmap(norm(bin_val)))
 
     else:
         hist_ax = ax.inset_axes([0, 0, 0.9, 1])

@@ -168,41 +168,73 @@ for i, sample_id in enumerate(samples_id):
     ax.tick_params(axis='x', which='both', bottom=False, top=False, labelbottom=False,size=0.1)
 
     # --- inset histogram anchored to THIS subplot's bounding box, not the whole figure ---
+
+    bins = np.linspace(0, 20, 20)
+
     if sample_id == "SB-013":
-        hist_ax = ax.inset_axes([0.1, 0, 0.9, 1])
+        gap = 0.02
+        w = (0.9 - gap) / 2
+        hist_ax1 = ax.inset_axes([0, 0, w, 1])
+        hist_ax2 = ax.inset_axes([w + gap, 0, w, 1], sharey=hist_ax1)
+
+        for a in (hist_ax1, hist_ax2):
+            n, bins, patches = a.hist(range_age_valid_times_solution, bins=10,
+                   edgecolor="black", linewidth=0.1)
+
+        hist_ax1.set_xlim(0, 1.5)  # adjust to your data
+        hist_ax2.set_xlim(1.5, 20)  # adjust to your data
+
+        # clean up the break
+        hist_ax1.spines["right"].set_visible(False)
+        hist_ax1.spines["left"].set_visible(True)
+        hist_ax2.spines["left"].set_visible(False)
+        hist_ax1.spines["top"].set_visible(False)
+        hist_ax2.spines["top"].set_visible(False)
+        hist_ax2.tick_params(left=False,labelleft=False,labelsize=8,width=0.5)
+        hist_ax1.tick_params(left=True,labelleft=True,labelsize=8,width=0.5)
+
+        # diagonal break marks
+        d = 0.015
+        kw = dict(transform=hist_ax1.transAxes, color="k", clip_on=False, lw=0.8)
+        hist_ax1.plot((1 - d, 1 + d), (-d, +d), **kw)
+        # hist_ax1.plot((1 - d, 1 + d), (1 - d, 1 + d), **kw)
+        kw.update(transform=hist_ax2.transAxes)
+        hist_ax2.plot((-d, +d), (-d, +d), **kw)
+        # hist_ax2.plot((-d, +d), (1 - d, 1 + d), **kw)
+
+        norm = plt.Normalize(bins.min(), bins.max())
+        cmap = plt.get_cmap(cm.nuuk)
+
+        for bin_val, patch in zip(bins, patches):
+            patch.set_facecolor(cmap(norm(bin_val)))
+
     else:
         hist_ax = ax.inset_axes([0, 0, 0.9, 1])
+        n, bins, patches = hist_ax.hist(range_age_valid_times_solution, bins=bins,
+                     edgecolor="black", linewidth=0.3)
+        hist_ax.set_xlim([0, x_lim])
 
-    bins = np.linspace(0,20,10)
+        norm = plt.Normalize(bins.min(), bins.max())
+        cmap = plt.get_cmap(cm.nuuk)
 
-    ##cut valid solutions for histograms
+        for bin_val, patch in zip(bins, patches):
+            patch.set_facecolor(cmap(norm(bin_val)))
 
-    norm = plt.Normalize(bins.min(), bins.max())
-    cmap = plt.get_cmap(cm.nuuk)
-    for bin_val, patch in zip(bins, patches):
-        patch.set_facecolor(cmap(norm(bin_val)))
-    if sample_id != "SB-013":
-        hist_ax.set_xlim([0,x_lim])
-    else:
-        n, bins, patches = hist_ax.hist(range_age_valid_times_solution, bins=bins, edgecolor="black", linewidth=0.3)
+        hist_ax.set_facecolor('None')
+        if sample_id == "SB-017":
+            hist_ax.set_xlabel(r"Solution Times 2$\sigma$ [Ma]", fontsize=8)
+        else:
+            hist_ax.set_xlabel("", fontsize=8)
+        # hist_ax.set_ylabel("Count", fontsize=8)
+        hist_ax.tick_params(axis="both", which="major", labelsize=8,width=0.5)
+        from matplotlib.ticker import MaxNLocator
+        hist_ax.xaxis.set_major_locator(MaxNLocator(nbins=5))
+        hist_ax.yaxis.tick_left()
+        hist_ax.yaxis.set_label_position("left")
+        hist_ax.spines["top"].set_visible(False)
 
-
-        hist_ax.set_xlim([0,1])
-    hist_ax.set_facecolor('None')
-    if sample_id == "SB-017":
-        hist_ax.set_xlabel(r"Solution Times 2$\sigma$ [Ma]", fontsize=8)
-    else:
-        hist_ax.set_xlabel("", fontsize=8)
-    # hist_ax.set_ylabel("Count", fontsize=8)
-    hist_ax.tick_params(axis="both", which="major", labelsize=6,width=0.5)
-    from matplotlib.ticker import MaxNLocator
-    hist_ax.xaxis.set_major_locator(MaxNLocator(nbins=5))
-    hist_ax.yaxis.tick_right()
-    hist_ax.yaxis.set_label_position("right")
-    hist_ax.spines["top"].set_visible(False)
-
-    hist_ax.spines["right"].set_visible(True)
-    hist_ax.spines["left"].set_visible(False)
+        hist_ax.spines["right"].set_visible(False)
+        hist_ax.spines["left"].set_visible(True)
 
 #
 ####----EXPLORATION PARAMETERS-SUPPORTING MATERIAL---------######

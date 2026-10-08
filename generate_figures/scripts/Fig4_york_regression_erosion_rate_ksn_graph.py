@@ -63,3 +63,5 @@ fig = plt.gcf()
 fig.set_size_inches(3.5,2.3)
 plt.savefig(f"{fig_dir}/{fig_name}.png", dpi=700, bbox_inches="tight")
 plt.show()
+
+

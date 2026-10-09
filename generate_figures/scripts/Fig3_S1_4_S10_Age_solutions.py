@@ -178,14 +178,17 @@ for i, sample_id in enumerate(samples_id):
         hist_ax2 = ax.inset_axes([w + gap, 0, w, 1], sharey=hist_ax1)
 
         for a in (hist_ax1, hist_ax2):
-            n, bins, patches = a.hist(range_age_valid_times_solution, bins=10,
-                   edgecolor="black", linewidth=0.1)
+            n, bins, patches = a.hist(range_age_valid_times_solution, bins=6,
+                   edgecolor="black", linewidth=0.5)
 
-        norm = plt.Normalize(bins.min(), bins.max())
-        cmap = plt.get_cmap(cm.nuuk)
+            norm = plt.Normalize(bins.min(), bins.max())
+            cmap = plt.get_cmap(cm.nuuk)
 
-        for bin_val, patch in zip(bins, patches):
-            patch.set_facecolor(cmap(norm(bin_val)))
+            for bin_val, patch in zip(bins, patches):
+                patch.set_facecolor(cmap(norm(bin_val)))
+        print(bins)
+
+
 
         hist_ax1.set_xlim(0, 1.5)  # adjust to your data
         hist_ax2.set_xlim(1.5, 20)  # adjust to your data
@@ -208,12 +211,10 @@ for i, sample_id in enumerate(samples_id):
         hist_ax2.plot((-d, +d), (-d, +d), **kw)
         # hist_ax2.plot((-d, +d), (1 - d, 1 + d), **kw)
 
-
-
     else:
         hist_ax = ax.inset_axes([0, 0, 0.9, 1])
         n, bins, patches = hist_ax.hist(range_age_valid_times_solution, bins=bins,
-                     edgecolor="black", linewidth=0.3)
+                     edgecolor="black", linewidth=0.5)
         hist_ax.set_xlim([0, x_lim])
 
         norm = plt.Normalize(bins.min(), bins.max())
@@ -234,8 +235,7 @@ for i, sample_id in enumerate(samples_id):
         hist_ax.yaxis.tick_left()
         hist_ax.yaxis.set_label_position("left")
         hist_ax.spines["top"].set_visible(False)
-
-        hist_ax.spines["right"].set_visible(False)
+        hist_ax.spines["right"].set_visible(True)
         hist_ax.spines["left"].set_visible(True)
 
 #
@@ -387,6 +387,7 @@ if x_lim != 20:
     fig_name_3 = f"/supporting_figures/FigS10_Full_Solutions_Profile_Ages_D{density}"
     fig.savefig(f"{plots_path}/{fig_name_3}.png", dpi=300, bbox_inches="tight")
 else:
+    fig.tight_layout()
     fig.savefig(f"{plots_path}/{fig_name}.png", dpi=300, bbox_inches="tight")
     fig.savefig(f"{plots_path}/SVG/SVG_{fig_name}.svg", format="svg", bbox_inches="tight")
 

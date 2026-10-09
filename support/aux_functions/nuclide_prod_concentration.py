@@ -35,8 +35,8 @@ class cosmo_production:
             p_al_spa_list.append(self.A0 * math.exp(-z_cm * self.density / self.L0))
             p_be_spa_list.append(self.B0 * math.exp(-z_cm * self.density / self.L0))
 
-        print(time_list)
-        print(z_gcm2_list)
+        # print(time_list)
+        # print(z_gcm2_list)
         # Be production by muons
         P_neg_muons_be, P_fast_muons_be = self.eng.LSDn_calc_muon_prod(
             matlab.double(time_list), matlab.double(z_gcm2_list),

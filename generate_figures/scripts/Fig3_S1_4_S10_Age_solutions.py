@@ -17,7 +17,6 @@ density = 1.7
 plot_trajectories = False
 reference_sample = "Surface"
 
-
 main_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 folder_path = os.path.join(main_path, "generate_data")
 
@@ -30,7 +29,8 @@ x_lim = limit
 
 if x_lim != 20:
     print("Supporting figure")
-    fig, axs = plt.subplots(2, 2, figsize=(10, 5),constrained_layout=True)
+    samples_id = ["BV-018", "SB-011", "SB-017"]
+    fig, axs = plt.subplots(3, 1, figsize=(8, 6),constrained_layout=False)
 else:
     fig, axs = plt.subplots(4, 1, figsize=(3,4),constrained_layout=True)
 
@@ -76,7 +76,6 @@ for i, sample_id in enumerate(samples_id):
     false_deposition_rates = list(results_run.loc[~results_run["Solution"], "Deposition rate [cm/year]"])
     false_erosion_rates = list(results_run.loc[results_run["Solution"], "Deposition rate [cm/year]"])
 
-
     sample_color = [214, 61, 153]
 
     class HandlerEllipse(handler.HandlerPatch):
@@ -120,26 +119,16 @@ for i, sample_id in enumerate(samples_id):
             edgecolor=tuple(rgb_base + [1.0]), linewidth=0.5,
             label=r"1$\sigma$ Error")
 
-    if x_lim != 20:
-        if sample_id != "SB-017" and sample_id != "SB-011":
-            ax.set_xlabel("")
-        else:
-            ax.set_xlabel("$^{10}$Be Concentration [at/g]", fontsize=8, fontname="Arial")
-    else:
-        ax.set_xlabel("")
-
     # ax.set_ylabel("$^{26}$Al / $^{10}$Be", fontsize=18, fontname="Arial")
     ax.set_xscale("log")
     # ax.set_facecolor("#F7F7F3")
     # ax.tick_params(axis="both", which="major", labelsize=12)
 
     if x_lim != 20:
-        ax.legend(loc="lower right", framealpha=1, fontsize=10, frameon=False,
-                  handler_map={Ellipse: HandlerEllipse()})
-        sc = ax.scatter(range_age_valid_final_n10, range_age_valid_final_ratio, s=1, c=range_age_valid_times_solution,
-                        cmap=cm.nuuk, edgecolor="black", linewidth=0.01)
-        # ax.annotate(f"{sample_id[:2]+sample_id[-2:]}", (0.86, 0.9), xycoords="axes fraction",
-        #             fontweight="bold", fontsize=14, fontname="Arial")
+        sc = ax.scatter(range_age_valid_final_n10, range_age_valid_final_ratio, s=3, c=range_age_valid_times_solution,
+                        cmap=cm.nuuk, edgecolor="black", linewidth=0.05)
+        ax.annotate(f"{sample_id[:2]+sample_id[-2:]}", (0.01, 0.95), xycoords="axes fraction",
+                    fontweight="bold", fontsize=7, fontname="Arial")
     else:
         # ax.legend(loc="lower right", framealpha=1, fontsize=15, frameon=False,
         #           handler_map={Ellipse: HandlerEllipse()})
@@ -148,28 +137,37 @@ for i, sample_id in enumerate(samples_id):
         # ax.annotate(f"{sample_id[:2]+sample_id[-2:]}", (0.01, 0.94), xycoords="axes fraction",
         #             fontweight="bold", fontsize=18, fontname="Arial")
 
-    if sample_id == "SB-011":
-        ax.set_xlim(3e4, 1e5); ax.set_ylim(3.8, 5.2)
-    elif sample_id == "SB-017":
-        ax.set_xlim(1e4, 6e4); ax.set_ylim(3.1, 5.4)
-    elif sample_id == "SB-013":
-        ax.set_xlim(2.5e5, 6e5); ax.set_ylim(4.3, 5.2)
-    elif sample_id == "BV-018":
-        ax.set_xlim(3e4, 9e4); ax.set_ylim(4.7, 6.5)
+    if limit != 20:
+        if sample_id == "SB-011":
+            ax.set_xlim(3e4, 2e5);
+            ax.set_ylim(3.8, 5.2)
+        elif sample_id == "SB-017":
+            ax.set_xlim(1e4, 9e4);
+            ax.set_ylim(3.1, 5.4)
+        elif sample_id == "BV-018":
+            ax.set_xlim(3e4, 2e5);
+            ax.set_ylim(4.7, 6.5)
+    else:
+        if sample_id == "SB-011":
+            ax.set_xlim(3e4, 1e5); ax.set_ylim(3.8, 5.2)
+        elif sample_id == "SB-017":
+            ax.set_xlim(1e4, 6e4); ax.set_ylim(3.1, 5.4)
+        elif sample_id == "SB-013":
+            ax.set_xlim(2.5e5, 6e5); ax.set_ylim(4.3, 5.2)
+        elif sample_id == "BV-018":
+            ax.set_xlim(3e4, 9e4); ax.set_ylim(4.7, 6.5)
 
     ax.set_box_aspect(0.5)
     ax.set_frame_on(False)
     ax.set_xticks([])  # Removes X ticks & labels
     ax.set_yticks([])
-    ax.yaxis.tick_right()
-    ax.yaxis.set_label_position('right')
 
     # Hides major and minor ticks/labels on the x-axis
     ax.tick_params(axis='x', which='both', bottom=False, top=False, labelbottom=False,size=0.1)
 
     # --- inset histogram anchored to THIS subplot's bounding box, not the whole figure ---
 
-    bins = np.linspace(0, 20, 20)
+    bins = np.linspace(0, limit, 20)
 
     if sample_id == "SB-013":
         gap = 0.02
@@ -179,7 +177,7 @@ for i, sample_id in enumerate(samples_id):
 
         for a in (hist_ax1, hist_ax2):
             n, bins, patches = a.hist(range_age_valid_times_solution, bins=6,
-                   edgecolor="black", linewidth=0.5)
+                   edgecolor="black", linewidth=0.3)
 
             norm = plt.Normalize(bins.min(), bins.max())
             cmap = plt.get_cmap(cm.nuuk)
@@ -187,8 +185,6 @@ for i, sample_id in enumerate(samples_id):
             for bin_val, patch in zip(bins, patches):
                 patch.set_facecolor(cmap(norm(bin_val)))
         print(bins)
-
-
 
         hist_ax1.set_xlim(0, 1.5)  # adjust to your data
         hist_ax2.set_xlim(1.5, 20)  # adjust to your data
@@ -199,8 +195,8 @@ for i, sample_id in enumerate(samples_id):
         hist_ax2.spines["left"].set_visible(False)
         hist_ax1.spines["top"].set_visible(False)
         hist_ax2.spines["top"].set_visible(False)
-        hist_ax2.tick_params(left=False,labelleft=False,labelsize=8,width=0.5)
-        hist_ax1.tick_params(left=True,labelleft=True,labelsize=8,width=0.5)
+        hist_ax2.tick_params(left=False,labelleft=False,labelsize=7,width=0.5)
+        hist_ax1.tick_params(left=True,labelleft=True,labelsize=7,width=0.5)
 
         # diagonal break marks
         d = 0.015
@@ -225,11 +221,11 @@ for i, sample_id in enumerate(samples_id):
 
         hist_ax.set_facecolor('None')
         if sample_id == "SB-017":
-            hist_ax.set_xlabel(r"Solution Times 2$\sigma$ [Ma]", fontsize=8)
+            hist_ax.set_xlabel(r"Solution Times 2$\sigma$ [Ma]", fontsize=7)
         else:
-            hist_ax.set_xlabel("", fontsize=8)
+            hist_ax.set_xlabel("", fontsize=7)
         # hist_ax.set_ylabel("Count", fontsize=8)
-        hist_ax.tick_params(axis="both", which="major", labelsize=8,width=0.5)
+        hist_ax.tick_params(axis="both", which="major", labelsize=7,width=0.3)
         from matplotlib.ticker import MaxNLocator
         hist_ax.xaxis.set_major_locator(MaxNLocator(nbins=5))
         hist_ax.yaxis.tick_left()
@@ -245,7 +241,7 @@ for i, sample_id in enumerate(samples_id):
     else:
         fig2, ((ax1, ax2, ax3), (ax4, ax5, ax6)) = plt.subplots(2, 3, figsize=(12, 6), constrained_layout=True)
     fig2.set_facecolor("#FAFAFA")
-    fig2.suptitle(f"Sample {sample_id[:2]+sample_id[-2:]} | ρ = {density} g/cm$^{3}$", fontsize=14, x=0.01, ha='left')
+    fig2.suptitle(f"Sample {sample_id[:2]+sample_id[-2:]} | ρ = {density} g/cm$^{3}$", fontsize=12, x=0.01, ha='left')
     ###Histogram for ages
     all_ages_sampled = []
     all_ages_sampled.extend(false_times_solution)

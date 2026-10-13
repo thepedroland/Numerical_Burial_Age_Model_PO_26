@@ -34,7 +34,7 @@ fig,(ax1,ax2) = plt.subplots(1,2)
 
 color = drainage
 ax1.errorbar(erosion, relief,xerr=dev_ero,yerr=std_relief,marker='o',
-         mec='black', ms=3, mew=0.4,linestyle='None',ecolor="#2C2C1C",zorder=1,elinewidth=0.5,c="#F6F9E7")
+         mec='black', ms=3, mew=0.3,linestyle='None',ecolor="#2C2C1C",zorder=1,elinewidth=0.3,c="#FFF2E5")
 
 ax1.set_facecolor(color="#FAFAFA")
 ax1.set_xlabel('Erosion rate [m/Myr]',fontsize=6 )
@@ -42,7 +42,7 @@ ax1.set_ylabel('Relief [m/m]',fontsize=6 )
 ax1.set_box_aspect(0.5)
 
 ax2.set_facecolor(color="#FAFAFA")
-ax2.hist(erosion, bins=15, edgecolor="black", linewidth=0.4,color="#F6F9E7")
+ax2.hist(erosion, bins=15, edgecolor="black", linewidth=0.3,color="#FFF2E5")
 ax2.set_xlabel('Erosion rate [m/Myr]',fontsize=6 )
 ax2.set_ylabel('Count',fontsize=6 )
 ax2.set_box_aspect(0.5)
@@ -55,9 +55,10 @@ for axis in ['top','bottom','left','right']:
 
 ax2.tick_params(axis='both', width=0.5, labelsize=6)
 ax1.tick_params(axis='both', width=0.5, labelsize=6)
-
+plt.subplots_adjust(wspace=0.05)
 fig = plt.gcf()
 fig.set_size_inches(3.5,2)
+
 plt.savefig(f"{fig_dir}/{fig_name}.png", dpi=700)
 plt.show()
 

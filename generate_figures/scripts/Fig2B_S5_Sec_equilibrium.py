@@ -94,7 +94,7 @@ for i, sample_id in enumerate(samples_list):
         linewidth=0.1,
     )
 
-    ax.annotate(f"{sample_id[0:2]+sample_id[-2:]}\n",((x0 + (2 * dx_1s)),(y0)),alpha=0.8,fontsize=6,fontweight='bold',color=rgb_base_sample)
+    # ax.annotate(f"{sample_id[0:2]+sample_id[-2:]}\n",((x0 + (2 * dx_1s)),(y0)),alpha=0.8,fontsize=7,fontweight='bold',color=rgb_base_sample)
 
     st_model.plot_steady_state_model_depth(depth_sample, color="#B3B3B3")
 
@@ -109,18 +109,19 @@ for i, sample_id in enumerate(samples_list):
 
 
 ####----Axis formatting (done once)----####
-ax.set_xlabel(r'$^{10}\mathrm{Be}$ Concentration [at/g] ', fontsize=8)
-ax.set_ylabel(r'$^{26}\mathrm{Al}/^{10}\mathrm{Be}$', fontsize=8)
+ax.set_xlabel(r'$^{10}\mathrm{Be}$ Concentration [at/g] ', fontsize=6)
+ax.set_ylabel(r'$^{26}\mathrm{Al}/^{10}\mathrm{Be}$', fontsize=6)
 ax.set_facecolor(color="#FAFAFA")
+ax.tick_params(width=0.5)
 
 ax.xaxis.set_major_locator(FixedLocator([1e4]))
-ax.set_xticklabels(["$10^4$"], fontsize=8, fontname="Arial")
+ax.set_xticklabels(["$10^4$"], fontsize=6, fontname="Arial")
 ax.xaxis.set_minor_locator(LogLocator(base=10.0, subs='auto', numticks=12))
 ax.xaxis.set_minor_formatter(NullFormatter())
 
 y_ticks = [3, 5, 7]
 ax.yaxis.set_major_locator(FixedLocator(y_ticks))
-ax.set_yticklabels(["3","5","7"], fontsize=8, fontname="Arial")
+ax.set_yticklabels(["3","5","7"], fontsize=7, fontname="Arial")
 #
 # ax.legend(handles=depth_handles,loc="lower right",frameon=False,borderaxespad=0.8,handletextpad=0.2,
 #     ncol=1, fontsize=10, columnspacing=1)
@@ -129,6 +130,8 @@ ax.set_box_aspect(1)
 ax.set_ylim(3,8.5)
 ax.set_xlim(9e1, 2e5)
 
+for axis in ['top','bottom','left','right']:
+    ax.spines[axis].set_linewidth(0.5)
 
 fig_name = "Fig2B_secular_equilibrium_sb11_sb17"
 plt.savefig(f"{fig_dir}/{fig_name}.png", dpi=300, bbox_inches="tight")
@@ -196,7 +199,7 @@ ax.fill(
     linewidth=0.1,
 )
 
-ax.annotate(f"{sample_id[0:2]+sample_id[-2:]}\n",((x0 - (2 * dx_1s)+1e4),(y0)-1),alpha=0.8,fontsize=6,fontweight='bold',color=rgb_base_sample,ha='left')
+# ax.annotate(f"{sample_id[0:2]+sample_id[-2:]}\n",((x0 - (2 * dx_1s)+1e4),(y0)-1),alpha=0.8,fontsize=7,fontweight='bold',color=rgb_base_sample,ha='left')
 
 st_model.plot_steady_state_model_depth(depth_sample, color="#B3B3B3")
 
@@ -207,25 +210,31 @@ h_depth = plt.Rectangle((0, 0), 1, 1, facecolor=color_fill_island, alpha=0.5,
 depth_handles.append(h_depth)
 
 ####----Axis formatting (done once)----####
-ax.set_xlabel(r'$^{10}\mathrm{Be}$ Concentration [at/g] ', fontsize=6)
-ax.set_ylabel(r'$^{26}\mathrm{Al}/^{10}\mathrm{Be}$', fontsize=6)
+ax.set_xlabel(r'$^{10}\mathrm{Be}$ Concentration [at/g] ', fontsize=7)
+ax.set_ylabel(r'$^{26}\mathrm{Al}/^{10}\mathrm{Be}$', fontsize=7)
 ax.set_facecolor(color="#FAFAFA")
 
 ax.xaxis.set_major_locator(FixedLocator([1e4]))
-ax.set_xticklabels(["$10^4$"], fontsize=6, fontname="Arial")
+ax.set_xticklabels(["$10^4$"], fontsize=7, fontname="Arial")
 ax.xaxis.set_minor_locator(LogLocator(base=10.0, subs='auto', numticks=12))
 ax.xaxis.set_minor_formatter(NullFormatter())
 
 y_ticks = [3, 5, 7]
 ax.yaxis.set_major_locator(FixedLocator(y_ticks))
-ax.set_yticklabels(["3","5","7"], fontsize=6, fontname="Arial")
+ax.set_yticklabels(["3","5","7"], fontsize=7, fontname="Arial")
 #
 # ax.legend(handles=depth_handles,loc="lower right",frameon=False,borderaxespad=0.8,handletextpad=0.2,
 #     ncol=1, fontsize=10, columnspacing=1)
 
+for axis in ['top','bottom','left','right']:
+    ax.spines[axis].set_linewidth(0.5)
+
+ax.annotate(f"{sample_id[0:2]+sample_id[-2:]}\n",((x0 + (2 * dx_1s)),(y0-1)),alpha=0.8,fontsize=7,fontweight='bold',color=rgb_base_sample)
+
 ax.set_box_aspect(1)
 ax.set_ylim(4,8.5)
 ax.set_xlim(5e3, 2e5)
+ax.tick_params(axis='both', width=0.5, labelsize=6)
 
 fig_name = "FigS5_secular_equilibrium_sb18"
 plt.savefig(f"{fig_dir}/supporting_figures/{fig_name}.png", dpi=300, bbox_inches="tight")

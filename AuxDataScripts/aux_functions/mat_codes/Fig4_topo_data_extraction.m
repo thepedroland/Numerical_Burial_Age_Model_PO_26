@@ -56,5 +56,12 @@ for i=1:16
 
     end
 end
-writecell(relief_basins,'/Users/pedro_oliveira/Library/CloudStorage/OneDrive-CUNY/PhD_LIFE/py_repositories/numerical_MC_Burial_Ages_PO/support/data/relief_basins_data.csv')
-writecell(relief_basins_std,'/Users/pedro_oliveira/Library/CloudStorage/OneDrive-CUNY/PhD_LIFE/py_repositories/numerical_MC_Burial_Ages_PO/support/data/relief_basins_data_std.csv')
+writecell(relief_basins,'/Users/pedro_oliveira/Library/CloudStorage/OneDrive-CUNY/PhD_LIFE/py_repositories/numerical_MC_Burial_Ages_PO/AuxDataScripts/data/TopographicData/relief_basins_data.csv')
+writecell(relief_basins_std,'/Users/pedro_oliveira/Library/CloudStorage/OneDrive-CUNY/PhD_LIFE/py_repositories/numerical_MC_Burial_Ages_PO/AuxDataScripts/data/TopographicData/relief_basins_data_std.csv')
+
+
+%%
+
+
+GRIDobj2geotiff(DEMoc)
+shapewrite(shape, 'output_polygon.shp');

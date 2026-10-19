@@ -1,8 +1,8 @@
-generate_data/results_data
-support/Production_Rates_Calculator-main
+DataResults/NumSimResults
+AuxDataScripts/Production_Rates_Calculator-main
 backup
-generate_figures/figures/SVG
-generate_data/extra_analyses
-support/aux_functions/mat_codes/chi_map.m
-support/aux_functions/mat_codes/modified_functions
+Figures/Plots/SVG
+ExtraAnalyzes
+AuxDataScripts/aux_functions/mat_codes/chi_map.m
+AuxDataScripts/aux_functions/mat_codes/modified_functions
 .venv

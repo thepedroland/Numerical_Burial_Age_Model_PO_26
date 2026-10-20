@@ -34,11 +34,12 @@ however, it is not guaranteed they will work smoothly.
 
 ---
 **Reproduce dataset**
+
 Run MC simulations and generate results using [this script](DataResults/ScriptsData/RUN_num_model_burial_trajectory.py)
 
 **Plots**
-Plots can be reproduced using [these scripts](Figures/ScriptsFig) 
 
+Plots can be reproduced using [these scripts](Figures/ScriptsFig)
 **Note**: if you want to use the banana plot but for your own data use the structure in 
 _Fig2A_Banana_Plot.py_ - you have to calibrate for the production rate of your study area!
 

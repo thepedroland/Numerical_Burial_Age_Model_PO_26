@@ -18,6 +18,37 @@ The numerical burial model simulates the accumulation of cosmogenic nuclides for
 
 - The constants used can be found [here](AuxDataScripts/aux_functions/models_constants.py)
 ---
+## Repository structure (to be updated)
+
+```
+numerical_MC_Burial_Ages_PO/
+├── AuxDataScripts/
+│   ├── aux_functions/              # Core functions used by the numerical model
+│   │   ├── models_constants.py     # Model constants and production parameters
+│   │   ├── nuclide_prod_concentration.py
+│   │   ├── solution_trajectories.py
+│   │   └── misc_functions.py
+│   └── data/                       # Input and auxiliary datasets
+│       ├── TablesCosmo/            # Cosmogenic-nuclide production/scaling tables
+│       └── TopographicData/        # Topographic, erosion-rate, and sample datasets
+├── DataResults/
+│   ├── ScriptsData/                # Scripts used to run numerical simulations
+│   │   └── RUN_num_model_burial_trajectory.py
+│   └── NumSimResults/              # Numerical model output files
+├── Figures/
+│   ├── ScriptsFig/                 # Scripts used to reproduce paper figures
+│   │   ├── Fig2A_Banana_Plot.py
+│   │   ├── Fig2B_S5_Sec_equilibrium.py
+│   │   ├── Fig3_S2toS6_Age_solutions.py
+│   │   ├── Fig4_york_regression_erosion_rate_ksn_graph.py
+│   │   └── FigS3_calc_Rc.py
+│   └── Plots/                      # Generated figure files
+├── README.md                       # Repository documentation
+└── .gitignore                      # Files ignored by Git
+```
+
+---
+
 ## Software/Packages Requirements 
 Versions are listed as the ones working when results were generated for this paper. Newer versions might be available, 
 however, it is not guaranteed they will work smoothly.

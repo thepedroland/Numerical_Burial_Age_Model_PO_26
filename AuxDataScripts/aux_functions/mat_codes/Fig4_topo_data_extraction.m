@@ -4,7 +4,7 @@ addpath(genpath('/Users/pedro_oliveira/Documents/topotoolbox-master'));
 addpath(genpath('/Users/pedro_oliveira/Documents/Topographic-Analysis-Kit-master'));
 
 %%
-DEM = GRIDobj('/Users/pedro_oliveira/Library/CloudStorage/OneDrive-CUNY/PhD_LIFE/1_PhD_PAPER_1/data/support/DEM_full_30m.tif');
+DEM = GRIDobj('/Users/pedro_oliveira/Library/CloudStorage/OneDrive-CUNY/PhD_LIFE/Dissertation_D/Material_DC1/data/support/DEM_full_30m.tif');
 DEM = reproject2utm(DEM,30);
 [DEM,FD,A,S]=MakeStreams(DEM,1e7,"no_data_exp",'DEM<5');
 
@@ -65,3 +65,7 @@ writecell(relief_basins_std,'/Users/pedro_oliveira/Library/CloudStorage/OneDrive
 
 GRIDobj2geotiff(DEMoc)
 shapewrite(shape, 'output_polygon.shp');
+
+%%
+
+[MS] = Basin2Shape(DEM,'basin_dir')

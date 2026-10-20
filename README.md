@@ -1,14 +1,13 @@
-# Paper 
+<p style="line-height: 150%;">
+<strong>Author:</strong> Pedro Oliveira<br>
+<strong>GitHub:</strong> <a href="https://github.com/thepedroland">@thepedroland</a>
 
-**Author:** Pedro Oliveira
-**GitHub:** [@thepedroland](https://github.com/thepedroland)
-
-The scripts in this repository can be used to reproduce the plots and generate results presented in *[X]*
+The content in this repository can be used to reproduce the plots and generate results presented in *[X]*
 
 ---
 ## Overview
 
-The numerical burial model simulates the accumulation of cosmogenic nuclides for buried samples with in depth continuos production.
+The numerical burial model simulates the accumulation of cosmogenic nuclides for buried samples with in depth with continous production.
 
 - **Scaling method:** LSDn
 - **Production pathways modeled:**
@@ -63,14 +62,15 @@ however, it is not guaranteed they will work smoothly.
 | torch        | 2.11.0  |
 | matplotlib   | 3.10.8  |
 
+Note: topographic datasets were generated using MATLAB 2025a, with TopoAnalysisKit(v2.4)
+
 ---
-**Reproduce dataset**
+## Usage
 
-Run MC simulations and generate results using [this script](DataResults/ScriptsData/RUN_num_model_burial_trajectory.py)
+<p style="line-height: 150%;">
+<strong>Reproduce dataset:</strong> Run MC simulations and generate results using <a href="DataResults/ScriptsData/RUN_num_model_burial_trajectory.py">this script</a><br>
+<strong>Plots</strong> Plots can be reproduced using <a href="Figures/ScriptsFig">these scripts</a>
 
-**Plots**
-
-Plots can be reproduced using [these scripts](Figures/ScriptsFig)
 **Note**: if you want to use the banana plot but for your own data use the structure in 
 _Fig2A_Banana_Plot.py_ - you have to calibrate for the production rate of your study area!
 

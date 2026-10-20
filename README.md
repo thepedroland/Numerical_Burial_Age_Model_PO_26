@@ -16,7 +16,7 @@ The numerical burial model simulates the accumulation of cosmogenic nuclides for
   - **Negative muon capture and fast muons**: calculated as a function of depth and Rc using Balco (2008)
     - **Time-varying cutoff rigidity (Rc)**: calibrated from Mijjum et al. (2025) dataset
 
-- Used constants can be found here [[AuxDataScripts/aux_functions/models_constants.py]]
+- The constants used can be found [here](AuxDataScripts/aux_functions/models_constants.py)
 ---
 ## Software/Packages Requirements 
 Versions are listed as the ones working when results were generated for this paper. Newer versions might be available, 

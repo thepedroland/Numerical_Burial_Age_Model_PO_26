@@ -28,8 +28,8 @@ slope = df_data["slope"].values
 se_slope = df_data["de_slope"].values
 drainage = df_data["drainage_area"].values
 
-relief_basins_df = pd.read_csv("/Users/pedro_oliveira/Library/CloudStorage/OneDrive-CUNY/PhD_LIFE/py_repositories/numerical_MC_Burial_Ages_PO/AuxDataScripts/data/TopographicData/relief_basins_data.csv", header=None)
-relief_data_std_df = pd.read_csv("/Users/pedro_oliveira/Library/CloudStorage/OneDrive-CUNY/PhD_LIFE/py_repositories/numerical_MC_Burial_Ages_PO/AuxDataScripts/data/TopographicData/relief_basins_data_std.csv", header=None)
+relief_basins_df = pd.read_csv("/01_AuxDataScripts/data/TopographicData/relief_basins_data.csv", header=None)
+relief_data_std_df = pd.read_csv("/01_AuxDataScripts/data/TopographicData/relief_basins_data_std.csv", header=None)
 
 # Convert to numpy arrays (flatten if multiple columns exist)
 

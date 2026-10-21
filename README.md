@@ -15,7 +15,7 @@ The numerical burial model simulates the accumulation of cosmogenic nuclides for
   - **Negative muon capture and fast muons**: calculated as a function of depth and Rc using Balco (2008)
     - **Time-varying cutoff rigidity (Rc)**: calibrated from Mijjum et al. (2025) dataset
 
-- The constants used can be found [here](AuxDataScripts/aux_functions/models_constants.py)
+- The constants used can be found [here](01_AuxDataScripts/aux_functions/models_constants.py)
 ---
 ## Repository structure (to be updated)
 
@@ -68,8 +68,8 @@ Note: topographic datasets were generated using MATLAB 2025a, with [TopoToolbox 
 ## Usage
 
 <p style="line-height: 150%;">
-<strong>Reproduce dataset:</strong> Run MC simulations and generate results using <a href="DataResults/ScriptsData/RUN_num_model_burial_trajectory.py">this script</a><br>
-<strong>Plots</strong> Plots can be reproduced using <a href="Figures/ScriptsFig">these scripts</a>
+<strong>Reproduce dataset:</strong> Run MC simulations and generate results using <a href="00_DataResults/ScriptsData/RUN_num_model_burial_trajectory.py">this script</a><br>
+<strong>Plots</strong> Plots can be reproduced using <a href="00_Figures/ScriptsFig">these scripts</a>
 
 **Note**: if you want to use the banana plot but for your own data use the structure in 
 _Fig2A_Banana_Plot.py_ - you have to calibrate for the production rate of your study area!

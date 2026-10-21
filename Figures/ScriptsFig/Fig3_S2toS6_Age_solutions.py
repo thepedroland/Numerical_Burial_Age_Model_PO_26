@@ -35,13 +35,13 @@ else:
     fig, axs = plt.subplots(4, 1, figsize=(3,4),constrained_layout=True)
 
 for i, sample_id in enumerate(samples_id):
-    print(" \u2705 Plotting sample:", sample_id)
+    print("\u2B95 Plotting sample:", sample_id)
     file_name_csv = os.path.join(folder_path, f"NumSimResults/Results_[{sample_id}]_R{reference_sample}_D{density}.csv")
     try:
         results_run = pd.read_csv(file_name_csv)
-        print(" \u2705 Reading data from:", file_name_csv)
+        print("\u2B95 Reading data from:", file_name_csv)
     except:
-        print("\u274E File not found in",folder_path)
+        print("\u274C File not found in",folder_path)
 
     st = set_trajectories(sample_id,reference_sample, density, folder_path,plots_path)
 
@@ -74,7 +74,7 @@ for i, sample_id in enumerate(samples_id):
     false_initial_n10 = list(results_run.loc[~results_run["Solution"], 'Initial N10'])
     false_times_solution = list(results_run.loc[~results_run["Solution"], "Total Time [Ma]"])
     false_deposition_rates = list(results_run.loc[~results_run["Solution"], "Deposition rate [cm/year]"])
-    false_erosion_rates = list(results_run.loc[results_run["Solution"], "Deposition rate [cm/year]"])
+    false_erosion_rates = list(results_run.loc[~results_run["Solution"], "Erosion rate [cm/year]"])
 
     sample_color = [214, 61, 153]
 
@@ -236,25 +236,27 @@ for i, sample_id in enumerate(samples_id):
 #
 ####----EXPLORATION PARAMETERS-SUPPORTING MATERIAL---------######
     if sample_id == "BV-018":
-        fig2, ((ax1, ax2, ax3), (ax4, ax5, ax6)) = plt.subplots(2,3,figsize=(12, 6), constrained_layout=True)
+        fig2, axes = plt.subplots(2, 4, figsize=(14, 5), constrained_layout=True)
+        ax1, ax2, ax3, ax4 = axes[0]
+        ax5, ax6, ax7, ax8 = axes[1]
     else:
-        fig2, ((ax1, ax2, ax3), (ax4, ax5, ax6)) = plt.subplots(2, 3, figsize=(12, 6), constrained_layout=True)
+        fig2, axes = plt.subplots(2, 3, figsize=(12, 6), constrained_layout=True)
+        ax1, ax2, ax3 = axes[0]
+        ax4, ax5, ax6 = axes[1]
     fig2.set_facecolor("#FCFCFC")
     fig2.suptitle(f"Sample {sample_id[:2]+sample_id[-2:]} | ρ = {density} g/cm$^{3}$", fontsize=12, x=0.01, ha='left')
     ###Histogram for ages
     all_ages_sampled = []
-    all_ages_sampled.extend(false_times_solution)
-    all_ages_sampled.extend(valid_times_solution)
+    all_ages_sampled.extend([valid_times_solution])
+    all_ages_sampled.extend([false_times_solution])
 
     facecolor_axes = "#FCFCFC"
-    sampled_color = "#F3F9E6"
-    false_color = "#F9F6E6"
-    valid_color = "#E9F9E6"
+    false_color = "#F6E6F9"
+    valid_color = "#F3F9E6"
+    sampled_color = "#E6E9F9"
 
-    # ax1.set_facecolor(facecolor_axes)
-    ax1.hist(all_ages_sampled, bins=20, edgecolor="black", linewidth=0.5, color=sampled_color, label="Sampled ")
-    ax1.hist(false_times_solution, bins=20, edgecolor="black", linewidth=0.5, color= false_color, label="No solution")
-    ax1.hist(valid_times_solution, bins=20, edgecolor="black", linewidth=0.5, color=valid_color, label="Solution found")
+    ax1.set_facecolor(facecolor_axes)
+    n,bins,patches = ax1.hist(all_ages_sampled, bins='fd', edgecolor="black", linewidth=0.3, color=[valid_color,false_color],stacked=True)
     ax1.annotate("A", (0.009, 0.99), xycoords="axes fraction",
                 fontweight="bold", fontsize=12, fontname="Arial")
 
@@ -267,16 +269,14 @@ for i, sample_id in enumerate(samples_id):
     ###Histogram for deposition rates
 
     all_deposition_sampled = []
-    all_deposition_sampled.extend(valid_deposition_rates)
-    all_deposition_sampled.extend(false_deposition_rates)
-
+    all_deposition_sampled.extend([valid_deposition_rates])
+    all_deposition_sampled.extend([false_deposition_rates])
     ax2.set_facecolor(facecolor_axes)
-    ax2.hist(all_deposition_sampled, bins=30, edgecolor="black", linewidth=0.5, color=sampled_color, label="Sampled")
-    ax2.hist(false_deposition_rates,bins=30,edgecolor="black",linewidth=0.5,color=false_color, label="No solution")
-    ax2.hist(valid_deposition_rates,bins=30,edgecolor="black",linewidth=0.5,color=valid_color,  label="Solution found")
 
-    ax2.vlines(0.0002,0,100,linewidth=0.7,color="black", linestyle="--", label="Dep rate data")
-    ax2.vlines(0.001,0,100,linewidth=0.7,color="black", linestyle="--", label="Dep rate data")
+    n,bins,patches =  ax2.hist(all_deposition_sampled, bins='fd', edgecolor="black", linewidth=0.3, color=[valid_color,false_color],stacked=True,label=["Valid solution","False solution"])
+    ax2.vlines(0.0002,0,len(false_deposition_rates)/2,linewidth=0.7,color="black", linestyle="--", label="")
+    ax2.vlines(0.001,0,len(false_deposition_rates)/2,linewidth=0.7,color="black", linestyle="--", label="Measured Erosion Rate")
+    ax2.legend(fontsize=8)
     ax2.annotate("B", (0.009, 0.99), xycoords="axes fraction",
                  fontweight="bold", fontsize=12, fontname="Arial")
     ax2.set_xlabel(r"Deposition rate [cm/year]", fontsize=8)
@@ -287,30 +287,30 @@ for i, sample_id in enumerate(samples_id):
     ax2.set_xscale("log")    ##Histogram for initial n10
 
     all_initial_n10 = []
-    all_initial_n10.extend(valid_initial_n10)
-    all_initial_n10.extend(false_initial_n10)
+    all_initial_n10_forbid = []
+    all_initial_n10.extend([valid_initial_n10])
+    all_initial_n10.extend([false_initial_n10])
+    all_initial_n10_forbid.extend(valid_initial_n10)
+    all_initial_n10_forbid.extend(false_initial_n10)
 
     ax3.set_facecolor(facecolor_axes)
-    ax3.hist(all_initial_n10, bins=30, edgecolor="black", linewidth=0.5, color=sampled_color, label="Sampled")
-    ax3.hist(false_initial_n10,bins=30,edgecolor="black",linewidth=0.5,color=false_color, label="No solution")
-    ax3.hist(valid_initial_n10,bins=30,edgecolor="black",linewidth=0.5,color=valid_color, alpha=0.7, label="Solution found")
+    n,bins,patches = ax3.hist(all_initial_n10, bins='fd', edgecolor="black", linewidth=0.3, color=[valid_color,false_color],stacked=True)
     ax3.annotate("C", (0.009, 0.99), xycoords="axes fraction",
                  fontweight="bold", fontsize=12, fontname="Arial")
-    ax3.set_xlabel(r"Initial $^{8}$Be Concentration [atoms/g]", fontsize=8)
+    ax3.set_xlabel(r"Initial $^{10}$Be Concentration [atoms/g]", fontsize=8)
     ax3.set_ylabel("Count", fontsize=8)
     ax3.tick_params(axis="both", which="major", labelsize=8)
     ax3.tick_params(axis="both", which="minor", labelsize=6)
     ax3.spines["top"].set_visible(False)
     ax3.spines["right"].set_visible(False)
-    ax3.legend(fontsize=8)
     ax3.set_xscale("log")    ##Scatter for deposition and time
 
     ax4.set_facecolor(facecolor_axes)
-    ax4.scatter(valid_deposition_rates,valid_times_solution,linewidth=0.2,edgecolors="black",s=20,c="#EAFAF4")
+    ax4.scatter(valid_deposition_rates,valid_times_solution,linewidth=0.4,edgecolors="black",s=20,c="#E6F3F9")
     ax4.set_xlabel(r"Deposition rate [cm/year]", fontsize=8)
     ax4.set_ylabel("Age [Myr]", fontsize=8)
     ax4.tick_params(axis="both", which="major", labelsize=8)
-    
+
     ax4.spines["top"].set_visible(False)
     ax4.spines["right"].set_visible(False)
     ax4.set_xscale("log")
@@ -323,7 +323,7 @@ for i, sample_id in enumerate(samples_id):
     all_ratio.extend(false_initial_ratio)
 
     ax5.set_facecolor(facecolor_axes)
-    ax5.scatter(valid_initial_n10,valid_times_solution,edgecolors="black",s=20,c="#EAFAF4",linewidth=0.2)
+    ax5.scatter(valid_initial_n10,valid_times_solution,edgecolors="black",s=20,c="#E6F3F9",linewidth=0.4)
     ax5.set_xlabel(r"Initial $^{8}$Be Concentration [atoms/g]", fontsize=8)
     ax5.set_ylabel("Age [Myr]", fontsize=8)
     ax5.tick_params(axis="both", which="major", labelsize=8)
@@ -333,60 +333,58 @@ for i, sample_id in enumerate(samples_id):
     ax5.set_xscale("log")
     ax5.annotate("E", (0.009, 0.99), xycoords="axes fraction",
                  fontweight="bold", fontsize=12, fontname="Arial")
-    
-    plot_forbiden_zone(all_initial_n10,all_ratio,ax6)
+    if sample_id == "BV-018":
+        ax6.set_facecolor(facecolor_axes)
+        ax6.scatter(valid_erosion_rates, valid_times_solution, edgecolors="black", s=20, c="#E6F3F9", linewidth=0.4)
+        ax6.set_xlabel(r"Erosion rates [cm/year]", fontsize=8)
+        ax6.set_ylabel("Age [Myr]", fontsize=8)
+        ax6.tick_params(axis="both", which="major", labelsize=8)
+        ax6.spines["top"].set_visible(False)
+        ax6.spines["right"].set_visible(False)
+        ax6.set_xscale("log")
+        ax6.annotate("F", (0.009, 0.99), xycoords="axes fraction",
+                     fontweight="bold", fontsize=12, fontname="Arial")
 
-    # if sample_id == "BV-018":
-    #     ax7.set_facecolor(facecolor_axes)
-    #     ax7.scatter(valid_erosion_rates, valid_times_solution, edgecolors="black", s=20, c="#EAFAF4", linewidth=0.2)
-    #     ax7.set_xlabel(r"Erosion rates [cm/year]", fontsize=8)
-    #     ax7.set_ylabel("Age [Myr]", fontsize=8)
-    #     ax7.tick_params(axis="both", which="major", labelsize=8)
-    #     ax7.spines["top"].set_visible(False)
-    #     ax7.spines["right"].set_visible(False)
-    #     ax7.set_xscale("log")
-    #     ax7.annotate("G", (0.009, 0.99), xycoords="axes fraction",
-    #                  fontweight="bold", fontsize=12, fontname="Arial")
-    #
-    #     all_erosion_sampled = []
-    #     all_erosion_sampled.extend(valid_erosion_rates)
-    #     all_erosion_sampled.extend(false_erosion_rates)
-    #
-    #     ax8.set_facecolor(facecolor_axes)
-    #     ax8.hist(all_erosion_sampled, bins=30, edgecolor="black", linewidth=0.5, color=sampled_color,
-    #              label="Sampled")
-    #     ax8.hist(false_erosion_rates, bins=30, edgecolor="black", linewidth=0.5, color=false_color,
-    #              label="No solution")
-    #     ax8.hist(valid_erosion_rates, bins=30, edgecolor="black", linewidth=0.5, color=valid_color,
-    #              label="Solution found")
-    #
-    #     ax8.vlines(0.0002, 0, 100, linewidth=0.7, color="black", linestyle="--", label="Dep rate data")
-    #     ax8.vlines(0.003, 0, 100, linewidth=0.7, color="black", linestyle="--", label="Dep rate data")
-    #     ax8.set_xlabel(r"Erosion rate [cm/year]", fontsize=8)
-    #     ax8.set_ylabel("Count", fontsize=8)
-    #     ax8.tick_params(axis="both", which="major", labelsize=8)
-    #     ax8.spines["top"].set_visible(False)
-    #     ax8.spines["right"].set_visible(False)
-    #     ax8.set_xscale("log")
-    #     ax8.set_xlim(1e-4,1)
-    #     ax8.annotate("H", (0.009, 0.99), xycoords="axes fraction",
-    #                  fontweight="bold", fontsize=12, fontname="Arial")
+        all_erosion_sampled = []
+        all_erosion_sampled.extend([valid_erosion_rates])
+        all_erosion_sampled.extend([false_erosion_rates])
+
+
+        ax7.set_facecolor(facecolor_axes)
+        ax7.hist(all_erosion_sampled, bins=10, edgecolor="black", linewidth=0.3,color=[valid_color,false_color],stacked=True,
+                 label="Sampled")
+        ax7.vlines(0.0002, 0, 1500, linewidth=0.7, color="black", linestyle="--", label="Dep rate data")
+        ax7.vlines(0.003, 0, 1500, linewidth=0.7, color="black", linestyle="--", label="Dep rate data")
+        ax7.set_xlabel(r"Erosion rate [cm/year]", fontsize=8)
+        ax7.set_ylabel("Count", fontsize=8)
+        ax7.tick_params(axis="both", which="major", labelsize=8)
+        ax7.spines["top"].set_visible(False)
+        ax7.spines["right"].set_visible(False)
+        ax7.set_xscale("log")
+        ax7.set_xlim(1e-4,1e-2)
+        ax7.annotate("G", (0.009, 0.99), xycoords="axes fraction",
+                     fontweight="bold", fontsize=12, fontname="Arial")
+        ax7.tick_params(axis="both", which="minor", labelsize=6)
+        plot_forbiden_zone(all_initial_n10_forbid,all_ratio,ax8,"18")
+    else:
+        plot_forbiden_zone(all_initial_n10_forbid, all_ratio, ax6)
 
     ###plot info###
     fig_name_2 = f"FigS{i+2}_Parameters_Sampling_{sample_id}_D_{density}"
 
     fig_dir_2 = f"{plots_path}/SupMaterial/{fig_name_2}"
-    fig2.savefig(f"{fig_dir_2}.png", dpi=300, bbox_inches="tight")
+    fig2.savefig(f"{fig_dir_2}.png", dpi=300)
+    print(" \u2705 Plots available in", fig_dir_2,"\n")
 
 fig_name = f"Fig3_Solutions_Profile_Ages_D{density}"
 
 if x_lim != 20:
     fig_name_3 = f"/supporting_figures/FigS6_Full_Solutions_Profile_Ages_D{density}"
-    fig.savefig(f"{plots_path}/{fig_name_3}.png", dpi=300, bbox_inches="tight")
+    fig.savefig(f"{plots_path}/{fig_name_3}.png", dpi=300)
 else:
     fig.tight_layout()
-    fig.savefig(f"{plots_path}/{fig_name}.png", dpi=300, bbox_inches="tight")
-    fig.savefig(f"{plots_path}/SVG/SVG_{fig_name}.svg", format="svg", bbox_inches="tight")
+    fig.savefig(f"{plots_path}/{fig_name}.png", dpi=300)
+    fig.savefig(f"{plots_path}/SVG/SVG_{fig_name}.svg", format="svg")
 
 
 if plot_trajectories:

@@ -2,8 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from AuxDataScripts.aux_functions.constant_steady_lines_model import burial_exposure_model
 
-def plot_forbiden_zone(all_initial_c10, all_ratio,ax):
-
+def plot_forbiden_zone(all_initial_c10, all_ratio,ax,sample=None):
     lines_model = burial_exposure_model()
     lines_between = lines_model.plot_steady_state_model(Rc_value='min',checking_only=True)
 
@@ -12,9 +11,13 @@ def plot_forbiden_zone(all_initial_c10, all_ratio,ax):
 
     ax.plot(black_x, black_y, '.', color='gray', markersize=0.01, label='Constant Exposure')
     ax.plot(blue_x, blue_y, '.', color='gray', markersize=0.01, label='Steady Erosion')
-    ax.annotate("F", (0.009, 1.01), xycoords="axes fraction",
-                 fontweight="bold", fontsize=16, fontname="Arial")
-    ax.set_facecolor = '#EBEBEB"'
+    if not sample:
+        ax.annotate("F", (0.009, 1.01), xycoords="axes fraction",
+                     fontweight="bold", fontsize=12, fontname="Arial")
+    else:
+        ax.annotate("H", (0.009, 1.01), xycoords="axes fraction",
+                    fontweight="bold", fontsize=12, fontname="Arial")
+    ax.set_facecolor = '#FCFCFC"'
     black_order = np.argsort(black_x)
 
     blue_order = np.argsort(blue_x)
@@ -40,10 +43,12 @@ def plot_forbiden_zone(all_initial_c10, all_ratio,ax):
             outside_x.append(N10)
             outside_y.append(ratio)
 
-    ax.scatter(inside_x, inside_y, color="#EAFAF4",label='within bounds',edgecolor='black',linewidth=0.2,s=10)
+    ax.scatter(inside_x, inside_y, color="#E6F3F9",label='within bounds',edgecolor='black',linewidth=0.2,s=7)
     ax.scatter(outside_x, outside_y, color='red',label='outside bounds')
     ax.set_xlabel("$^{10}$Be Concentration [at/g]", fontsize=8, fontname="Arial")
     ax.set_ylabel("$^{26}$Al/$^{10}$Be", fontsize=8, fontname="Arial")
+    ax.tick_params(axis="both", which="major", labelsize=8)
+    ax.set_yticks([4,5,6,7,8])
 
     ax.set_xlim(1e4, 1e6)
     ax.set_ylim(3.5, 8)

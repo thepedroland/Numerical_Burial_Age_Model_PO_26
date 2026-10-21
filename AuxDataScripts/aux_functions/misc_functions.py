@@ -7,7 +7,7 @@ from datetime import datetime
 def load_dataset(sample_id=None,reference_sample=None):
     try:
         main_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
-        file_path = os.path.join(main_path,"data", "samples_amazon_23_data.csv")
+        file_path = os.path.join(main_path,"data/TopographicData", "samples_amazon_23_data.csv")
         df_data_samples = pd.read_csv(file_path)
     except FileNotFoundError:
         print("Sample dataset not found. Please check the path for file: 'samples_amazon_23_data.csv'")

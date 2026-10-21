@@ -62,7 +62,7 @@ however, it is not guaranteed they will work smoothly.
 | torch        | 2.11.0  |
 | matplotlib   | 3.10.8  |
 
-Note: topographic datasets were generated using MATLAB 2025a, with TopoAnalysisKit(v2.4)
+Note: topographic datasets were generated using MATLAB 2025a, with [TopoToolbox (v2.5)](https://github.com/wschwanghart/topotoolbox)
 
 ---
 ## Usage
@@ -82,6 +82,9 @@ _Fig2A_Banana_Plot.py_ - you have to calibrate for the production rate of your s
 
 - Mijjum, M., Bristol, K. E., Bono, R. K., Sprain, C. J., Lifton, N., 
 & Tremblay, M. M. (2025). A model framework for scaling pre‐quaternary cosmogenic nuclide production rates. Geochemistry, Geophysics, Geosystems, 26,  e2024GC012020. https://doi.org/10.1029/ 2024GC012020
+
+- Schwanghart, W., Scherler, D. (2014): TopoToolbox 2 – MATLAB-based software for topographic analysis and modeling in Earth surface sciences. Earth Surface Dynamics, 2, 1-7. DOI: 10.5194/esurf-2-1-2014
+
 ---
 ## Citation
 If you use any part of the scripts in this repository please cite the paper as:

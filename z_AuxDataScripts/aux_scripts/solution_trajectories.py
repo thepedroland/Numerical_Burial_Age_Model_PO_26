@@ -2,12 +2,11 @@ from matplotlib import pyplot as plt
 from matplotlib.ticker import FixedLocator
 from matplotlib.backends.backend_pdf import PdfPages
 import pandas as pd
-from z_AuxDataScripts.aux_functions.constant_steady_lines_model import burial_exposure_model
-
+from z_AuxDataScripts.aux_scripts.constant_steady_lines_model import steady_state_model
 
 class set_trajectories:
     def __init__(self,sample_id,reference_sample,density,folder_path,plots_path):
-        self.path_fig = plots_path + f"solution_trajectories_[{sample_id}]_D{density}.pdf"
+        self.path_fig = plots_path + f"/solution_trajectories_[{sample_id}]_D{density}.pdf"
         self.pdf = PdfPages(self.path_fig)
         self.fig, self.ax = plt.subplots(dpi=30)  # low dpi = smaller/faster pages
         self.path_pickle = folder_path + f"/NumSimResults/Trajectories_[{sample_id}]_R{reference_sample}_D{density}.pkl"
@@ -15,13 +14,12 @@ class set_trajectories:
 
     def plot_trajectories(self,x_2s, y_2s):
         for run, (be_serie, ratio_serie) in enumerate(zip(self.df["N10 series"], self.df["Ratio series"])):
-            if run % 10 == 0 :
+            if run % 5 == 0 :
                 self.ax.plot(list(be_serie), list(ratio_serie))
                 self.ax.title.set_text(f"Simulation {run}")
-                lines_model = burial_exposure_model()
+                lines_model = steady_state_model()
                 lines_between = lines_model.plot_steady_state_model(
-                    scaling_method='LSDn', density=1.6,
-                    Rc_value='min', checking_only=True)
+                    Rc_value='mean', checking_only=True)
 
                 self.ax.fill(  # <-- FIX: plt.fill -> ax.fill (consistency with 'ax')
                     x_2s, y_2s,

@@ -12,16 +12,16 @@ from cmcrameri import cm
 plt.rcParams['font.family'] = 'Arial'
 plt.rcParams['axes.linewidth'] = 0.5
 
-samples_id = ["BV-018","SB-013","SB-011","SB-017"]
+samples_id = ["BV-018"]
 density = 1.7
-plot_trajectories = False
-reference_sample = "Surface"
+plot_trajectories = True
+reference_sample = "SB-017"
 
 main_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
-folder_path = os.path.join(main_path, "DataResults")
+folder_path = os.path.join(main_path, "a_DataResults")
 
-os.makedirs(main_path+"/Figures/Plots", exist_ok=True)
-plots_path = main_path+"/Figures/Plots"
+os.makedirs(main_path+"/a_Figures/Plots", exist_ok=True)
+plots_path = main_path+"/a_Figures/Plots"
 
 #20 for Figure 3 and 40 for Figure S10
 limit = 20 #Ma
@@ -374,19 +374,19 @@ for i, sample_id in enumerate(samples_id):
 
     fig_dir_2 = f"{plots_path}/SupMaterial/{fig_name_2}"
     fig2.savefig(f"{fig_dir_2}.png", dpi=300)
-    print(" \u2705 Plots available in", fig_dir_2,"\n")
+    print("\u2705 Plots available in", fig_dir_2,"\n")
 
 fig_name = f"Fig3_Solutions_Profile_Ages_D{density}"
-
-if x_lim != 20:
-    fig_name_3 = f"/supporting_figures/FigS6_Full_Solutions_Profile_Ages_D{density}"
-    fig.savefig(f"{plots_path}/{fig_name_3}.png", dpi=300)
-else:
-    fig.tight_layout()
-    fig.savefig(f"{plots_path}/{fig_name}.png", dpi=300)
-    fig.savefig(f"{plots_path}/SVG/SVG_{fig_name}.svg", format="svg")
-
+#
+# if x_lim != 20:
+#     fig_name_3 = f"/supporting_figures/FigS6_Full_Solutions_Profile_Ages_D{density}"
+#     fig.savefig(f"{plots_path}/{fig_name_3}.png", dpi=300)
+# else:
+#     fig.tight_layout()
+#     fig.savefig(f"{plots_path}/{fig_name}.png", dpi=300)
+#     fig.savefig(f"{plots_path}/SVG/SVG_{fig_name}.svg", format="svg")
+#
 
 if plot_trajectories:
-    print("Plotting trajectories")
+    print("\u2B95 Plotting trajectories")
     st.plot_trajectories(x_2s,y_2s)

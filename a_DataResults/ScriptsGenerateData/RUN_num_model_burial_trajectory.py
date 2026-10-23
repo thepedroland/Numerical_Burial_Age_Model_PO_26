@@ -71,14 +71,14 @@ if __name__ == "__main__":
     path_table = os.path.join(main_path, "a_DataResults", "NumSimResults")
 
     sample_id = "BV-018"
-    reference_sample = "SB-011" #use Surface when starting from samples at the surface
+    reference_sample = "SB-017" #use Surface when starting from samples at the surface
 
     ###----MODEL PARAMETERS-----####
     density = 1.7
-    n_trials = 200
+    n_trials = 50
 
     time_burial_min, time_burial_max = 10_000, 1_000_000
-    time_erosion_min, time_erosion_max = 500_000, 30_000_000
+    time_erosion_min, time_erosion_max = 1_000_000, 30_000_000
 
     depo_rate_min, depo_rate_max = 0.0001, 1.0  # cm/yr
     erosion_min, erosion_max = 1e-5,3e-3  # cm/yr

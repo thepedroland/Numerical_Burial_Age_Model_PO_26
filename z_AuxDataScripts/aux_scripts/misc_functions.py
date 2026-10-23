@@ -34,12 +34,12 @@ def load_dataset(sample_id=None,reference_sample=None):
     stn_dev_n26 = df_data_samples.loc[df_data_samples['sample_names'] == sample_id]['std_dev_n26'].values[0]
 
     if reference_sample != "Surface":
-        burial_depth_min_sample = (df_data_samples.loc[df_data_samples['sample_names'] == reference_sample]['depth_min'].values[0])-5
-        burial_depth_max_sample = (df_data_samples.loc[df_data_samples['sample_names'] == reference_sample]['depth_max'].values[0])+5
+        burial_depth_min_sample = (df_data_samples.loc[df_data_samples['sample_names'] == reference_sample]['depth_min'].values[0])
+        burial_depth_max_sample = (df_data_samples.loc[df_data_samples['sample_names'] == reference_sample]['depth_max'].values[0])
         final_depth_min_sample = df_data_samples.loc[df_data_samples['sample_names'] == sample_id]['depth_min'].values[0]
         final_depth_max_sample = df_data_samples.loc[df_data_samples['sample_names'] == sample_id]['depth_max'].values[0]
         measured_min_n10 = float(df_data_samples[df_data_samples['sample_names'] == reference_sample]['n10_measured'].item()) - df_data_samples.loc[df_data_samples['sample_names'] == reference_sample]['std_dev_n10'].values[0]
-        measured_max_n10 = float(df_data_samples[df_data_samples['sample_names'] == reference_sample]['n10_measured'].item()) + df_data_samples.loc[df_data_samples['sample_names'] == reference_sample]['std_dev_n10'].values[0]
+        measured_max_n10 = float(df_data_samples[df_data_samples['sample_names'] == reference_sample]['n10_measured'].item()) + df_data_samples.loc[df_data_samples['sample_names'] == reference_sample]['std_dev_n10'].values[0]+1e4
 
         ratio_ref_idx = df_data_samples.index.get_loc(
             df_data_samples[df_data_samples['sample_names'] == reference_sample].index[0]

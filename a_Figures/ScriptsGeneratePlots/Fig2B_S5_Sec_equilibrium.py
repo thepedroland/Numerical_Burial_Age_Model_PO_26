@@ -15,7 +15,7 @@ fig_dir = main_path + "/generate_figures/figures"
 fig_name = "sec_equi"
 mpl.rcParams['font.family'] = 'Arial'
 
-st_model = burial_exposure_model()
+st_model = steady_state_model()
 
 class HandlerEllipse(handler.HandlerPatch):
     def create_artists(self, legend, orig_handle,

@@ -6,12 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="8c973ac9-ed6e-4222-8542-60e62b36280e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/a_DataResults/ScriptsGenerateData/RUN_num_model_burial_trajectory.py" beforeDir="false" afterPath="$PROJECT_DIR$/a_DataResults/ScriptsGenerateData/RUN_num_model_burial_trajectory.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/a_Figures/Plots/SupMaterial/FigS2_Parameters_Sampling_BV-018_D_1.7.png" beforeDir="false" afterPath="$PROJECT_DIR$/a_Figures/Plots/SupMaterial/FigS2_Parameters_Sampling_BV-018_D_1.7.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/a_Figures/ScriptsFig/Fig3_S2toS6_Age_solutions.py" beforeDir="false" afterPath="$PROJECT_DIR$/a_Figures/ScriptsFig/Fig3_S2toS6_Age_solutions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/forbiden_zone.py" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/forbiden_zone.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/misc_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/misc_functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/solution_trajectories.py" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/solution_trajectories.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/a_Figures/Plots/solution_trajectories_[BV-018]_D1.7.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/a_Figures/Plots/solution_trajectories_[BV-018]_D1.7.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/a_Figures/ScriptsFig/Fig1B_swath_heat_map_profiles.m" beforeDir="false" afterPath="$PROJECT_DIR$/a_Figures/ScriptsGeneratePlots/Fig1B_swath_heat_map_profiles.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/a_Figures/ScriptsFig/Fig2A_Banana_Plot.py" beforeDir="false" afterPath="$PROJECT_DIR$/a_Figures/ScriptsGeneratePlots/Fig2A_Banana_Plot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/a_Figures/ScriptsFig/Fig2B_S5_Sec_equilibrium.py" beforeDir="false" afterPath="$PROJECT_DIR$/a_Figures/ScriptsGeneratePlots/Fig2B_S5_Sec_equilibrium.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/a_Figures/ScriptsFig/Fig3_S2toS6_Age_solutions.py" beforeDir="false" afterPath="$PROJECT_DIR$/a_Figures/ScriptsGeneratePlots/Fig3_S2toS6_Age_solutions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/a_Figures/ScriptsFig/Fig4_york_regression_erosion_rate_ksn_graph.py" beforeDir="false" afterPath="$PROJECT_DIR$/a_Figures/ScriptsGeneratePlots/Fig4_york_regression_erosion_rate_ksn_graph.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/a_Figures/ScriptsFig/FigS3_calc_Rc.py" beforeDir="false" afterPath="$PROJECT_DIR$/a_Figures/ScriptsGeneratePlots/FigS3_calc_Rc.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +56,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.Fig2B_S5_Sec_equilibrium.executor": "Run",
     "Python.Fig3_S2toS6_Age_solutions.executor": "Run",
     "Python.RUN_num_model_burial_trajectory.executor": "Run",
     "Python.misc_functions.executor": "Run",
@@ -98,7 +103,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1792589795831</updated>
-      <workItem from="1792589797226" duration="32341000" />
+      <workItem from="1792589797226" duration="35842000" />
     </task>
     <servers />
   </component>
@@ -117,9 +122,10 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/numerical_MC_Burial_Ages_PO$Fig3_S2toS6_Age_solutions.coverage" NAME="Fig3_S2toS6_Age_solutions Coverage Results" MODIFIED="1792769119690" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/a_Figures/ScriptsFig" />
+    <SUITE FILE_PATH="coverage/numerical_MC_Burial_Ages_PO$Fig3_S2toS6_Age_solutions.coverage" NAME="Fig3_S2toS6_Age_solutions Coverage Results" MODIFIED="1792774785674" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/a_Figures/ScriptsGeneratePlots" />
     <SUITE FILE_PATH="coverage/numerical_MC_Burial_Ages_PO$misc_functions.coverage" NAME="misc_functions Coverage Results" MODIFIED="1792766334793" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts" />
     <SUITE FILE_PATH="coverage/numerical_MC_Burial_Ages_PO$solution_trajectories.coverage" NAME="solution_trajectories Coverage Results" MODIFIED="1792766351035" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts" />
-    <SUITE FILE_PATH="coverage/numerical_MC_Burial_Ages_PO$RUN_num_model_burial_trajectory.coverage" NAME="RUN_num_model_burial_trajectory Coverage Results" MODIFIED="1792769455983" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/a_DataResults/ScriptsGenerateData" />
+    <SUITE FILE_PATH="coverage/numerical_MC_Burial_Ages_PO$Fig2B_S5_Sec_equilibrium.coverage" NAME="Fig2B_S5_Sec_equilibrium Coverage Results" MODIFIED="1792770189788" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/a_Figures/ScriptsFig" />
+    <SUITE FILE_PATH="coverage/numerical_MC_Burial_Ages_PO$RUN_num_model_burial_trajectory.coverage" NAME="RUN_num_model_burial_trajectory Coverage Results" MODIFIED="1792770442576" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/a_DataResults/ScriptsGenerateData" />
   </component>
 </project>

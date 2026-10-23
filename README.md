@@ -15,22 +15,29 @@ The numerical burial model simulates the accumulation of cosmogenic nuclides for
   - **Negative muon capture and fast muons**: calculated as a function of depth and Rc using Balco (2008)
     - **Time-varying cutoff rigidity (Rc)**: calibrated from Mijjum et al. (2025) dataset
 
-- The constants used can be found [here](01_AuxDataScripts/aux_functions/models_constants.py)
+- The constants used can be found [here](z_AuxDataScripts/aux_scripts/models_constants.py)
 ---
 ## Model Flowchart
 
 ```mermaid
+---
+config:
+  layout: elk
+---
 flowchart LR
     RUN(RUN_num_model_burial_trajectory.py) --> INPUTS
     subgraph INPUTS [INPUTS]
         A[Initial <sup>10</sup>Be]
-        T[Total Burial Time]
-        T[Total Erosion Time]
+        TB[Total Burial Time]
+        TE[Total Erosion Time]
+        BD[Burial Depth]
 
         subgraph PARAMS [ ]
             FD[Final depth]
             DR[Dep. rate]
             ER[Er. rate]
+            R[Initial <sup>26</sup>/Be/<sup>10</sup>Be]
+
         end
     end
 
@@ -46,7 +53,7 @@ flowchart LR
     F -->|Erosion| B
     F -->|Final| E
     
-    E{<sup>26</sup>Al and <sup>10</sup>Be within 1sigma}
+    E{<sup>26</sup>Al/<sup>10</sup>Be and <sup>10</sup>Be \n within 2σ}
     
     E -->|Valid| STORE
     E -->|Invalid| STORE
@@ -106,8 +113,8 @@ Note: topographic datasets were generated using MATLAB 2025a, with [TopoToolbox 
 ## Usage
 
 <p style="line-height: 150%;">
-<strong>Reproduce dataset:</strong> Run MC simulations and generate results using <a href="00_DataResults/ScriptsData/RUN_num_model_burial_trajectory.py">this script</a><br>
-<strong>Plots</strong> Plots can be reproduced using <a href="00_Figures/ScriptsFig">these scripts</a>
+<strong>Reproduce dataset:</strong> Run MC simulations and generate results using <a href="a_DataResults/ScriptsGenerateData/RUN_num_model_burial_trajectory.py">this script</a><br>
+<strong>Plots</strong> Plots can be reproduced using <a href="a_Figures/ScriptsFig">these scripts</a>
 
 **Note**: if you want to use the banana plot but for your own data use the structure in 
 _Fig2A_Banana_Plot.py_ - you have to calibrate for the production rate of your study area!

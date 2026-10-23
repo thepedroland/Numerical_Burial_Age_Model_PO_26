@@ -5,9 +5,70 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8c973ac9-ed6e-4222-8542-60e62b36280e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/models_constants.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/z_AuxDataScripts/data/SM_profiles_Amazon.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flowchart.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/00_DataResults/ScriptsData/BMI_num_model_burial_trajectory.py" beforeDir="false" afterPath="$PROJECT_DIR$/a_DataResults/ScriptsGenerateData/BMI_num_model_burial_trajectory.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/00_DataResults/ScriptsData/RUN_num_model_burial_trajectory.py" beforeDir="false" afterPath="$PROJECT_DIR$/a_DataResults/ScriptsGenerateData/RUN_num_model_burial_trajectory.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/00_Figures/Plots/Fig2A_banana_plot_diagram_LSDn_mean.png" beforeDir="false" afterPath="$PROJECT_DIR$/a_Figures/Plots/Fig2A_banana_plot_diagram_LSDn_mean.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/00_Figures/Plots/Fig2B_secular_equilibrium_sb11_sb17.png" beforeDir="false" afterPath="$PROJECT_DIR$/a_Figures/Plots/Fig2B_secular_equilibrium_sb11_sb17.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/00_Figures/Plots/Fig3_Solutions_Profile_Ages_D1.7.png" beforeDir="false" afterPath="$PROJECT_DIR$/a_Figures/Plots/Fig3_Solutions_Profile_Ages_D1.7.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/00_Figures/Plots/Fig3_Solutions_Profile_Ages_D1.7].png" beforeDir="false" afterPath="$PROJECT_DIR$/a_Figures/Plots/Fig3_Solutions_Profile_Ages_D1.7].png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/00_Figures/Plots/Fig4_MCyork_erosion_rate_relief_graph.png" beforeDir="false" afterPath="$PROJECT_DIR$/a_Figures/Plots/Fig4_MCyork_erosion_rate_relief_graph.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/00_Figures/Plots/SVG/SVG_Fig2A_banana_plot_diagram.svg" beforeDir="false" afterPath="$PROJECT_DIR$/a_Figures/Plots/SVG/SVG_Fig2A_banana_plot_diagram.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/00_Figures/Plots/SupMaterial/FigS2_Parameters_Sampling_BV-018_D_1.7.png" beforeDir="false" afterPath="$PROJECT_DIR$/a_Figures/Plots/SupMaterial/FigS2_Parameters_Sampling_BV-018_D_1.7.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/00_Figures/Plots/SupMaterial/FigS3_Parameters_Sampling_SB-013_D_1.7.png" beforeDir="false" afterPath="$PROJECT_DIR$/a_Figures/Plots/SupMaterial/FigS3_Parameters_Sampling_SB-013_D_1.7.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/00_Figures/Plots/SupMaterial/FigS4_Parameters_Sampling_SB-011_D_1.7.png" beforeDir="false" afterPath="$PROJECT_DIR$/a_Figures/Plots/SupMaterial/FigS4_Parameters_Sampling_SB-011_D_1.7.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/00_Figures/Plots/SupMaterial/FigS5_Parameters_Sampling_SB-017_D_1.7.png" beforeDir="false" afterPath="$PROJECT_DIR$/a_Figures/Plots/SupMaterial/FigS5_Parameters_Sampling_SB-017_D_1.7.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/00_Figures/Plots/corr_Fig4_MCyork_erosion_rate_relief_graph.png" beforeDir="false" afterPath="$PROJECT_DIR$/a_Figures/Plots/corr_Fig4_MCyork_erosion_rate_relief_graph.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/00_Figures/Plots/edited_fig2.png" beforeDir="false" afterPath="$PROJECT_DIR$/a_Figures/Plots/edited_fig2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/00_Figures/Plots/edited_fig3.png" beforeDir="false" afterPath="$PROJECT_DIR$/a_Figures/Plots/edited_fig3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/00_Figures/ScriptsFig/Fig1B_swath_heat_map_profiles.m" beforeDir="false" afterPath="$PROJECT_DIR$/a_Figures/ScriptsFig/Fig1B_swath_heat_map_profiles.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/00_Figures/ScriptsFig/Fig2A_Banana_Plot.py" beforeDir="false" afterPath="$PROJECT_DIR$/a_Figures/ScriptsFig/Fig2A_Banana_Plot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/00_Figures/ScriptsFig/Fig2B_S5_Sec_equilibrium.py" beforeDir="false" afterPath="$PROJECT_DIR$/a_Figures/ScriptsFig/Fig2B_S5_Sec_equilibrium.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/00_Figures/ScriptsFig/Fig3_S2toS6_Age_solutions.py" beforeDir="false" afterPath="$PROJECT_DIR$/a_Figures/ScriptsFig/Fig3_S2toS6_Age_solutions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/00_Figures/ScriptsFig/Fig4_york_regression_erosion_rate_ksn_graph.py" beforeDir="false" afterPath="$PROJECT_DIR$/a_Figures/ScriptsFig/Fig4_york_regression_erosion_rate_ksn_graph.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/00_Figures/ScriptsFig/FigS3_calc_Rc.py" beforeDir="false" afterPath="$PROJECT_DIR$/a_Figures/ScriptsFig/FigS3_calc_Rc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_AuxDataScripts/aux_functions/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_AuxDataScripts/aux_functions/check_simple_exposure_region.py" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/check_simple_exposure_region.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_AuxDataScripts/aux_functions/constant_steady_lines_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/constant_steady_lines_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_AuxDataScripts/aux_functions/forbiden_zone.py" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/forbiden_zone.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_AuxDataScripts/aux_functions/mat_codes/Fig4_topo_data_extraction.m" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/matlab/Fig4_topo_data_extraction.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_AuxDataScripts/aux_functions/mat_codes/LSDn_calc_muon_prod.m" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/matlab/LSDn_calc_muon_prod.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_AuxDataScripts/aux_functions/mat_codes/MC_York.m" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/matlab/MC_York.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_AuxDataScripts/aux_functions/mat_codes/SwathBounds_bv.dbf" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/matlab/SwathBounds_bv.dbf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_AuxDataScripts/aux_functions/mat_codes/SwathBounds_bv.shp" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/matlab/SwathBounds_bv.shp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_AuxDataScripts/aux_functions/mat_codes/SwathBounds_bv.shx" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/matlab/SwathBounds_bv.shx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_AuxDataScripts/aux_functions/mat_codes/SwathBounds_sb.dbf" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/matlab/SwathBounds_sb.dbf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_AuxDataScripts/aux_functions/mat_codes/SwathBounds_sb.shp" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/matlab/SwathBounds_sb.shp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_AuxDataScripts/aux_functions/mat_codes/SwathBounds_sb.shx" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/matlab/SwathBounds_sb.shx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_AuxDataScripts/aux_functions/mat_codes/balco_2018_muogenic_prod/ERA40.mat" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/matlab/balco_2018_muogenic_prod/ERA40.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_AuxDataScripts/aux_functions/mat_codes/balco_2018_muogenic_prod/ERA40atm.m" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/matlab/balco_2018_muogenic_prod/ERA40atm.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_AuxDataScripts/aux_functions/mat_codes/balco_2018_muogenic_prod/MuonsX.m" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/matlab/balco_2018_muogenic_prod/MuonsX.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_AuxDataScripts/aux_functions/mat_codes/balco_2018_muogenic_prod/P_mu_totalLSD.m" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/matlab/balco_2018_muogenic_prod/P_mu_totalLSD.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_AuxDataScripts/aux_functions/mat_codes/balco_2018_muogenic_prod/consts_LSD.mat" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/matlab/balco_2018_muogenic_prod/consts_LSD.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_AuxDataScripts/aux_functions/mat_codes/balco_2018_muogenic_prod/integrand_mufast_LSD.m" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/matlab/balco_2018_muogenic_prod/integrand_mufast_LSD.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_AuxDataScripts/aux_functions/mat_codes/balco_2018_muogenic_prod/integrand_muneg_LSD.m" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/matlab/balco_2018_muogenic_prod/integrand_muneg_LSD.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_AuxDataScripts/aux_functions/mat_codes/balco_2018_muogenic_prod/lat_to_Rc.m" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/matlab/balco_2018_muogenic_prod/lat_to_Rc.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_AuxDataScripts/aux_functions/mat_codes/calc_spallation_scaling_factor.m" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/matlab/calc_spallation_scaling_factor.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_AuxDataScripts/aux_functions/mat_codes/sb_terrace_info.mat" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/matlab/sb_terrace_info.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_AuxDataScripts/aux_functions/misc_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/misc_functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_AuxDataScripts/aux_functions/models_constants.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_AuxDataScripts/aux_functions/nuclide_prod_concentration.py" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/nuclide_prod_concentration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_AuxDataScripts/aux_functions/solution_trajectories.py" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/solution_trajectories.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_AuxDataScripts/data/TablesCosmo/TableS1_10Be_measurements.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxDataScripts/data/TablesCosmo/TableS1_10Be_measurements.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_AuxDataScripts/data/TablesCosmo/TableS2_26Al_measurements.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxDataScripts/data/TablesCosmo/TableS2_26Al_measurements.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_AuxDataScripts/data/TablesCosmo/inputs_CRONUS_Calc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_AuxDataScripts/data/TopographicData/Rc_results.csv" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxDataScripts/data/TopographicData/Rc_results.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_AuxDataScripts/data/TopographicData/corr_results_erosion_all_be_al.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxDataScripts/data/TopographicData/corr_results_erosion_all_be_al.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_AuxDataScripts/data/TopographicData/corr_topographic_data_ksn_erosion_rf.csv" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxDataScripts/data/TopographicData/corr_topographic_data_ksn_erosion_rf.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_AuxDataScripts/data/TopographicData/relief_basins_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxDataScripts/data/TopographicData/relief_basins_data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_AuxDataScripts/data/TopographicData/relief_basins_data_std.csv" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxDataScripts/data/TopographicData/relief_basins_data_std.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_AuxDataScripts/data/TopographicData/results_erosion_all_be_al.csv" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxDataScripts/data/TopographicData/results_erosion_all_be_al.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_AuxDataScripts/data/TopographicData/samples_amazon_23_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxDataScripts/data/TopographicData/samples_amazon_23_data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_AuxDataScripts/data/TopographicData/topographic_data_ksn_erosion_rf.csv" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxDataScripts/data/TopographicData/topographic_data_ksn_erosion_rf.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,7 +76,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="699" />
+    <option name="cachedIndexableFilesCount" value="700" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
@@ -48,6 +109,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.RUN_num_model_burial_trajectory.executor": "Run",
     "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
@@ -55,8 +117,9 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "cleaning__code",
     "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "/Users/pedro_oliveira/Library/CloudStorage/OneDrive-CUNY/PhD_LIFE/py_repositories/numerical_MC_Burial_Ages_PO/z_AuxDataScripts/data",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -67,7 +130,11 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/z_AuxDataScripts/data" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts" />
       <recent name="$PROJECT_DIR$/z_backup" />
     </key>
   </component>
@@ -85,7 +152,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1792589795831</updated>
-      <workItem from="1792589797226" duration="13751000" />
+      <workItem from="1792589797226" duration="27137000" />
     </task>
     <servers />
   </component>
@@ -96,11 +163,14 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="jupyter-line">
-          <url>file://$PROJECT_DIR$/ExtraAnalyzes/analysing_depo_rates.ipynb</url>
+          <url>file://$PROJECT_DIR$/z_ExtraAnalyzes/analysing_depo_rates.ipynb</url>
           <line>57</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/numerical_MC_Burial_Ages_PO$RUN_num_model_burial_trajectory.coverage" NAME="RUN_num_model_burial_trajectory Coverage Results" MODIFIED="1792761865095" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/a_DataResults/ScriptsGenerateData" />
   </component>
 </project>

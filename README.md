@@ -20,10 +20,6 @@ The numerical burial model simulates the accumulation of cosmogenic nuclides for
 ## Model Flowchart
 
 ```mermaid
----
-config:
-  layout: elk
----
 flowchart LR
     RUN(RUN_num_model_burial_trajectory.py) --> INPUTS
     subgraph INPUTS [INPUTS]
@@ -44,12 +40,7 @@ flowchart LR
     V -->|Good| B
     V -->|Not good| PARAMS
 
-    B[CRN accumulation]
-    
-    B --> F{Erosion after burial?}
-    
-    F -->|Erosion| B
-    F -->|Final| E
+    B[CRN accumulation] --> E
     
     E{<sup>26</sup>Al/<sup>10</sup>Be and <sup>10</sup>Be \n within 2σ}
     

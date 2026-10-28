@@ -21,39 +21,47 @@ The numerical burial model simulates the accumulation of cosmogenic nuclides for
 
 ```mermaid
 flowchart LR
-    RUN(RUN_num_model_burial_trajectory.py) --> INPUTS
-    subgraph INPUTS [INPUTS]
-        A[Initial <sup>10</sup>Be]
-        TB[Total Burial Time]
-        BD[Burial Depth]
+    RUN("RUN_num_model_burial_trajectory.py") --> INPUTS
 
-        subgraph PARAMS [ ]
-            FD[Final depth]
-            DR[Dep. rate]
-            R[Initial <sup>26</sup>/Be/<sup>10</sup>Be]
+    subgraph INPUTS ["INPUTS"]
+        A["Initial <sup>10</sup>Be"]
+        TB["Total Burial Time"]
+        BD["Burial Depth"]
 
+        subgraph PARAMS [" "]
+            FD["Final depth"]
+            DR["Dep. rate"]
+            R["Initial <sup>26</sup>Al/<sup>10</sup>Be"]
         end
     end
 
-    PARAMS --> V{INPUTS Validation}
+    PARAMS --> V{"INPUTS Validation"}
 
     V -->|Good| B
     V -->|Not good| PARAMS
 
-    B[CRN accumulation] --> E
-    
-    E{<sup>26</sup>Al/<sup>10</sup>Be and <sup>10</sup>Be \n within 2σ}
-    
-    E -->|Valid| STORE
-    E -->|Invalid| STORE
-    
-    STORE[(NumSimResults/Results)]
-        
-```
+    B["CRN accumulation"] --> E
 
+    E{"Final \n <sup>26</sup>Al/<sup>10</sup>Be and <sup>10</sup>Be<br/>within 2σ ?"}
+
+    E -->|True| STORE
+    E -->|False| STORE
+
+    STORE[("NumSimResults/Results")]
+
+    style RUN fill:#4A90E2,stroke:#2E5C8A,color:#fff
+    style A fill:#50C878,stroke:#2E7D4E,color:#fff
+    style TB fill:#50C878,stroke:#2E7D4E,color:#fff
+    style BD fill:#50C878,stroke:#2E7D4E,color:#fff
+    style FD fill:#FF6B6B,stroke:#C44545,color:#fff
+    style DR fill:#FF6B6B,stroke:#C44545,color:#fff
+    style R fill:#FF6B6B,stroke:#C44545,color:#fff
+    style B fill:#FFA500,stroke:#CC8400,color:#fff
+    style STORE fill:#9B59B6,stroke:#7D3C98,color:#fff
+```
 ## Repository structure (to be updated)
 
-```
+
 numerical_MC_Burial_Ages_PO/
 ├── AuxDataScripts/
 │   ├── aux_functions/              # Core functions used by the numerical model

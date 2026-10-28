@@ -1,9 +1,9 @@
-a_DataResults/NumSimResults
-z_AuxDataScripts/Production_Rates_Calculator-main
+a_DataResults/NumSimResults/trajectories
+z_ExtraAnalyzes/Production_Rates_Calculator-main
 z_backup
 a_Figures/Plots/SVG
 z_backup/chi_map.m
-z_AuxDataScripts/aux_scripts/matlab/modified_functions
-z_AuxDataScripts/DrainageBasins
+z_AuxData_Scripts/aux_scripts/matlab/modified_functions
+z_AuxData_Scripts/DrainageBasins
 .venv
 z_ExtraAnalyzes

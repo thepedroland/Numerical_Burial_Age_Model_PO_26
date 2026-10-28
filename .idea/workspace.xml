@@ -5,17 +5,62 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8c973ac9-ed6e-4222-8542-60e62b36280e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/a_Figures/Plots/sb17_low_solution_trajectories_[BV-018]_D1.7.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/a_Figures/Plots/used_sb17_low.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/z_AuxData_Scripts/Tables_SM/TableS3_CRONUS_output_corrected_erosion_be_al.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/z_AuxData_Scripts/aux_pyScripts/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/z_AuxData_Scripts/data/corrected_inputs_CRONUS_calc.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/a_DataResults/ScriptsGenerateData/RUN_num_model_burial_trajectory.py" beforeDir="false" afterPath="$PROJECT_DIR$/a_DataResults/ScriptsGenerateData/RUN_num_model_burial_trajectory.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/a_Figures/Plots/Fig3_Solutions_Profile_Ages_D1.7].png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/a_Figures/Plots/Fig4_MCyork_erosion_rate_relief_graph.png" beforeDir="false" afterPath="$PROJECT_DIR$/a_Figures/Plots/Fig4_MCyork_erosion_rate_relief_graph.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/a_Figures/Plots/SupMaterial/FigS2_Parameters_Sampling_BV-018_D_1.7.png" beforeDir="false" afterPath="$PROJECT_DIR$/a_Figures/Plots/SupMaterial/FigS2_Parameters_Sampling_BV-018_D_1.7.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/a_Figures/Plots/solution_trajectories_[BV-018]_D1.7.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/a_Figures/Plots/solution_trajectories_[BV-018]_D1.7.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/a_Figures/ScriptsFig/Fig1B_swath_heat_map_profiles.m" beforeDir="false" afterPath="$PROJECT_DIR$/a_Figures/ScriptsGeneratePlots/Fig1B_swath_heat_map_profiles.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/a_Figures/ScriptsFig/Fig2A_Banana_Plot.py" beforeDir="false" afterPath="$PROJECT_DIR$/a_Figures/ScriptsGeneratePlots/Fig2A_Banana_Plot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/a_Figures/ScriptsFig/Fig2B_S5_Sec_equilibrium.py" beforeDir="false" afterPath="$PROJECT_DIR$/a_Figures/ScriptsGeneratePlots/Fig2B_S5_Sec_equilibrium.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/a_Figures/ScriptsFig/Fig3_S2toS6_Age_solutions.py" beforeDir="false" afterPath="$PROJECT_DIR$/a_Figures/ScriptsGeneratePlots/Fig3_S2toS6_Age_solutions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/a_Figures/ScriptsFig/Fig4_york_regression_erosion_rate_ksn_graph.py" beforeDir="false" afterPath="$PROJECT_DIR$/a_Figures/ScriptsGeneratePlots/Fig4_york_regression_erosion_rate_ksn_graph.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/a_Figures/ScriptsFig/FigS3_calc_Rc.py" beforeDir="false" afterPath="$PROJECT_DIR$/a_Figures/ScriptsGeneratePlots/FigS3_calc_Rc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/a_Figures/Plots/corr_Fig4_MCyork_erosion_rate_relief_graph.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/a_Figures/Plots/edited_fig2.png" beforeDir="false" afterPath="$PROJECT_DIR$/a_Figures/Plots/edited/edited_fig2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/a_Figures/Plots/edited_fig3.png" beforeDir="false" afterPath="$PROJECT_DIR$/a_Figures/Plots/edited/edited_fig3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/a_Figures/Plots/solution_trajectories_[BV-018]_D1.7.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/a_Figures/ScriptsGeneratePlots/Fig3_S2toS6_Age_solutions.py" beforeDir="false" afterPath="$PROJECT_DIR$/a_Figures/ScriptsGeneratePlots/Fig3_S2toS6_Age_solutions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/a_Figures/ScriptsGeneratePlots/Fig4_york_regression_erosion_rate_ksn_graph.py" beforeDir="false" afterPath="$PROJECT_DIR$/a_Figures/ScriptsGeneratePlots/Fig4_york_regression_erosion_rate_ksn_graph.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/check_simple_exposure_region.py" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxData_Scripts/aux_pyScripts/check_simple_exposure_region.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/constant_steady_lines_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxData_Scripts/aux_pyScripts/constant_steady_lines_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/forbiden_zone.py" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxData_Scripts/aux_pyScripts/forbiden_zone.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/matlab/Fig4_topo_data_extraction.m" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxData_Scripts/aux_MatlabScripts/Fig4_topo_data_extraction.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/matlab/LSDn_calc_muon_prod.m" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxData_Scripts/aux_MatlabScripts/LSDn_calc_muon_prod.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/matlab/MC_York.m" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxData_Scripts/aux_MatlabScripts/MC_York.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/matlab/SwathBounds_bv.dbf" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxData_Scripts/aux_MatlabScripts/SwathBounds_bv.dbf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/matlab/SwathBounds_bv.shp" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxData_Scripts/aux_MatlabScripts/SwathBounds_bv.shp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/matlab/SwathBounds_bv.shx" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxData_Scripts/aux_MatlabScripts/SwathBounds_bv.shx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/matlab/SwathBounds_sb.dbf" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxData_Scripts/aux_MatlabScripts/SwathBounds_sb.dbf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/matlab/SwathBounds_sb.shp" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxData_Scripts/aux_MatlabScripts/SwathBounds_sb.shp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/matlab/SwathBounds_sb.shx" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxData_Scripts/aux_MatlabScripts/SwathBounds_sb.shx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/matlab/balco_2018_muogenic_prod/ERA40.mat" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxData_Scripts/aux_MatlabScripts/balco_2018_muogenic_prod/ERA40.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/matlab/balco_2018_muogenic_prod/ERA40atm.m" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxData_Scripts/aux_MatlabScripts/balco_2018_muogenic_prod/ERA40atm.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/matlab/balco_2018_muogenic_prod/MuonsX.m" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxData_Scripts/aux_MatlabScripts/balco_2018_muogenic_prod/MuonsX.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/matlab/balco_2018_muogenic_prod/P_mu_totalLSD.m" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxData_Scripts/aux_MatlabScripts/balco_2018_muogenic_prod/P_mu_totalLSD.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/matlab/balco_2018_muogenic_prod/consts_LSD.mat" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxData_Scripts/aux_MatlabScripts/balco_2018_muogenic_prod/consts_LSD.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/matlab/balco_2018_muogenic_prod/integrand_mufast_LSD.m" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxData_Scripts/aux_MatlabScripts/balco_2018_muogenic_prod/integrand_mufast_LSD.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/matlab/balco_2018_muogenic_prod/integrand_muneg_LSD.m" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxData_Scripts/aux_MatlabScripts/balco_2018_muogenic_prod/integrand_muneg_LSD.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/matlab/balco_2018_muogenic_prod/lat_to_Rc.m" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxData_Scripts/aux_MatlabScripts/balco_2018_muogenic_prod/lat_to_Rc.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/matlab/calc_spallation_scaling_factor.m" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxData_Scripts/aux_MatlabScripts/calc_spallation_scaling_factor.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/matlab/sb_terrace_info.mat" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxData_Scripts/aux_MatlabScripts/sb_terrace_info.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/misc_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxData_Scripts/aux_pyScripts/misc_functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/models_constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxData_Scripts/aux_pyScripts/models_constants.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/nuclide_prod_concentration.py" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxData_Scripts/aux_pyScripts/nuclide_prod_concentration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts/solution_trajectories.py" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxData_Scripts/aux_pyScripts/solution_trajectories.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/z_AuxDataScripts/data/SM_profiles_Amazon.html" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxData_Scripts/data/SM_profiles_Amazon.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/z_AuxDataScripts/data/TablesCosmo/TableS1_10Be_measurements.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxData_Scripts/Tables_SM/TableS1_10Be_measurements.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/z_AuxDataScripts/data/TablesCosmo/TableS2_26Al_measurements.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxData_Scripts/Tables_SM/TableS2_26Al_measurements.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/z_AuxDataScripts/data/TopographicData/Rc_results.csv" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxData_Scripts/data/Rc_results.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/z_AuxDataScripts/data/TopographicData/corr_results_erosion_all_be_al.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/z_AuxDataScripts/data/TopographicData/corr_topographic_data_ksn_erosion_rf.csv" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxData_Scripts/data/corrected_erosion_rates.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/z_AuxDataScripts/data/TopographicData/relief_basins_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxData_Scripts/data/relief_basins_data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/z_AuxDataScripts/data/TopographicData/relief_basins_data_std.csv" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxData_Scripts/data/relief_basins_data_std.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/z_AuxDataScripts/data/TopographicData/results_erosion_all_be_al.csv" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxData_Scripts/data/CRONUS_output_results_erosion_all_be_al.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/z_AuxDataScripts/data/TopographicData/samples_amazon_23_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/z_AuxData_Scripts/data/samples_amazon_23_data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/z_AuxDataScripts/data/TopographicData/topographic_data_ksn_erosion_rf.csv" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,32 +68,40 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="700" />
+    <option name="cachedIndexableFilesCount" value="714" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="Jupyter Notebook" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "thepedroland"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;thepedroland&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/thepedroland/numerical_MC_Burial_Ages_PO.git",
-    "accountId": "cb3877a7-ddf4-4d80-a12f-0bb25c63c540"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/thepedroland/numerical_MC_Burial_Ages_PO.git&quot;,
+    &quot;accountId&quot;: &quot;cb3877a7-ddf4-4d80-a12f-0bb25c63c540&quot;
   }
-}]]></component>
+}</component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 1
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="3L0T4Q9VvLCo0fxEawXxKBSaIqS" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -56,8 +109,11 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
     "Python.Fig2B_S5_Sec_equilibrium.executor": "Run",
     "Python.Fig3_S2toS6_Age_solutions.executor": "Run",
+    "Python.Fig4_york_regression_erosion_rate_ksn_graph.executor": "Run",
     "Python.RUN_num_model_burial_trajectory.executor": "Run",
     "Python.misc_functions.executor": "Run",
     "Python.solution_trajectories.executor": "Run",
@@ -70,7 +126,7 @@
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
     "git-widget-placeholder": "main",
     "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "/Users/pedro_oliveira/Library/CloudStorage/OneDrive-CUNY/PhD_LIFE/py_repositories/numerical_MC_Burial_Ages_PO/z_AuxDataScripts/data",
+    "last_opened_file_path": "/Users/pedro_oliveira/Library/CloudStorage/OneDrive-CUNY/PhD_LIFE/py_repositories/numerical_MC_Burial_Ages_PO/z_AuxDataScripts/data/TablesCosmo",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -82,11 +138,16 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/z_AuxDataScripts/data/TablesCosmo" />
+      <recent name="$PROJECT_DIR$/a_Figures/Plots" />
       <recent name="$PROJECT_DIR$/z_AuxDataScripts/data" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts" />
-      <recent name="$PROJECT_DIR$/z_backup" />
+      <recent name="$PROJECT_DIR$/a_DataResults/NumSimResults/trajectories" />
+      <recent name="$PROJECT_DIR$/a_Figures/Plots/edited" />
+      <recent name="$PROJECT_DIR$/z_ExtraAnalyzes" />
+      <recent name="$PROJECT_DIR$/z_AuxData_Scripts/aux_Scripts" />
+      <recent name="$PROJECT_DIR$/z_AuxData_Scripts/data" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -103,7 +164,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1792589795831</updated>
-      <workItem from="1792589797226" duration="35842000" />
+      <workItem from="1792589797226" duration="41583000" />
+      <workItem from="1792848005556" duration="24554000" />
+      <workItem from="1793182329516" duration="5393000" />
     </task>
     <servers />
   </component>
@@ -118,14 +181,25 @@
           <line>57</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/z_AuxData_Scripts/aux_pyScripts/solution_trajectories.py</url>
+          <line>13</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/z_AuxData_Scripts/aux_pyScripts/misc_functions.py</url>
+          <line>40</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/numerical_MC_Burial_Ages_PO$Fig3_S2toS6_Age_solutions.coverage" NAME="Fig3_S2toS6_Age_solutions Coverage Results" MODIFIED="1792774785674" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/a_Figures/ScriptsGeneratePlots" />
+    <SUITE FILE_PATH="coverage/numerical_MC_Burial_Ages_PO$Fig3_S2toS6_Age_solutions.coverage" NAME="Fig3_S2toS6_Age_solutions Coverage Results" MODIFIED="1793096242515" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/a_Figures/ScriptsGeneratePlots" />
+    <SUITE FILE_PATH="coverage/numerical_MC_Burial_Ages_PO$Fig4_york_regression_erosion_rate_ksn_graph.coverage" NAME="Fig4_york_regression_erosion_rate_ksn_graph Coverage Results" MODIFIED="1793105541852" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/a_Figures/ScriptsGeneratePlots" />
     <SUITE FILE_PATH="coverage/numerical_MC_Burial_Ages_PO$misc_functions.coverage" NAME="misc_functions Coverage Results" MODIFIED="1792766334793" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts" />
-    <SUITE FILE_PATH="coverage/numerical_MC_Burial_Ages_PO$solution_trajectories.coverage" NAME="solution_trajectories Coverage Results" MODIFIED="1792766351035" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts" />
     <SUITE FILE_PATH="coverage/numerical_MC_Burial_Ages_PO$Fig2B_S5_Sec_equilibrium.coverage" NAME="Fig2B_S5_Sec_equilibrium Coverage Results" MODIFIED="1792770189788" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/a_Figures/ScriptsFig" />
-    <SUITE FILE_PATH="coverage/numerical_MC_Burial_Ages_PO$RUN_num_model_burial_trajectory.coverage" NAME="RUN_num_model_burial_trajectory Coverage Results" MODIFIED="1792770442576" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/a_DataResults/ScriptsGenerateData" />
+    <SUITE FILE_PATH="coverage/numerical_MC_Burial_Ages_PO$solution_trajectories.coverage" NAME="solution_trajectories Coverage Results" MODIFIED="1793095063170" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/z_AuxDataScripts/aux_scripts" />
+    <SUITE FILE_PATH="coverage/numerical_MC_Burial_Ages_PO$RUN_num_model_burial_trajectory.coverage" NAME="RUN_num_model_burial_trajectory Coverage Results" MODIFIED="1793102381681" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/a_DataResults/ScriptsGenerateData" />
   </component>
 </project>

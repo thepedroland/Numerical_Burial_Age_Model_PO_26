@@ -15,7 +15,10 @@ plt.rcParams['axes.linewidth'] = 0.5
 samples_id = ["BV-018"]
 density = 1.7
 plot_trajectories = True
-reference_sample = "SB-017"
+traj_plots_interval = 2 #each 5 runs plot
+plot_valids_only = True
+
+reference_sample = "SB-011"
 
 main_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 folder_path = os.path.join(main_path, "a_DataResults")
@@ -388,5 +391,5 @@ fig_name = f"Fig3_Solutions_Profile_Ages_D{density}"
 #
 
 if plot_trajectories:
-    print("\u2B95 Plotting trajectories")
-    st.plot_trajectories(x_2s,y_2s)
+    print("\u2B95 Plotting trajectories \u21B4")
+    st.plot_trajectories(x_2s,y_2s,traj_plots_interval,plot_valids_only)

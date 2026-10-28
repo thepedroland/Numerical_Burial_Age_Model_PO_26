@@ -75,13 +75,13 @@ if __name__ == "__main__":
 
     ###----MODEL PARAMETERS-----####
     density = 1.7
-    n_trials = 5000
+    n_trials = 10000
 
     time_burial_min, time_burial_max = 10_000, 1_000_000
-    time_erosion_min, time_erosion_max = 1_000_000, 30_000_000
+    time_erosion_min, time_erosion_max = 5_000_000, 20_000_000
 
     depo_rate_min, depo_rate_max = 0.0001, 1.0  # cm/yr
-    erosion_min, erosion_max = 1e-4,3e-3  # cm/yr
+    erosion_min, erosion_max = 1e-4,1e-3  # cm/yr
 
     dep_low = np.log10(depo_rate_min)
     dep_high = np.log10(depo_rate_max)
@@ -106,14 +106,14 @@ if __name__ == "__main__":
 
     save_arguments_to_excel(var, config,path_table)
 
-    with Pool(processes=2,initializer=init_worker, initargs=(var,config,)) as pool:
+    with Pool(processes=1,initializer=init_worker, initargs=(var,config,)) as pool:
 
         for i, result in enumerate(tqdm(pool.imap_unordered(start_batch_simulation, range(n_trials)),desc="Simulations", total=n_trials,unit="trajectories",leave=False,colour="blue")):
 
             all_results_csv.append(result[0])
             all_trajectories_pkl.append(result[1])
 
-            if (i + 1) % 10 == 0 or (i + 1) == n_trials:
+            if (i + 1) % 5 == 0 or (i + 1) == n_trials:
                     pd.DataFrame(all_results_csv).to_csv(path_save_csv, index=False)
                     df_valid = pd.DataFrame(all_results_csv)
                     valid_count = (df_valid["Solution"] == True).sum()

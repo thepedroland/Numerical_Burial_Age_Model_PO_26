@@ -1,7 +1,7 @@
 import warnings
 warnings.filterwarnings("ignore", category=RuntimeWarning)
 import matplotlib.pyplot as plt
-from z_AuxDataScripts.aux_scripts.nuclide_prod_concentration import cosmo_production
+from z_AuxData_Scripts.aux_pyScripts.nuclide_prod_concentration import cosmo_production
 
 class steady_state_model:
     def __init__(self):

@@ -23,10 +23,10 @@ function [p_neg_list, p_fast_list, Rc_list] = calc_muon_prod_LSDn_Balco(time_lis
     n = numel(time_list);
 
     main_path = fileparts(fileparts(fileparts(mfilename('fullpath'))));
-    addpath(fullfile(main_path,"aux_scripts","matlab","balco_2018_muogenic_prod"));
-    load(fullfile(main_path,"aux_scripts","matlab","balco_2018_muogenic_prod", "consts_LSD.mat"));
+    addpath(fullfile(main_path,"z_AuxData_Scripts/aux_MatlabScripts","balco_2018_muogenic_prod"));
+    load(fullfile(main_path,"z_AuxData_Scripts/aux_MatlabScripts","balco_2018_muogenic_prod", "consts_LSD.mat"));
 
-    Rc_table = readmatrix(fullfile(main_path,"data/TopographicData","Rc_results.csv"));
+    Rc_table = readmatrix(fullfile(main_path,"z_AuxData_Scripts/data/Rc_results.csv"));
     times_table = Rc_table(1,:).*50000;
 
     % ---- determine Rc for every (time, depth) pair ----

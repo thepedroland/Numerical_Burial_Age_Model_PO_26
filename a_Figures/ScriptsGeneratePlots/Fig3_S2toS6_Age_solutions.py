@@ -212,7 +212,7 @@ for i, sample_id in enumerate(samples_id):
     else:
         hist_ax = ax.inset_axes([0, 0, 0.9, 1])
         n, bins, patches = hist_ax.hist(range_age_valid_times_solution, bins=bins,
-                     edgecolor="black", linewidth=0.5)
+                     edgecolor="black", linewidth=0.3)
         hist_ax.set_xlim([0, x_lim])
 
         norm = plt.Normalize(bins.min(), bins.max())

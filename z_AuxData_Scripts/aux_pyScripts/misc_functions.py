@@ -6,7 +6,7 @@ import os
 def load_dataset(sample_id=None,reference_sample=None):
     try:
         main_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
-        file_path = os.path.join(main_path,"data/TopographicData", "samples_amazon_23_data.csv")
+        file_path = os.path.join(main_path,"data", "samples_amazon_23_data.csv")
         df_data_samples = pd.read_csv(file_path)
     except FileNotFoundError:
         print("Sample dataset not found. Please check the path for file: 'samples_amazon_23_data.csv'")
@@ -35,8 +35,8 @@ def load_dataset(sample_id=None,reference_sample=None):
 
     if reference_sample != "Surface":
         print("in if")
-        burial_depth_min_sample = (df_data_samples.loc[df_data_samples['sample_names'] == reference_sample]['depth_min'].values[0])-1000
-        burial_depth_max_sample = (df_data_samples.loc[df_data_samples['sample_names'] == reference_sample]['depth_max'].values[0])-1000
+        burial_depth_min_sample = 600
+        burial_depth_max_sample = 4000
         final_depth_min_sample = df_data_samples.loc[df_data_samples['sample_names'] == sample_id]['depth_min'].values[0]
         final_depth_max_sample = df_data_samples.loc[df_data_samples['sample_names'] == sample_id]['depth_max'].values[0]
         measured_min_n10 = float(df_data_samples[df_data_samples['sample_names'] == reference_sample]['n10_measured'].item()) - df_data_samples.loc[df_data_samples['sample_names'] == reference_sample]['std_dev_n10'].values[0]

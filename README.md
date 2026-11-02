@@ -23,24 +23,29 @@ The numerical burial model simulates the accumulation of cosmogenic nuclides for
 flowchart LR
     RUN("RUN_num_model_burial_trajectory.py") --> INPUTS
 
-    subgraph INPUTS ["INPUTS"]
-        A["Initial <sup>10</sup>Be"]
-        TB["Total Burial Time"]
-        BD["Burial Depth"]
+    subgraph INPUTS ["Inputs"]
+        subgraph NotChecked ["Not checked"]
+          A("Initial <sup>10</sup>Be")
+          TB("Total Burial Time")
+          BD("Burial Depth")
+          end
 
-        subgraph PARAMS [" "]
-            FD["Final depth"]
-            DR["Dep. rate"]
-            R["Initial <sup>26</sup>Al/<sup>10</sup>Be"]
-        end
+        subgraph Checked ["Checked"]
+          FD("Final depth")
+          DR("Dep. rate")
+          R("Initial <sup>26</sup>Al/<sup>10</sup>Be")
+          end
     end
-
-    PARAMS --> V{"INPUTS Validation"}
-
+    
+    NotChecked --> B
+    
+    V{"INPUTS Validation"}
     V -->|Good| B
-    V -->|Not good| PARAMS
+    V -->|Not good| Checked
+    Checked -->|Try| V
 
-    B["CRN accumulation"] --> E
+    B("CRN accumulation \n & decay") --> E
+    B("CRN accumulation \n & decay") --> |Total burial time| B
 
     E{"Final \n <sup>26</sup>Al/<sup>10</sup>Be and <sup>10</sup>Be<br/>within 2σ ?"}
 
@@ -49,47 +54,52 @@ flowchart LR
 
     STORE[("NumSimResults/Results")]
 
-    style RUN fill:#4A90E2,stroke:#2E5C8A,color:#fff
-    style A fill:#50C878,stroke:#2E7D4E,color:#fff
-    style TB fill:#50C878,stroke:#2E7D4E,color:#fff
-    style BD fill:#50C878,stroke:#2E7D4E,color:#fff
-    style FD fill:#FF6B6B,stroke:#C44545,color:#fff
-    style DR fill:#FF6B6B,stroke:#C44545,color:#fff
-    style R fill:#FF6B6B,stroke:#C44545,color:#fff
-    style B fill:#FFA500,stroke:#CC8400,color:#fff
-    style STORE fill:#9B59B6,stroke:#7D3C98,color:#fff
+    style RUN fill:#FAFAFA,stroke:#2E5C8A,color:#black
+    style A fill:#FFEFDB,stroke:#181A00,color:#black
+    style INPUTS fill: #FAF4EF,stroke:#B3B3B3,color:#black
+    style Checked fill: #FAF4E0,stroke:#181A00,color:#black
+    style TB fill:#FFEFDB,stroke:#181A00,color:#black
+    style BD fill:#FFEFDB,stroke:#181A00,color:#black
+    style FD fill:#FFEFDB,stroke:#181A00,color:#black
+    style DR fill:#FFEFDB,stroke:#181A00,color:#black
+    style R fill:#FFEFDB,stroke:#181A00,color:#black
+    style B fill:#F3C4E0,stroke:#black,color:#black
+    style STORE fill:#E9DDFD,stroke:#7D3C98,color:#BLACK
+    style INPUTS rx:10px,ry:10px
+    style NotChecked rx:10px,ry:10px,fill:#FAF4ES,stroke:#181A00,color:#black
+    style Checked rx:10px,ry:10px
 ```
 ## Repository structure (to be updated)
-
-
+````
 numerical_MC_Burial_Ages_PO/
-├── AuxDataScripts/
-│   ├── aux_functions/              # Core functions used by the numerical model
-│   │   ├── models_constants.py     # Model constants and production parameters
-│   │   ├── nuclide_prod_concentration.py
-│   │   ├── solution_trajectories.py
-│   │   └── misc_functions.py
-│   └── data/                       # Input and auxiliary datasets
-│       ├── TablesCosmo/            # Cosmogenic-nuclide production/scaling tables
-│       └── TopographicData/        # Topographic, erosion-rate, and sample datasets
-├── DataResults/
-│   ├── ScriptsData/                # Scripts used to run numerical simulations
-│   │   └── RUN_num_model_burial_trajectory.py
-│   └── NumSimResults/              # Numerical model output files
-├── Figures/
-│   ├── ScriptsFig/                 # Scripts used to reproduce paper figures
-│   │   ├── Fig2A_Banana_Plot.py
-│   │   ├── Fig2B_S5_Sec_equilibrium.py
-│   │   ├── Fig3_S2toS6_Age_solutions.py
-│   │   ├── Fig4_york_regression_erosion_rate_ksn_graph.py
-│   │   └── FigS3_calc_Rc.py
-│   └── Plots/                      # Generated figure files
-├── README.md                       # Repository documentation
-└── .gitignore                      # Files ignored by Git
-```
+├── a_DataResults/
+│ ├── ScriptsGenerateData/ 
+│ │ ├── RUN_num_model_burial_trajectory.py #Main script to run simulations
+│ │ └── BMI_num_model_burial_trajectory.py #Setup script to run simulations
+│ └── NumSimResults/ # Numerical model output files
+├── a_Figures/
+│ ├── ScriptsGeneratePlots/ # Scripts used to reproduce paper figures
+│ │ ├── Fig2A_Banana_Plot.py
+│ │ ├── Fig2B_S5_Sec_equilibrium.py
+│ │ ├── Fig3_S2toS6_Age_solutions.py
+│ │ ├── Fig4_york_regression_erosion_rate_ksn_graph.py
+│ │ └── FigS3_calc_Rc.py
+│ └── Plots/ 
+├── z_AuxData_Scripts/
+│ ├── aux_pyScripts/
+│ │ ├── models_constants.py # Model constants and production parameters
+│ │ ├── nuclide_prod_concentration.py # Nuclide production and concentration functions - equations
+│ │ ├── solution_trajectories.py # Solution trajectories plot
+│ │ └── misc_functions.py # Miscellaneous functions
+│ ├── aux_MatlabScripts/ #Auxiliary Matlab scripts
+│ │   └── LSDn_CRN_Burial_Model.m # LSDn model production function - muons calculation
+│ ├── data/ # Input and auxiliary datasets
+│ └── Tables_SM/ # Excel format tables in the SupportingMateril section of the paper
+├── README.md # Repository documentation
+└── .gitignore # Files ignored by Git
+````
 
 ---
-
 ## Software/Packages Requirements 
 Versions are listed as the ones working when results were generated for this paper. Newer versions might be available, 
 however, it is not guaranteed they will work smoothly.

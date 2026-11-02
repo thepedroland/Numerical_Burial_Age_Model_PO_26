@@ -3,7 +3,7 @@ import math
 import numpy as np
 import matlab.engine
 import os
-from z_AuxDataScripts.aux_scripts import models_constants as constants
+from z_AuxData_Scripts.aux_pyScripts import models_constants as constants
 
 ## Calculation of nuclide production and concentration over time
 class cosmo_production:
@@ -12,8 +12,8 @@ class cosmo_production:
         for key, value in vars(constants).items():
             setattr(self, key, value)
 
-        path_add = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))),"aux_scripts",
-                                "../aux_MatlabScripts")
+        path_add = (os.path.dirname(os.path.dirname(os.path.realpath(__file__)))+"/aux_MatlabScripts")
+        # print(path_add)
         self.eng = matlab.engine.start_matlab()
         self.eng.addpath(path_add)
 

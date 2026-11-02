@@ -7,7 +7,7 @@ from BMI_num_model_burial_trajectory import deposition_trajectories
 from tqdm import tqdm
 import os
 from multiprocessing import Pool
-from z_AuxDataScripts.aux_scripts.misc_functions import load_dataset,save_arguments_to_excel
+from z_AuxData_Scripts.aux_pyScripts.misc_functions import load_dataset,save_arguments_to_excel
 
 def init_worker(var_,config):
     global cfg
@@ -78,10 +78,10 @@ if __name__ == "__main__":
     n_trials = 10000
 
     time_burial_min, time_burial_max = 10_000, 1_000_000
-    time_erosion_min, time_erosion_max = 5_000_000, 20_000_000
+    time_erosion_min, time_erosion_max = 1_000_000, 20_000_000
 
     depo_rate_min, depo_rate_max = 0.0001, 1.0  # cm/yr
-    erosion_min, erosion_max = 1e-4,1e-3  # cm/yr
+    erosion_min, erosion_max = 5e-4,2.5e-3  # cm/yr
 
     dep_low = np.log10(depo_rate_min)
     dep_high = np.log10(depo_rate_max)

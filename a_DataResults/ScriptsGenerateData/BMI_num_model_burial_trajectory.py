@@ -1,6 +1,6 @@
 import numpy as np
-from z_AuxDataScripts.aux_scripts import *
-from z_AuxDataScripts.aux_scripts import models_constants as constants
+from z_AuxData_Scripts.aux_pyScripts import *
+from z_AuxData_Scripts.aux_pyScripts import models_constants as constants
 
 c_p=cosmo_production()
 

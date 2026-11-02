@@ -104,15 +104,15 @@ numerical_MC_Burial_Ages_PO/
 Versions are listed as the ones working when results were generated for this paper. Newer versions might be available, 
 however, it is not guaranteed they will work smoothly.
 
-| Package      | Version |
-|--------------|---------|
-| Python       | 3.13.12 |
-| MATLAB       | 2026a   |
-| matlabengine | 26.1    |
-| numpy        | 2.3.5   |
-| pandas       | 2.3.3   |
-| torch        | 2.11.0  |
-| matplotlib   | 3.10.8  |
+| Package   | Version |
+|-----------|---------|
+| `Python ` | 3.13.12 |
+| ` MATLAB ` | 2026a   |
+| ` matlabengine` | 26.1    |
+| `numpy`   | 2.3.5   |
+| `pandas`  | 2.3.3   |
+| `torch`   | 2.11.0  |
+| `matplotlib` | 3.10.8  |
 
 Note: topographic datasets were generated using MATLAB 2025a, with [TopoToolbox (v2.5)](https://github.com/wschwanghart/topotoolbox)
 
@@ -123,8 +123,8 @@ Note: topographic datasets were generated using MATLAB 2025a, with [TopoToolbox 
 <strong>Reproduce dataset:</strong> Run MC simulations and generate results using <a href="a_DataResults/ScriptsGenerateData/RUN_num_model_burial_trajectory.py">this script</a><br>
 <strong>Plots</strong> Plots can be reproduced using <a href="a_Figures/ScriptsGeneratePlots">these scripts</a>
 
-**Note**: if you want to use the banana plot but for your own data use the structure in 
-_Fig2A_Banana_Plot.py_ - you have to calibrate for the production rate of your study area!
+**Note**: if you want to use the banana plot but for your own data use the script in 
+[_Fig2A_Banana_Plot.py_](a_Figures/ScriptsGeneratePlots/Fig2A_Banana_Plot.py) - you have to calibrate for the production rate of your study area!
 
 ---
 ## References

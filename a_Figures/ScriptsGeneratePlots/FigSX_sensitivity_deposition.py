@@ -12,15 +12,14 @@ colors = {"BV-018":"#71E0CE","SB-013":"#9671E0","SB-011":"#E07184","SB-017":"#BB
 
 fig, (ax1,ax2) = plt.subplots(1, 2, figsize=(10, 5),constrained_layout=False)
 
-fig.set_facecolor("#FCFCFC")
 for sample_id in ["BV-018","SB-013","SB-011","SB-017"]:
     file_name_csv = os.path.join(folder_path, f"Results_[{sample_id}]_RSurface_D1.7.csv")
     results_run = pd.read_csv(file_name_csv)
     valid_times_solution = list(results_run.loc[results_run["Solution"], "Total Time [Ma]"])
     valid_deposition_rates = list(results_run.loc[results_run["Solution"], "Deposition rate [cm/year]"])
 
-    ax1.hist(valid_deposition_rates, bins='fd', label=sample_id,histtype='step', fill = False,edgecolor=colors[sample_id])
-ax1.annotate("A", (0.01, 0.95), xycoords="axes fraction",weight="bold", fontsize=16, fontname="Arial")
+    ax1.hist(valid_deposition_rates, bins='fd', label=sample_id[0:2]+sample_id[-2:],histtype='step', fill = False,edgecolor=colors[sample_id])
+ax1.annotate("A", (0.01, 1.01), xycoords="axes fraction",weight="bold", fontsize=16, fontname="Arial")
 ax1.legend(frameon=False,fontsize=10,loc="upper right",ncol=1)
 ax1.set_xscale("log")
 ax1.set_xlabel("Deposition rate [cm/year]",fontsize=14,fontname="Arial")
@@ -37,11 +36,11 @@ for sample_id in ["BV-018","SB-011","SB-017"]:
     for depo, age in zip(valid_deposition_rates, valid_times_solution):
         if (depo > 0.00097) & (depo < 0.89):
             plot_age.append(age)
-    ax2.hist(plot_age,bins=bins, label=sample_id,histtype='step', color=colors[sample_id])
-    ax2.hist(valid_times_solution, bins=bins, label=sample_id, histtype='step', color=colors[sample_id],linestyle="--")
-    ax2.legend(frameon=False,fontsize=10,loc="upper right",ncol=1)
+    ax2.hist(plot_age,bins=bins, label=f"{sample_id[0:2]+sample_id[-2:]}- Within interval",histtype='step', color=colors[sample_id],linestyle="--")
+    ax2.hist(valid_times_solution, bins=bins, label="", histtype='step', color=colors[sample_id])
+    ax2.legend(frameon=False,fontsize=10,loc="upper left",ncol=1,)
 
-ax2.annotate("B", (0.01, 0.951), xycoords="axes fraction",weight="bold", fontsize=16, fontname="Arial")
+ax2.annotate("B", (0.01, 1.01), xycoords="axes fraction",weight="bold", fontsize=16, fontname="Arial")
 ax2.set_xlabel("Age [Myr]",fontsize=14,fontname="Arial")
 ax2.set_ylabel("",fontsize=14,fontname="Arial")
 plt.show()

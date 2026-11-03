@@ -1,9 +1,9 @@
 import sys
 import os
 
-main_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
-print(main_path)
-add_path = os.path.join(main_path, "Production_Rates_Calculator-main", "src")
+main_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
+
+add_path = os.path.join(main_path,"z_ExtraAnalyzes/Production_Rates_Calculator-main", "src")
 sys.path.insert(0, add_path)
 
 import numpy as np
@@ -56,17 +56,20 @@ class calc_Rc:
                 Rc_list.append(Rc_calc)
 
         Rc = pd.DataFrame([(Rc_list[n:n + len(self.time)]) for n in range(0, len(Rc_list), len(self.time))])
-        plt.figure(figsize=(10, 6),facecolor="white",alpha=0.1)
+        plt.figure(figsize=(12, 6),facecolor="white",alpha=0.1)
         plt.plot(((np.arange(0,800,1))*50000)/1e6,Rc_list, label="Cutoff Rigidity (Rc) - based on MCADAM",color="gray")
         ax = plt.gca()
         ax.set_facecolor("#FAFAFA")
-        plt.xlabel("Age [Ma]",fontsize=16)
-        plt.ylabel("Cutoff Rigidity - Rc [GV]",fontsize=16)
-        ax.set_xticklabels(ax.get_xticks(), fontsize=14)
-        ax.set_yticklabels(ax.get_yticks(), fontsize=14)
-        plt.legend(fontsize=14)
+        plt.xlabel("Age [Ma]",fontsize=26)
+        plt.ylabel("Cutoff Rigidity - Rc [GV]",fontsize=26)
+        ax.set_xticks(np.arange(0, 41, 5))
+        ax.set_yticks(np.arange(4, 15, 2))
+        ax.set_xticklabels(ax.get_xticks(), fontsize=22)
+        ax.set_yticklabels(ax.get_yticks(), fontsize=22)
+        plt.legend(fontsize=20)
         plt.tight_layout()
-        output_dir = os.path.join(main_path, "data")
+        print(main_path)
+        output_dir = os.path.join(main_path, "z_AuxData_Scripts/data")
         os.makedirs(output_dir, exist_ok=True)
 
         output_file = os.path.join(output_dir, "Rc_results.csv")
@@ -74,11 +77,11 @@ class calc_Rc:
 
         print(f"Rc DataFrame saved to {output_file}")
 
-        fig_path = os.path.dirname(main_path)
-        fig_dir = os.path.join(fig_path, "generate_figures", "figures", "supporting_figures")
+        fig_dir = os.path.join(main_path, "a_Figures","Plots","SupMaterial")
+        print(fig_dir)
         os.makedirs(fig_dir, exist_ok=True)
 
-        fig_name = "FigS3_Rc_variation_time"
+        fig_name = "FigS8_Rc_variation_time"
         fig_file = os.path.join(fig_dir, f"{fig_name}.png")
 
         plt.savefig(fig_file, dpi=300, bbox_inches="tight")

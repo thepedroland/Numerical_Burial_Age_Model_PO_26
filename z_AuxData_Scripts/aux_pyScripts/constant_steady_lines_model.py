@@ -3,11 +3,11 @@ warnings.filterwarnings("ignore", category=RuntimeWarning)
 import matplotlib.pyplot as plt
 from z_AuxData_Scripts.aux_pyScripts.nuclide_prod_concentration import cosmo_production
 
-class steady_state_model:
+class burial_exposure_model:
     def __init__(self):
         pass
 
-    def plot_steady_state_model(self,Rc_value,checking_only=False):
+    def plot_burial_exposure_model(self,Rc_value,checking_only=False):
         import matplotlib.pyplot as plt
 
         c_p = cosmo_production()
@@ -88,7 +88,7 @@ class steady_state_model:
                          backgroundcolor="#FAF4EF")
 
 ###---------###
-    def plot_steady_state_model_depth(self,z_cm,color):
+    def plot_burial_exposure_model_depth(self,z_cm,color):
 
         c_p = cosmo_production()
 

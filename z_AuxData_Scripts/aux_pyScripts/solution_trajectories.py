@@ -3,7 +3,7 @@ from matplotlib import pyplot as plt
 from matplotlib.ticker import FixedLocator
 from matplotlib.backends.backend_pdf import PdfPages
 import pandas as pd
-from z_AuxData_Scripts.aux_pyScripts.constant_steady_lines_model import steady_state_model
+from z_AuxData_Scripts.aux_pyScripts.constant_steady_lines_model import burial_exposure_model
 
 class set_trajectories:
     def __init__(self,sample_id,reference_sample,density,folder_path,plots_path):

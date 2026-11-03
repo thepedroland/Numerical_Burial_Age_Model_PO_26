@@ -27,7 +27,7 @@ os.makedirs(main_path+"/a_Figures/Plots", exist_ok=True)
 plots_path = main_path+"/a_Figures/Plots"
 
 #20 for Figure 3 and 40 for Figure S10
-limit = 20 #Ma
+limit = 40 #Ma
 x_lim = limit
 
 if x_lim != 20:

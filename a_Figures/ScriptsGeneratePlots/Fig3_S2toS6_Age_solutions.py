@@ -4,9 +4,9 @@ import pandas as pd
 from matplotlib.patches import Ellipse
 import matplotlib.legend_handler as handler
 import os
-from z_AuxDataScripts.aux_scripts.forbiden_zone import plot_forbiden_zone
-from z_AuxDataScripts.aux_scripts.solution_trajectories import set_trajectories
-from z_AuxDataScripts.aux_scripts.misc_functions import load_dataset
+from z_AuxData_Scripts.aux_pyScripts.forbiden_zone import plot_forbiden_zone
+from z_AuxData_Scripts.aux_pyScripts.solution_trajectories import set_trajectories
+from z_AuxData_Scripts.aux_pyScripts.misc_functions import load_dataset
 from cmcrameri import cm
 
 plt.rcParams['font.family'] = 'Arial'

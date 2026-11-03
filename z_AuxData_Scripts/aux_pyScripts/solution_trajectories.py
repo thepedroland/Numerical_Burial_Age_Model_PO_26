@@ -3,14 +3,14 @@ from matplotlib import pyplot as plt
 from matplotlib.ticker import FixedLocator
 from matplotlib.backends.backend_pdf import PdfPages
 import pandas as pd
-from z_AuxDataScripts.aux_scripts.constant_steady_lines_model import steady_state_model
+from z_AuxData_Scripts.aux_pyScripts.constant_steady_lines_model import steady_state_model
 
 class set_trajectories:
     def __init__(self,sample_id,reference_sample,density,folder_path,plots_path):
         self.path_fig = plots_path + f"/solution_trajectories_[{sample_id}]_D{density}.pdf"
         self.pdf = PdfPages(self.path_fig)
         self.fig, self.ax = plt.subplots(dpi=30)  # low dpi = smaller/faster pages
-        self.path_pickle = folder_path + f"/NumSimResults/Trajectories_[{sample_id}]_R{reference_sample}_D{density}.pkl"
+        self.path_pickle = folder_path + f"/NumSimResults/trajectories/Trajectories_latest_[BV-018]_RSB-017_D1.7.pkl"
         self.df = pd.read_pickle(self.path_pickle)
 
     def plot_trajectories(self,x_2s, y_2s,traj_plots_interval=1,plot_valids_only=False):
@@ -21,8 +21,14 @@ class set_trajectories:
         for run, (be_serie, ratio_serie) in tqdm(enumerate(zip(self.df["N10 series"], self.df["Ratio series"])),
                                                  total=len(self.df),
                                                  desc="Plotting trajectories"):
-            if run % 200 == 0 :
+            if run % 300 == 0:
                 self.ax.plot(list(be_serie), list(ratio_serie))
+
+                # Plot circles every 100,000 years (every 10 rows since timestep is 10,000 years)
+                marker_interval = 10  # 100,000 years / 10,000 years per row
+                for i in range(0, len(be_serie), marker_interval):
+                    self.ax.plot(be_serie[i], ratio_serie[i], 'o', markersize=3, color='red')
+
                 self.ax.title.set_text(f"Simulation {run}")
                 lines_model = steady_state_model()
                 lines_between = lines_model.plot_steady_state_model(
@@ -31,7 +37,7 @@ class set_trajectories:
                 self.ax.fill(  # <-- FIX: plt.fill -> ax.fill (consistency with 'ax')
                     x_2s, y_2s,
                     linestyle="--",
-                    linewidth=0.8,alpha=0.5,
+                    linewidth=0.8, alpha=0.5,
                     label=r"2$\sigma$ Error",
                 )
 

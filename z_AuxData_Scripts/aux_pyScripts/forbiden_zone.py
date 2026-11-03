@@ -1,5 +1,5 @@
 import numpy as np
-from z_AuxDataScripts.aux_scripts.constant_steady_lines_model import steady_state_model
+from z_AuxData_Scripts.aux_pyScripts.constant_steady_lines_model import steady_state_model
 
 def plot_forbiden_zone(all_initial_c10, all_ratio,ax,sample=None):
     lines_model = steady_state_model()

@@ -107,8 +107,8 @@ however, it is not guaranteed they will work smoothly.
 | Package   | Version |
 |-----------|---------|
 | `Python ` | 3.13.12 |
-| ` MATLAB ` | 2026a   |
-| ` matlabengine` | 26.1    |
+| `MATLAB ` | 2026a   |
+| `matlabengine` | 26.1    |
 | `numpy`   | 2.3.5   |
 | `pandas`  | 2.3.3   |
 | `torch`   | 2.11.0  |

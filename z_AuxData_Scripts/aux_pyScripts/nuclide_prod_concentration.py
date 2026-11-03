@@ -86,6 +86,8 @@ class cosmo_production:
         return prod_be
 
     def constant_exposure_al(self, time,Rc_value='free',z_cm=0.0):
+        #calculates production rate for aluminium at constant exposure (z=0) and using t=0 as the initial timestep -
+        #the production rate is the same for all timesteps, so we only need to calculate it once.
         if time == 0:
             _, self.data_prod_0_al,Rc = self.LSDn_var_production_nuclides([0],Rc_value=Rc_value,z_cm_list=[z_cm])
 

@@ -8,9 +8,9 @@ from matplotlib.ticker import FixedLocator
 main_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 fig_dir = main_path + "/a_Figures/Plots"
 
-fig_name = "Fig4_MCyork_erosion_rate_relief_graph"
+fig_name = "Fig4_erosion_rate_relief_graph"
 
-data_file = main_path + "/z_AuxDataScripts/data/TopographicData/corr_topographic_data_ksn_erosion_rf.csv"
+data_file = main_path + "/z_AuxData_Scripts/data/corrected_erosion_rates.csv"
 
 remove_samples = []
 
@@ -22,12 +22,12 @@ erosion = df_data["erosion"].values
 dev_ero = df_data["unc_erosion"].values
 
 relief_basins_df = pd.read_csv(
-    main_path + "/z_AuxDataScripts/data/TopographicData/relief_basins_data.csv",
+    main_path + "/z_AuxData_Scripts/data/relief_basins_data.csv",
     header=None
 )
 
 relief_data_std_df = pd.read_csv(
-    main_path + "/z_AuxDataScripts/data/TopographicData/relief_basins_data_std.csv",
+    main_path + "/z_AuxData_Scripts/data/relief_basins_data_std.csv",
     header=None
 )
 
@@ -73,11 +73,12 @@ ax1.scatter(
     linewidths=0.3,
     zorder=2
 )
-
+ax1.annotate("A", (0.00095, 0.89), xycoords="axes fraction",weight="bold", fontsize=12, fontname="Arial")
 ax1.set_facecolor(color="#FAFAFA")
 ax1.set_ylabel("Relief [m]", fontsize=8)
 ax1.set_box_aspect(0.5)
 
+ax2.annotate("B", (0.0009, 0.89), xycoords="axes fraction",weight="bold", fontsize=12, fontname="Arial")
 ax2.set_xlabel("Erosion rate [m/Myr]", fontsize=8)
 
 ax2.set_facecolor(color="#FAFAFA")
